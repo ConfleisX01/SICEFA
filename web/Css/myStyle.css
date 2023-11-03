@@ -13,6 +13,10 @@ h2 {
     font-family: 'Lora', serif;
 }
 
+h3 {
+    font-family: 'Montserrat', sans-serif;
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -54,6 +58,20 @@ a {
     color: white;
 }
 
+.button_2 {
+    background-color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.3rem;
+    border: 1px solid black;
+    transition: all 0.1s ease-in-out;
+}
+
+.button_2:hover {
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+}
+
 .button_1:focus {
     background-color: var(--blue-color);
     color: white;
@@ -61,4 +79,18 @@ a {
 
 .text-justify {
     text-align: justify;
+}
+
+.bg-waves {
+    background-position: center center;
+    background-size: cover;
+    background-image: url("../Img/wave.svg");
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.box-shadow {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
