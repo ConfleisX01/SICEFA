@@ -2,37 +2,31 @@
     {
         "title": "Amoxicilina",
         "type": "Antibiótico",
-        "content": "100 tabletas",
-        "description": "La Amoxicilina es un antibiótico ampliamente utilizado para tratar una variedad de infecciones bacterianas. Se encuentra en la categoría de las penicilinas y es eficaz contra muchas cepas de bacterias comunes. Este medicamento se prescribe para infecciones como sinusitis, amigdalitis, infecciones de oído, infecciones respiratorias, infecciones de la piel y del tracto urinario, entre otras. La Amoxicilina actúa combatiendo las bacterias y ayudando al sistema inmunológico a eliminar la infección. Es importante seguir las indicaciones del médico y completar todo el tratamiento para asegurar una recuperación exitosa."
+        "content": "20 cápsulas",
+        "description": "La amoxicilina es un antibiótico de amplio espectro que se utiliza para tratar una variedad de infecciones bacterianas. Pertenece a la familia de las penicilinas y actúa inhibiendo el crecimiento de las bacterias. La amoxicilina se utiliza comúnmente para tratar infecciones del tracto respiratorio, infecciones del oído, infecciones de la piel, infecciones del tracto urinario y otras infecciones bacterianas. Es un medicamento efectivo para combatir infecciones y se prescribe con frecuencia en entornos médicos. Es importante tomar la amoxicilina exactamente según las indicaciones de un profesional de la salud y completar el curso de tratamiento, incluso si los síntomas mejoran antes de su finalización, para asegurarse de que la infección esté completamente erradicada."
     },
     {
         "title": "Aspirina",
         "type": "Analgésico",
         "content": "100 tabletas",
-        "description": "La aspirina es un medicamento comúnmente utilizado para aliviar el dolor y reducir la fiebre."
+        "description": "La aspirina es un medicamento comúnmente utilizado para aliviar el dolor y reducir la fiebre. Es un antiinflamatorio no esteroideo (AINE) que funciona al inhibir la producción de prostaglandinas en el cuerpo, lo que ayuda a reducir la inflamación y el dolor. También se utiliza a veces como medida preventiva para reducir el riesgo de enfermedades cardiovasculares."
     },
     {
-        "titulo": "Amoxicilina",
-        "tipo": "Antibiótico",
-        "contenido": "20 cápsulas",
-        "descripcion": "La amoxicilina es un antibiótico que se utiliza para tratar infecciones bacterianas."
+        "title": "Ibuprofeno",
+        "type": "Antiinflamatorio",
+        "content": "50 tabletas",
+        "description": "El ibuprofeno es un medicamento utilizado para aliviar el dolor y reducir la inflamación. Es un antiinflamatorio no esteroideo (AINE) que actúa bloqueando la producción de sustancias químicas en el cuerpo que causan dolor e inflamación. Es eficaz en el alivio de dolores leves a moderados, como dolores de cabeza, dolor muscular y dolores menstruales."
     },
     {
-        "titulo": "Ibuprofeno",
-        "tipo": "Antiinflamatorio",
-        "contenido": "50 tabletas",
-        "descripcion": "El ibuprofeno es un medicamento utilizado para aliviar el dolor y reducir la inflamación."
+        "title": "Paracetamol",
+        "type": "Analgésico",
+        "content": "30 tabletas",
+        "description": "El paracetamol es un analgésico utilizado para aliviar el dolor y reducir la fiebre. Aunque su mecanismo de acción no está completamente entendido, se cree que actúa en el cerebro para reducir la sensación de dolor y la fiebre. Es un medicamento de venta libre ampliamente utilizado para el alivio de diversas molestias."
     },
     {
-        "titulo": "Paracetamol",
-        "tipo": "Analgésico",
-        "contenido": "30 tabletas",
-        "descripcion": "El paracetamol es un analgésico utilizado para aliviar el dolor y reducir la fiebre."
-    },
-    {
-        "titulo": "Omeprazol",
-        "tipo": "Inhibidor de la bomba de protones",
-        "contenido": "14 cápsulas",
-        "descripcion": "El omeprazol se utiliza para tratar afecciones relacionadas con el ácido estomacal, como la acidez gástrica y las úlceras."
+        "title": "Omeprazol",
+        "type": "Inhibidor de la bomba de protones",
+        "content": "14 cápsulas",
+        "description": "El omeprazol es un medicamento que se utiliza para reducir la producción de ácido estomacal, lo que lo convierte en un inhibidor de la bomba de protones. Se utiliza para tratar afecciones relacionadas con el ácido estomacal, como la acidez gástrica, las úlceras gástricas y duodenales, y el reflujo gastroesofágico. También se puede utilizar en combinación con otros medicamentos para tratar infecciones por Helicobacter pylori. El omeprazol es una opción efectiva para aliviar el malestar gastrointestinal y mejorar la calidad de vida."
     }
 ]
