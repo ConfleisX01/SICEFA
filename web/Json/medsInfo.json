@@ -1,0 +1,38 @@
+[
+    {
+        "title": "Amoxicilina",
+        "type": "Antibiótico",
+        "content": "100 tabletas",
+        "description": "La Amoxicilina es un antibiótico ampliamente utilizado para tratar una variedad de infecciones bacterianas. Se encuentra en la categoría de las penicilinas y es eficaz contra muchas cepas de bacterias comunes. Este medicamento se prescribe para infecciones como sinusitis, amigdalitis, infecciones de oído, infecciones respiratorias, infecciones de la piel y del tracto urinario, entre otras. La Amoxicilina actúa combatiendo las bacterias y ayudando al sistema inmunológico a eliminar la infección. Es importante seguir las indicaciones del médico y completar todo el tratamiento para asegurar una recuperación exitosa."
+    },
+    {
+        "title": "Aspirina",
+        "type": "Analgésico",
+        "content": "100 tabletas",
+        "description": "La aspirina es un medicamento comúnmente utilizado para aliviar el dolor y reducir la fiebre."
+    },
+    {
+        "titulo": "Amoxicilina",
+        "tipo": "Antibiótico",
+        "contenido": "20 cápsulas",
+        "descripcion": "La amoxicilina es un antibiótico que se utiliza para tratar infecciones bacterianas."
+    },
+    {
+        "titulo": "Ibuprofeno",
+        "tipo": "Antiinflamatorio",
+        "contenido": "50 tabletas",
+        "descripcion": "El ibuprofeno es un medicamento utilizado para aliviar el dolor y reducir la inflamación."
+    },
+    {
+        "titulo": "Paracetamol",
+        "tipo": "Analgésico",
+        "contenido": "30 tabletas",
+        "descripcion": "El paracetamol es un analgésico utilizado para aliviar el dolor y reducir la fiebre."
+    },
+    {
+        "titulo": "Omeprazol",
+        "tipo": "Inhibidor de la bomba de protones",
+        "contenido": "14 cápsulas",
+        "descripcion": "El omeprazol se utiliza para tratar afecciones relacionadas con el ácido estomacal, como la acidez gástrica y las úlceras."
+    }
+]
