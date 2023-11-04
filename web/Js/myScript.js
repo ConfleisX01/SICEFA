@@ -30,6 +30,7 @@ async function loadProducts() {
     });
 }
 
+/// Insertar los datos traidos del Json a los contenedores del HTML
 function insertDataContainer(index) {
     let title = document.getElementById('lb-title');
     let type = document.getElementById("lb-type");
@@ -42,6 +43,7 @@ function insertDataContainer(index) {
     description.textContent = productsInfo[index].description;
 }
 
+/// Obtener los datos del Json y agregarlos a un arreglo
 function getJsonData() {
     return fetch('Json/medsInfo.json')
     .then(res => res.json())
