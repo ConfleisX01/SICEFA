@@ -97,6 +97,16 @@ a {
 
 /*                           LOGIN                                  */
 
+.principal-login-container {
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .login-bg{
     background-image: url("../Modules/login/Img/bg-login.webp");
     background-position: center center;
@@ -107,16 +117,6 @@ a {
     border-radius: 5px;
     backdrop-filter: blur(5px); 
     background-color: rgba(137, 132, 132, 0.5);
-}
-
-.principal-login-container {
-    background-color: rgba(0, 0, 0, 0.3);
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
 }
 
 #txtUser, #txtPassword {
@@ -136,9 +136,7 @@ a {
     border: 1px solid white;
 }
 
-.back {
-    color: white;
-}
+
 
 .button-login {
     padding: 12px 30px;
@@ -150,7 +148,7 @@ a {
 }
 
 .button-login:hover {
-    background-color: black;
+    background-color: #4B86DF;
     color: white;
 }
 
