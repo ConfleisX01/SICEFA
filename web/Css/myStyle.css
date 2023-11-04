@@ -95,6 +95,11 @@ a {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
+#description-container {
+    height: 300px;
+    overflow: scroll;
+}
+
 /*                           LOGIN                                  */
 
 .principal-login-container {
@@ -108,7 +113,7 @@ a {
 }
 
 .login-bg{
-    background-image: url("../Modules/login/Img/bg-login.webp");
+    background-image: url("../Img/bg-login.webp");
     background-position: center center;
     background-size: cover;
 }
@@ -135,8 +140,6 @@ a {
     background-color: rgba(255, 255, 255, 0.2);
     border: 1px solid white;
 }
-
-
 
 .button-login {
     padding: 12px 30px;
