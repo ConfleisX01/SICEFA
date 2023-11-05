@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 /**
- *
- * @author DreamSoft
+*Created by DreamSoft
+ * Juan Pablo Perez Fernandez
+ * Alejandra Hernandez Sauceda
+ * Joel Ezequiel Rodrigues Briones
+ * Edgar Castillo Aguas
  */
 public class ConexionMysql {
 
