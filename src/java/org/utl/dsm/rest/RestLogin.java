@@ -31,7 +31,7 @@ public class RestLogin extends Application {
     @Path("ingresarUsuario")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response ingresarLogin(@FormParam("nombreUsuario") String nombreUsuario, 
+    public Response ingresarUsuario(@FormParam("nombreUsuario") String nombreUsuario, 
             @FormParam("contrasena") String contrasena){
         
     }
