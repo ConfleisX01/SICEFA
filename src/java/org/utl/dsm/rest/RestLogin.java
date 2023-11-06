@@ -1,6 +1,8 @@
 package org.utl.dsm.rest;
 
+import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Application;
@@ -8,8 +10,10 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 /**
- * Created by DreamSoft Juan Pablo Perez Fernandez Alejandra Hernandez Sauceda
- * Joel Ezequiel Rodrigues Briones Edgar Castillo Aguas
+ * Created by DreamSoft Juan Pablo Perez Fernandez 
+ * Alejandra Hernandez Sauceda
+ * Joel Ezequiel Rodrigues Briones 
+ * Edgar Castillo Aguas
  */
 @Path("login")
 public class RestLogin extends Application {
@@ -24,5 +28,12 @@ public class RestLogin extends Application {
         return Response.status(Response.Status.OK).entity(mensaje).build();
     }
     
+    @Path("ingresarLogin")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response ingresarLogin(@FormParam("nombreUsuario") String nombreUsuario, 
+            @FormParam("contrasena") String contrasena){
+        
+    }
     
 }
