@@ -62,7 +62,7 @@ function loadLogin() {
             })
             .then(() => {
                 const scriptLogin = document.createElement('script');
-                scriptLogin.src = './Modules/login/Js/MyScriptLogin.js';
+                scriptLogin.src = './Modules/Login/Js/ControllerLogin.js';
                 document.body.appendChild(scriptLogin);
             });
     })
