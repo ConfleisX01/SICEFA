@@ -28,12 +28,11 @@ public class RestLogin extends Application {
         return Response.status(Response.Status.OK).entity(mensaje).build();
     }
     
-    @Path("ingresarLogin")
+    @Path("ingresarUsuario")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response ingresarLogin(@FormParam("nombreUsuario") String nombreUsuario, 
             @FormParam("contrasena") String contrasena){
         
     }
-    
 }
