@@ -3,7 +3,6 @@ package org.utl.dsm.controller;
 import org.utl.dsm.db.ConexionMysql;
 import org.utl.dsm.model.Usuario;
 import java.sql.Connection;
-import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -13,7 +12,7 @@ import java.util.List;
 public class ControllerUsuario {
 
     public boolean loginUser(String username, String password) {
-        String query = "SELECT * FROM usuario WHERE nombreUsuario = ? AND contrasena = ?";
+        String query = "SELECT * FROM usuario WHERE nombreUsuario = ? AND contrasenia = ?";
         Usuario user = null;
 
         try {
