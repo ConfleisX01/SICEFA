@@ -12,35 +12,31 @@ import java.util.List;
 
 public class ControllerUsuario {
 
-    public Usuario loginUsuario(String nombreUsuario, String contrasena) {
+    public boolean loginUser(String username, String password) {
         String query = "SELECT * FROM usuario WHERE nombreUsuario = ? AND contrasena = ?";
-        Usuario usuarioEncontrado = null;
+        Usuario user = null;
 
         try {
             ConexionMysql connMySql = new ConexionMysql();
             Connection conn = connMySql.open();
             PreparedStatement cstmt = conn.prepareStatement(query);
-
-            cstmt.setString(1, nombreUsuario);
-            cstmt.setString(2, contrasena);
-
+            
+            cstmt.setString(1, username);
+            cstmt.setString(2, password);
+            
             ResultSet rs = cstmt.executeQuery();
-
-            if (rs.next()) {
-                usuarioEncontrado = new Usuario();
-                usuarioEncontrado.setNombreUsuario(rs.getString("nombreUsuario"));
-                usuarioEncontrado.setContrasena(rs.getString("contrasena"));
+            
+            if(rs.next()) {
+                // Si hay datos existentes
+                return true;
+            } else {
+                // No hay datos existentes
+                return false;
             }
-
-            rs.close();
-            cstmt.close();
-            connMySql.close();
-            conn.close();
-
-            return usuarioEncontrado;
+            
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
 

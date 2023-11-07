@@ -17,21 +17,42 @@ function loadIndex() {
 }
 
 /// Funcion para validar los datos ingresados por el usuario
-function validateValues() {
+async function validateValues() {
     let user = document.getElementById('txtUser').value;
     let password = document.getElementById('txtPassword').value;
-    let userObject;
 
     if(user != '' && password != '') {
-        return userObject = {'user' : user, 'password' : password};
+        const url = `http://localhost:8080/DreamSoft_SICEFA/api/login/login?user=${user}&password=${password}`;
+        let response = await makePeticion(url);
+        if(response == 'OK') {
+            Swal.fire({
+                title: "Login exitoso",
+                text: "Bienvenido al sistema",
+                icon: "success"
+              });
+        } else {
+            Swal.fire({
+                title: "Datos incorrectos?",
+                text: "Los datos que ingresaste son los correctos?",
+                icon: "question"
+              });
+        }
     } else {
         Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Espacios vacios",
+            text: "Campos vacios",
             footer: 'Rellena todos los campos para poder ingresar'
           });
     }
+}
+
+async function makePeticion(url) {
+    return fetch(url).then(function (data) {
+        return data.json();
+    }).then((json) => {
+        return json.result;
+    });
 }
 
 /// Funcion para iniciar sesion con las credenciales validadas
@@ -41,7 +62,7 @@ function login() {
 
     // Boton para validar los usuarios de la aplicacion central
     btnCentral.addEventListener('click', () => {
-        
+        validateValues();
     });
 
     // Boton para valiar los usuarios de la aplicacion sucursal
