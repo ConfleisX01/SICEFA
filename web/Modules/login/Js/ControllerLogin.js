@@ -18,7 +18,7 @@ function loadIndex() {
 
 
 /// Funcion para validar el login de SICEFA Central
-async function loginCentral() {
+async function login(rol) {
     let user = document.getElementById('txtUser').value;
     let password = document.getElementById('txtPassword').value;
 
@@ -26,39 +26,7 @@ async function loginCentral() {
         const url = `http://localhost:8080/DreamSoft_SICEFA/api/login/login?user=${user}&password=${password}`;
         let response = await makePeticion(url);
 
-        if(response.response != "null" && response.rol == "ADMC") {
-            Swal.fire({
-                title: "Bienvenido",
-                text: "Login exitoso",
-                icon: "success"
-              });
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "El usuario no existe...",
-                footer: 'Trata de ingresar nuevamente los datos'
-              });
-        }
-    } else {
-        Swal.fire({
-            title: "Campos vacios?",
-            text: "Llena todos los campos para poder ingresar",
-            icon: "question"
-        });
-    }
-}
-
-/// Funcion para validar el login de SICEFA Sucursal
-async function loginSucursal() {
-    let user = document.getElementById('txtUser').value;
-    let password = document.getElementById('txtPassword').value;
-
-    if (user != "" && password != "") {
-        const url = `http://localhost:8080/DreamSoft_SICEFA/api/login/login?user=${user}&password=${password}`;
-        let response = await makePeticion(url);
-
-        if(response.response != "null" && response.rol == "ADMC" || response.rol == "ADMS") {
+        if(response.response != "null" && (response.rol === rol || response.rol === "ADMC")) {
             Swal.fire({
                 title: "Bienvenido",
                 text: "Login exitoso",
@@ -98,12 +66,12 @@ function login() {
 
     // Boton para validar los usuarios de la aplicacion central
     btnCentral.addEventListener('click', () => {
-        loginCentral();
+        login("ADMC");
     });
 
     // Boton para valiar los usuarios de la aplicacion sucursal
     btnSucursal.addEventListener('click', () => {
-        loginSucursal();
+        login("ADMS");
     });
 }
 
