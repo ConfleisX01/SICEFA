@@ -17,26 +17,24 @@ function loadIndex() {
 }
 
 /// Funcion para validar los datos ingresados por el usuario
-async function validateValues() {
+async function validateValues(rol) {
     let user = document.getElementById('txtUser').value;
     let password = document.getElementById('txtPassword').value;
 
     if(user != '' && password != '') {
         const url = `http://localhost:8080/DreamSoft_SICEFA/api/login/login?user=${user}&password=${password}`;
         let response = await makePeticion(url);
-        if(response == 'OK') {
-            Swal.fire({
-                title: "Login exitoso",
-                text: "Bienvenido al sistema",
-                icon: "success"
-              });
+
+        if(response.response == 'null') {
+            alert("El usuario no existe");
         } else {
-            Swal.fire({
-                title: "Datos incorrectos?",
-                text: "Los datos que ingresaste son los correctos?",
-                icon: "question"
-              });
+            if(response.rol == 'ADMC' && response.rol == rol) {
+                alert('Login exitoso');
+            } else if(response.rol == 'ADMS' && response.rol == rol) {
+                
+            }
         }
+
     } else {
         Swal.fire({
             icon: "error",
@@ -48,11 +46,13 @@ async function validateValues() {
 }
 
 async function makePeticion(url) {
-    return fetch(url).then(function (data) {
-        return data.json();
-    }).then((json) => {
-        return json.result;
-    });
+    try {
+        let response = await fetch(url);
+        let json = await response.json();
+        return json;
+    } catch (error) {
+        throw error;
+    }
 }
 
 /// Funcion para iniciar sesion con las credenciales validadas
@@ -62,12 +62,12 @@ function login() {
 
     // Boton para validar los usuarios de la aplicacion central
     btnCentral.addEventListener('click', () => {
-        validateValues();
+        validateValues('ADMC');
     });
 
     // Boton para valiar los usuarios de la aplicacion sucursal
     btnSucursal.addEventListener('click', () => {
-
+        validateValues('ADMS');
     });
 }
 

@@ -11,55 +11,85 @@ import java.util.List;
 
 public class ControllerUsuario {
 
-    public boolean loginUser(String username, String password) {
+//    public boolean loginUser(String username, String password) {
+//        String query = "SELECT * FROM usuario WHERE nombreUsuario = ? AND contrasenia = ?";
+//        Usuario user = null;
+//
+//        try {
+//            ConexionMysql connMySql = new ConexionMysql();
+//            Connection conn = connMySql.open();
+//            PreparedStatement cstmt = conn.prepareStatement(query);
+//            
+//            cstmt.setString(1, username);
+//            cstmt.setString(2, password);
+//            
+//            ResultSet rs = cstmt.executeQuery();
+//            
+//            if(rs.next()) {
+//                // Si hay datos existentes
+//                return true;
+//            } else {
+//                // No hay datos existentes
+//                return false;
+//            }
+//            
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return false;
+//        }
+//    }
+    /// Funcion para ingresar al sistema central o login
+    public Usuario loginUser(String username, String password) {
         String query = "SELECT * FROM usuario WHERE nombreUsuario = ? AND contrasenia = ?";
-        Usuario user = null;
+        Usuario u = new Usuario();
 
         try {
             ConexionMysql connMySql = new ConexionMysql();
             Connection conn = connMySql.open();
             PreparedStatement cstmt = conn.prepareStatement(query);
-            
+
             cstmt.setString(1, username);
             cstmt.setString(2, password);
-            
+
             ResultSet rs = cstmt.executeQuery();
-            
-            if(rs.next()) {
-                // Si hay datos existentes
-                return true;
+
+            if (rs.next()) {
+                u.setIdUsuario(rs.getInt("idUsuario"));
+                u.setNombreUsuario(rs.getString("nombreUsuario"));
+                u.setContrasenia(rs.getString("contrasenia"));
+                u.setRol(rs.getString("rol"));
+
+                return u;
+
             } else {
-                // No hay datos existentes
-                return false;
+                return null;
             }
-            
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
-
-    public List<Usuario> getAll() throws SQLException {
-        String sql = "SELECT * FROM usuario";
-        ConexionMysql connMySql = new ConexionMysql();
-        Connection conn = connMySql.open();
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        ResultSet rs = pstmt.executeQuery();
-        List<Usuario> usuarios = new ArrayList<>();
-        while (rs.next()) {
-            usuarios.add(fill(rs));
-        }
-        rs.close();
-        pstmt.close();
-        connMySql.close();
-        return usuarios;
-    }
-
-    public Usuario fill(ResultSet rs) throws SQLException {
-        Usuario u = new Usuario();
-        u.setIdUsuario(rs.getInt("idUsuario"));
-        u.setNombreUsuario(rs.getString("nombreUsuario"));
-        u.setContrasena(rs.getString("contrasena"));
-        return u;
-    }
+//    public List<Usuario> getAll() throws SQLException {
+//        String sql = "SELECT * FROM usuario";
+//        ConexionMysql connMySql = new ConexionMysql();
+//        Connection conn = connMySql.open();
+//        PreparedStatement pstmt = conn.prepareStatement(sql);
+//        ResultSet rs = pstmt.executeQuery();
+//        List<Usuario> usuarios = new ArrayList<>();
+//        while (rs.next()) {
+//            usuarios.add(fill(rs));
+//        }
+//        rs.close();
+//        pstmt.close();
+//        connMySql.close();
+//        return usuarios;
+//    }
+//
+//    public Usuario fill(ResultSet rs) throws SQLException {
+//        Usuario u = new Usuario();
+//        u.setIdUsuario(rs.getInt("idUsuario"));
+//        u.setNombreUsuario(rs.getString("nombreUsuario"));
+//        u.setContrasena(rs.getString("contrasena"));
+//        return u;
+//    }
 }

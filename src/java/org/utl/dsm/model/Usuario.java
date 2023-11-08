@@ -3,14 +3,16 @@ package org.utl.dsm.model;
 public class Usuario {
     private int idUsuario;
     private String nombreUsuario;
-    private String contrasena;
+    private String contrasenia;
+    private String rol;
 
-    public Usuario(int idUsuario, String nombreUsuario, String contrasena) {
+    public Usuario(int idUsuario, String nombreUsuario, String contrasenia, String rol) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
-        this.contrasena = contrasena;
+        this.contrasenia = contrasenia;
+        this.rol = rol;
     }
-        
+
     public Usuario() {
     }
 
@@ -30,13 +32,22 @@ public class Usuario {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
     
     
 }
