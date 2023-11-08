@@ -55,14 +55,14 @@ function loadLogin() {
     let btnLogin = document.getElementById('btn-login');
 
     btnLogin.addEventListener('click', () => {
-        fetch("./Modules/login/login.html")
+        fetch("./Modules/Login/login.html")
             .then(response => response.text())
             .then(data => {
                 document.getElementById('main-container').innerHTML = data;
             })
             .then(() => {
                 const scriptLogin = document.createElement('script');
-                scriptLogin.src = './Modules/login/Js/ControllerLogin.js';
+                scriptLogin.src = './Modules/Login/Js/ControllerLogin.js';
                 document.body.appendChild(scriptLogin);
             });
     })

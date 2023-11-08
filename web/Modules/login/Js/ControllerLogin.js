@@ -16,32 +16,68 @@ function loadIndex() {
     });
 }
 
-/// Funcion para validar los datos ingresados por el usuario
-async function validateValues(rol) {
+
+/// Funcion para validar el login de SICEFA Central
+async function loginCentral() {
     let user = document.getElementById('txtUser').value;
     let password = document.getElementById('txtPassword').value;
 
-    if(user != '' && password != '') {
+    if (user != "" && password != "") {
         const url = `http://localhost:8080/DreamSoft_SICEFA/api/login/login?user=${user}&password=${password}`;
         let response = await makePeticion(url);
 
-        if(response.response == 'null') {
-            alert("El usuario no existe");
+        if(response.response != "null" && response.rol == "ADMC") {
+            Swal.fire({
+                title: "Bienvenido",
+                text: "Login exitoso",
+                icon: "success"
+              });
         } else {
-            if(response.rol == 'ADMC' && response.rol == rol) {
-                alert('Login exitoso');
-            } else if(response.rol == 'ADMS' && response.rol == rol) {
-                
-            }
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "El usuario no existe...",
+                footer: 'Trata de ingresar nuevamente los datos'
+              });
         }
-
     } else {
         Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Campos vacios",
-            footer: 'Rellena todos los campos para poder ingresar'
-          });
+            title: "Campos vacios?",
+            text: "Llena todos los campos para poder ingresar",
+            icon: "question"
+        });
+    }
+}
+
+/// Funcion para validar el login de SICEFA Sucursal
+async function loginSucursal() {
+    let user = document.getElementById('txtUser').value;
+    let password = document.getElementById('txtPassword').value;
+
+    if (user != "" && password != "") {
+        const url = `http://localhost:8080/DreamSoft_SICEFA/api/login/login?user=${user}&password=${password}`;
+        let response = await makePeticion(url);
+
+        if(response.response != "null" && response.rol == "ADMC" || response.rol == "ADMS") {
+            Swal.fire({
+                title: "Bienvenido",
+                text: "Login exitoso",
+                icon: "success"
+              });
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "El usuario no existe...",
+                footer: 'Trata de ingresar nuevamente los datos'
+              });
+        }
+    } else {
+        Swal.fire({
+            title: "Campos vacios?",
+            text: "Llena todos los campos para poder ingresar",
+            icon: "question"
+        });
     }
 }
 
@@ -62,12 +98,12 @@ function login() {
 
     // Boton para validar los usuarios de la aplicacion central
     btnCentral.addEventListener('click', () => {
-        validateValues('ADMC');
+        loginCentral();
     });
 
     // Boton para valiar los usuarios de la aplicacion sucursal
     btnSucursal.addEventListener('click', () => {
-        validateValues('ADMS');
+        loginSucursal();
     });
 }
 
