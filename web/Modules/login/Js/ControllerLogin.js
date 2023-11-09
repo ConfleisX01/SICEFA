@@ -18,7 +18,7 @@ function loadIndex() {
 
 
 /// Funcion para validar el login de SICEFA Central
-async function login(rol) {
+async function loginUser(rol) {
     let user = document.getElementById('txtUser').value;
     let password = document.getElementById('txtPassword').value;
 
@@ -66,15 +66,16 @@ function login() {
 
     // Boton para validar los usuarios de la aplicacion central
     btnCentral.addEventListener('click', () => {
-        login("ADMC");
+        loginUser("ADMC");
     });
 
     // Boton para valiar los usuarios de la aplicacion sucursal
     btnSucursal.addEventListener('click', () => {
-        login("ADMS");
+        loginUser("ADMS");
     });
 }
 
 /// Carga de funciones
+console.log("Hola desde JS login");
 loadIndex();
 login();
