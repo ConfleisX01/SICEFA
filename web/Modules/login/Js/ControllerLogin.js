@@ -16,6 +16,9 @@ function loadIndex() {
     });
 }
 
+function loadCentral() {
+    
+}
 
 /// Funcion para validar el login de SICEFA Central
 async function loginUser(rol) {
