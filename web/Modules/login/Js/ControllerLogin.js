@@ -18,7 +18,7 @@ function loadIndex() {
 
 
 /// Funcion para validar el login de SICEFA Central
-async function login(rol) {
+async function loginUser(rol) {
     let user = document.getElementById('txtUser').value;
     let password = document.getElementById('txtPassword').value;
 
@@ -26,25 +26,66 @@ async function login(rol) {
         const url = `http://localhost:8080/DreamSoft_SICEFA/api/login/login?user=${user}&password=${password}`;
         let response = await makePeticion(url);
 
-        if(response.response != "null" && (response.rol === rol || response.rol === "ADMC")) {
+        if (response.response != "null" && (response.rol === rol || response.rol === "ADMC")) {
             Swal.fire({
-                title: "Bienvenido",
-                text: "Login exitoso",
-                icon: "success"
-              });
+                title: 'Bienvenido a SICEFA Central',
+                //  text: 'Login Exitoso',
+                html: '<b class="style-html">Login Exitoso</b>',
+                icon: 'success',
+                confirmButtonText: 'Ingresar',
+                confirmButtonColor: '#009929',
+                buttonsStyling: true,
+                showCloseButton: true,
+                closeButtonAriaLabel: 'Cerrar Alerta',
+                backdrop: true,
+                position: 'center',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                stopKeydownPropagation: false,
+                customClass: {
+                    title: 'titulo-swal'
+                }
+            });
         } else {
             Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "El usuario no existe...",
-                footer: 'Trata de ingresar nuevamente los datos'
-              });
+                title: 'Datos Erróneos',
+                html: '<b class="style-html">¿Estás seguro que los datos que ingresastes son correctos?</b>',
+                icon: 'question',
+                position: 'center',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                stopKeydownPropagation: false,
+                confirmButtonColor: '#A52019',
+                buttonsStyling: true,
+                showCloseButton: true,
+                closeButtonAriaLabel: 'Cerrar Alerta',
+                backdrop: true,
+                customClass: {
+                    title: 'titulo-swal'
+                }
+            });
         }
     } else {
         Swal.fire({
-            title: "Campos vacios?",
-            text: "Llena todos los campos para poder ingresar",
-            icon: "question"
+            icon: "error",
+            title: "Campos Vacíos",
+            html: '<b class="style-html">No ingresaste todos los campos, inténtalo nuevamente</b>',
+            footer: 'Rellena todos los campos para poder ingresar',
+            position: 'center',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            stopKeydownPropagation: false,
+            confirmButtonColor: '#FF0000',
+            buttonsStyling: true,
+            showCloseButton: true,
+            closeButtonAriaLabel: 'Cerrar Alerta',
+            backdrop: true,
+            customClass: {
+                title: 'titulo-swal'
+            }
         });
     }
 }
@@ -66,15 +107,16 @@ function login() {
 
     // Boton para validar los usuarios de la aplicacion central
     btnCentral.addEventListener('click', () => {
-        login("ADMC");
+        loginUser("ADMC");
     });
 
     // Boton para valiar los usuarios de la aplicacion sucursal
     btnSucursal.addEventListener('click', () => {
-        login("ADMS");
+        loginUser("ADMS");
     });
 }
 
 /// Carga de funciones
+console.log("Hola desde JS login");
 loadIndex();
 login();

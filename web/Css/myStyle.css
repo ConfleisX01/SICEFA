@@ -1,5 +1,6 @@
 /* Fuentes principales */
 @import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300&family=Lora&family=Montserrat:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400&family=Rubik:wght@300&display=swap');
 
 * {
     font-family: 'Hind Madurai', sans-serif;
@@ -27,6 +28,17 @@ main {
     background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
+.style-html {
+    font-weight: bold;
+    font-family: 'Rubik', sans-serif;
+}
+.titulo-swal{
+    font-family: 'Rubik', sans-serif;
+}
+.footer-tittle{
+    font-family: 'Rubik', sans-serif;
+}
+
 :root {
     --blue-color: #4B86DF;
 }
@@ -37,6 +49,24 @@ main {
 
 a {
     color: black;
+}
+
+.bg-dashboard {
+    background-color: #f6f6f6;
+}
+
+.r-2 {
+    border-radius: 0.5rem;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+span {
+    font-size: 1.5rem;
 }
 
 .body-bg {
@@ -51,6 +81,26 @@ a {
     border-radius: 0.3rem;
     border: inherit;
     transition: all 0.1s ease-in-out;
+}
+
+.between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.option {
+    transition: background-color 0.2s ease-in-out;
+    color: #9fa4a6;
+}
+
+.option:hover {
+    background-color: #eefaf9;
+    color: #5ccfc5;
+}
+
+.option:active {
+    color: #4B86DF;
 }
 
 .button_1:hover {
@@ -93,6 +143,10 @@ a {
 
 .box-shadow {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.box-shadow-2 {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 #description-container {
