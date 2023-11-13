@@ -69,6 +69,11 @@ a {
     flex-direction: column;
 }
 
+.grid-center {
+    display: grid;
+    place-items: center;
+}
+
 .body-bg {
     background-image: url("../Img/bg-3.webp");
     background-position: center center;

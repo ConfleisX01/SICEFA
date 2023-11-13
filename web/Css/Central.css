@@ -2,6 +2,30 @@
     background-color: #f6f6f6;
 }
 
+.bg-sucursales {
+    background-image: url("../Img/Icon\ Sucursales.png");
+    background-position: center top;
+    background-size: cover;
+}
+
+.bg-pedidos {
+    background-image: url("../Img/Icon\ Pedidos.png");
+    background-position: center top;
+    background-size: cover;
+}
+
+.bg-medicamentos {
+    background-image: url("../Img/Icon\ Medicamentos.png");
+    background-position: center top;
+    background-size: cover;
+}
+
+.bg-empleados {
+    background-image: url("../Img/Icon\ Empleados.png");
+    background-position: center top;
+    background-size: cover;
+}
+
 .r-3 {
     border-radius: 1.5rem;
 }
