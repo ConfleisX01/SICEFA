@@ -17,7 +17,11 @@ function loadIndex() {
 }
 
 function loadCentral() {
-    
+    fetch("./Modules/SICEFA_Central/index.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('main-container').innerHTML = data;
+        });
 }
 
 /// Funcion para validar el login de SICEFA Central
@@ -29,25 +33,71 @@ async function loginUser(rol) {
         const url = `http://localhost:8080/DreamSoft_SICEFA/api/login/login?user=${user}&password=${password}`;
         let response = await makePeticion(url);
 
-        if(response.response != "null" && (response.rol === rol || response.rol === "ADMC")) {
+        if (response.response != "null" && (response.rol === rol || response.rol === "ADMC")) {
             Swal.fire({
-                title: "Bienvenido",
-                text: "Login exitoso",
-                icon: "success"
-              });
+                title: 'Bienvenido a SICEFA Central',
+                //  text: 'Login Exitoso',
+                html: '<b class="style-html">Login Exitoso</b>',
+                icon: 'success',
+                confirmButtonText: 'Ingresar',
+                confirmButtonColor: '#009929',
+                buttonsStyling: true,
+                showCloseButton: true,
+                closeButtonAriaLabel: 'Cerrar Alerta',
+                backdrop: true,
+                position: 'center',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                stopKeydownPropagation: false,
+                customClass: {
+                    title: 'titulo-swal',
+                    icon: "no-before-icon"
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    loadCentral();
+                }
+            })
         } else {
             Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "El usuario no existe...",
-                footer: 'Trata de ingresar nuevamente los datos'
-              });
+                title: 'Datos Erróneos',
+                html: '<b class="style-html">¿Estás seguro que los datos que ingresastes son correctos?</b>',
+                icon: 'question',
+                position: 'center',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                stopKeydownPropagation: false,
+                confirmButtonColor: '#A52019',
+                buttonsStyling: true,
+                showCloseButton: true,
+                closeButtonAriaLabel: 'Cerrar Alerta',
+                backdrop: true,
+                customClass: {
+                    title: 'titulo-swal'
+                }
+            });
         }
     } else {
         Swal.fire({
-            title: "Campos vacios?",
-            text: "Llena todos los campos para poder ingresar",
-            icon: "question"
+            icon: "error",
+            title: "Campos Vacíos",
+            html: '<b class="style-html">No ingresaste todos los campos, inténtalo nuevamente</b>',
+            footer: 'Rellena todos los campos para poder ingresar',
+            position: 'center',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            stopKeydownPropagation: false,
+            confirmButtonColor: '#FF0000',
+            buttonsStyling: true,
+            showCloseButton: true,
+            closeButtonAriaLabel: 'Cerrar Alerta',
+            backdrop: true,
+            customClass: {
+                title: 'titulo-swal'
+            }
         });
     }
 }
