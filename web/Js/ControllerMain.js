@@ -21,7 +21,7 @@ function loadCentral() {
 }
 
 
-loadCentral();
+//loadCentral();
 
 /// Restaurar funcion despues del testeo
-//loadIndex();
+loadIndex();
