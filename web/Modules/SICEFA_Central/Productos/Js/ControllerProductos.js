@@ -5,8 +5,6 @@ async function getProductosData() {
 
     table.innerHTML = '';
 
-    console.log(response);
-
     let htmlString = '';
 
     response.forEach((producto, index) => {
@@ -58,30 +56,30 @@ function addProducto() {
         let v_idSucursal = document.getElementById('txtIdSucursal').value;
 
         let producto = {
-            "inventario": {
-                "existencias": parseInt(v_existencias),
-                "idSucursal": parseInt(v_idSucursal)
+            inventario: {
+                existencias: v_existencias,
+                idSucursal: v_idSucursal
             },
-            "nombre": v_nombre,
-            "nombreGenerico": v_nombreGenerico,
-            "formaFarmaceutica": v_formaFarmaceutica,
-            "unidadMedida": v_unidadMedida,
-            "presentacion": v_presentacion,
-            "principalIndicacion": v_principalIndicacion,
-            "contraindicaciones": v_contraindicaciones,
-            "concentracion": v_concentracion,
-            "unidadesEnvase": parseInt(v_unidadesEnvase),
-            "precioCompra": parseFloat(v_precioCompra),
-            "precioVenta": parseFloat(v_precioVenta),
-            "foto": v_foto,
-            "rutaFoto": v_rutaFoto,
-            "codigoBarras": v_codigoBarras
+            nombre: v_nombre,
+            nombreGenerico: v_nombreGenerico,
+            formaFarmaceutica: v_formaFarmaceutica,
+            unidadMedida: v_unidadMedida,
+            presentacion: v_presentacion,
+            principalIndicacion: v_principalIndicacion,
+            contraindicaciones: v_contraindicaciones,
+            concentracion: v_concentracion,
+            unidadesEnvase: v_unidadesEnvase,
+            precioCompra: v_precioCompra,
+            precioVenta: v_precioVenta,
+            foto: v_foto,
+            rutaFoto: v_rutaFoto,
+            codigoBarras: v_codigoBarras
         };
 
         const queryString = new URLSearchParams(producto).toString();
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: queryString
         };
 
@@ -96,7 +94,6 @@ function addProducto() {
         );
 
         getProductosData();
-
     });
 }
 

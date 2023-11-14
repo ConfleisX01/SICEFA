@@ -22,12 +22,10 @@ import org.utl.dsm.model.Producto;
 /// Ruta para llamar las APIS desde el navegador de la seccion productos
 @Path("producto")
 public class RestProducto extends Application{
-    
-    
     /// Metodo para insertar un producto a la tabla correspondiente
     @Path("insertProducto")
-    @Produces(MediaType.APPLICATION_JSON)
     @POST
+    @Produces(MediaType.APPLICATION_JSON)
     public Response insertProducto(@FormParam("producto") @DefaultValue("") String p) {
         String out = "";
         ControllerProducto cp = new ControllerProducto();

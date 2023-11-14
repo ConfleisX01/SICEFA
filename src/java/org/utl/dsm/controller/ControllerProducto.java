@@ -21,7 +21,7 @@ public class ControllerProducto {
     
     /// Metodo para agregar un producto dentro de la tabla correspondiente
     public Producto insertProducto(Producto p) {
-        String query = "CALL agregarProducto(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String query = "CALL agregarProducto(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         try {
             ConexionMysql connMySql = new ConexionMysql();
