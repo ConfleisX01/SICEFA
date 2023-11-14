@@ -21,6 +21,10 @@ function loadCentral() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('main-container').innerHTML = data;
+        }).then(() => {
+            const scriptLogin = document.createElement('script');
+            scriptLogin.src = './Modules/SICEFA_Central/Js/ControllerCentral.js';
+            document.body.appendChild(scriptLogin);
         });
 }
 
