@@ -1,6 +1,7 @@
 package org.utl.dsm.model;
 
 public class Sucursal {
+
     private int idSucursal;
     private String nombre;
     private String titular;
@@ -14,11 +15,41 @@ public class Sucursal {
     private String latitud;
     private String longitud;
     private int estatus;
+    private Empleado empleado;
+    private Usuario usuario;
+    private Persona persona;
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
 
     public Sucursal() {
     }
 
-    public Sucursal(int idSucursal, String nombre, String titular, String rfc, String domicilio, String colonia, String codigoPostal, String ciudad, String estado, String telefono, String latitud, String longitud, int estatus) {
+    public Sucursal(Empleado empleado, Usuario usuario, Persona persona, int idSucursal, String nombre, String titular, String rfc, String domicilio, String colonia, String codigoPostal, String ciudad, String estado, String telefono, String latitud, String longitud, int estatus) {
+        this.empleado = empleado;
+        this.usuario = usuario;
+        this.persona = persona;
         this.idSucursal = idSucursal;
         this.nombre = nombre;
         this.titular = titular;
@@ -43,7 +74,7 @@ public class Sucursal {
     }
 
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public void setNombre(String nombre) {
@@ -137,5 +168,8 @@ public class Sucursal {
     public void setEstatus(int estatus) {
         this.estatus = estatus;
     }
-    
+     public Sucursal getSucursal() {
+        return this;
+    }
+
 }

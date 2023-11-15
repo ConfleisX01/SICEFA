@@ -1,0 +1,70 @@
+<div class="container-fluid my-2 p-1">
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                <label for="txtNombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" placeholder="Ingresa el nombre del medicamento" id="txtNombre">
+            </div>
+            <div>
+                <label for="txtTitular" class="form-label">Titular</label>
+                <input type="text" class="form-control" placeholder="Ingresa el nombre titular" id="txtTitular">
+            </div>
+            <div>
+                <label for="txtRFC" class="form-label">RFC:</label>
+                <input type="text" class="form-control" placeholder="Ingresa el RFC" id="txtRFC">
+            </div>
+            <div>
+                <label for="txtDomicilio" class="form-label">Domicilio</label>
+                <input type="text" class="form-control" placeholder="Ingresa el domicilio" id="txtDomicilio">
+            </div>
+            <div>
+                <label for="txtColonia" class="form-label">Colonia:</label>
+                <input type="text" class="form-control" placeholder="Ingresa la colonia" id="txtColonia">
+            </div>
+            <div>
+                <label for="txtCodigoPostal" class="form-label">Código postal:</label>
+                <input type="text" class="form-control" placeholder="Ingresa el código postal" id="txtCodigoPostal">
+            </div>
+            <div>
+                <label for="txtCiudad" class="form-label">Ciudad</label>
+                <input type="text" class="form-control" placeholder="Ingresa la ciudad" id="txtCiudad">
+            </div>
+            <div>
+                <label for="txtEstado" class="form-label">Estado:</label>
+                <input type="text" class="form-control" placeholder="Ingresa el estado" id="txtEstado">
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                <label for="txtTelefono" class="form-label">Teléfono:</label>
+                <input type="text" class="form-control" placeholder="Ingresa el teléfono" id="txtTelefono">
+            </div>
+            <div>
+                <label for="txtLatitud" class="form-label">Latitud</label>
+                <input type="text" class="form-control" placeholder="Ingresa la latitud" id="txtLatitud">
+            </div>
+            <div>
+                <label for="txtLongitud" class="form-label">Longitud</label>
+                <input type="text" class="form-control" placeholder="Ingresa la longitud" id="txtLongitud">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid d-flex align-items-center justify-content-center">
+    <button class="btn btn-success" onclick="save()">Agregar</button>
+</div>
+<div class="container-fluid my-4 p-1">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Titular</th>
+                <th scope="col">Domicilio</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Estatus</th>
+            </tr>
+        </thead>
+        <tbody id="table-row"></tbody>
+    </table>
+</div>
