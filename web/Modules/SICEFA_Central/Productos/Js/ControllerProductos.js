@@ -9,12 +9,11 @@ function addProducto() {
     let data = getInputsData();
     const url = "http://localhost:8080/DreamSoft_SICEFA/api/producto/insertProducto";
 
-    let dataInventario = {
-        "existencias": data.existencias,
-        "idSucursal": data.idSucursal
-    }
-
-    let dataProducto = {
+    let producto = {
+        "inventario": {
+            "idSucursal": data.idSucursal,
+            "existencias": data.existencias
+        },
         "nombre": data.nombre,
         "nombreGenerico": data.nombreGenerico,
         "formaFarmaceutica": data.formaFarmaceutica,
@@ -31,15 +30,10 @@ function addProducto() {
         "codigoBarras": data.codigoBarras
     }
 
-    const queryInventario = new URLSearchParams(dataInventario).toString();
-    const queryProducto = new URLSearchParams(dataProducto).toString();
-    let query = "dataInventario={" + queryInventario + ",'dataProducto':{" + queryProducto + "}}";
-
     const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: query
-
+        method: "POST",
+        headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ producto: JSON.stringify(producto) })
     };
 
     fetch(url, requestOptions).then(
@@ -51,7 +45,7 @@ function addProducto() {
             console.log(json);
         }
     );
-}
+};
 
 function getInputsData() {
     // Obtén todos los elementos de entrada por su nombre
