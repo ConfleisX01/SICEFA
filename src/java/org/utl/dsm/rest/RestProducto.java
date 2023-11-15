@@ -35,7 +35,6 @@ public class RestProducto extends Application {
             cp.insertProducto(producto);
             out = """
                   {"response" : "%s}
-                  {"response" : "%s"}
                   """;
             out = String.format(out, p);
         } catch (Exception e) {
