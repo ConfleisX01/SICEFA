@@ -18,10 +18,10 @@ import org.utl.dsm.model.Producto;
  *
  * @author Confleis
  */
-
 /// Ruta para llamar las APIS desde el navegador de la seccion productos
 @Path("producto")
-public class RestProducto extends Application{
+public class RestProducto extends Application {
+
     /// Metodo para insertar un producto a la tabla correspondiente
     @Path("insertProducto")
     @POST
@@ -34,8 +34,9 @@ public class RestProducto extends Application{
             Producto producto = gson.fromJson(p, Producto.class);
             cp.insertProducto(producto);
             out = """
-                  {"response" : "Objeto Insertado"}
+                  {"response" : "%s"}
                   """;
+            out = String.format(out, p);
         } catch (Exception e) {
             e.printStackTrace();
             out = """
@@ -44,12 +45,12 @@ public class RestProducto extends Application{
         }
         return Response.status(Response.Status.OK).entity(out).build();
     }
-    
+
     /// Metodo para obtener todos los registros de la tabla productos y convertirlos a Json
     @Path("getAll")
     @Produces(MediaType.APPLICATION_JSON)
     @GET
-    public Response getAll()  {
+    public Response getAll() {
         String out = null;
         List<Producto> productos = null;
         ControllerProducto cp = new ControllerProducto();

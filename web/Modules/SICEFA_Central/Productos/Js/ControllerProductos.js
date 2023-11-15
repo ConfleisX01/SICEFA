@@ -7,7 +7,7 @@ async function getProductosData() {
 
     let htmlString = '';
 
-    response.forEach((producto, index) => {
+    response.forEach((producto) => {
         let { idProducto, nombre, nombreGenerico, precioCompra, precioVenta, inventario: { existencias } } = producto;
 
         htmlString += `
@@ -24,6 +24,7 @@ async function getProductosData() {
     table.innerHTML = htmlString;
 }
 
+
 async function makePeticion(url) {
     try {
         let response = await fetch(url);
@@ -38,64 +39,49 @@ function addProducto() {
     let btnAgregar = document.getElementById('button-agregar');
     btnAgregar.addEventListener('click', () => {
         const url = `http://localhost:8080/DreamSoft_SICEFA/api/producto/insertProducto`;
-        let v_nombre = document.getElementById('txtNombre').value;
-        let v_nombreGenerico = document.getElementById('txtNombreGenerico').value;
-        let v_formaFarmaceutica = document.getElementById('txtFormaFarmaceutica').value;
-        let v_unidadMedida = document.getElementById('txtUnidadMedida').value;
-        let v_presentacion = document.getElementById('txtPresentacion').value;
-        let v_principalIndicacion = document.getElementById('txtPrincipalIndicacion').value;
-        let v_contraindicaciones = document.getElementById('txtContraindicaciones').value;
-        let v_concentracion = document.getElementById('txtConcentracion').value;
-        let v_unidadesEnvase = document.getElementById('txtUnidadesEnvase').value;
-        let v_precioCompra = document.getElementById('txtPrecioCompra').value;
-        let v_precioVenta = document.getElementById('txtPrecioVenta').value;
-        let v_foto = document.getElementById('txtFoto').value;
-        let v_rutaFoto = document.getElementById('txtRutaFoto').value;
-        let v_codigoBarras = document.getElementById('txtCodigoBarras').value;
-        let v_existencias = document.getElementById('txtExistencias').value;
-        let v_idSucursal = document.getElementById('txtIdSucursal').value;
 
         let producto = {
             inventario: {
-                existencias: v_existencias,
-                idSucursal: v_idSucursal
+                idSucursal: 1,
+                existencias: 100
             },
-            nombre: v_nombre,
-            nombreGenerico: v_nombreGenerico,
-            formaFarmaceutica: v_formaFarmaceutica,
-            unidadMedida: v_unidadMedida,
-            presentacion: v_presentacion,
-            principalIndicacion: v_principalIndicacion,
-            contraindicaciones: v_contraindicaciones,
-            concentracion: v_concentracion,
-            unidadesEnvase: v_unidadesEnvase,
-            precioCompra: v_precioCompra,
-            precioVenta: v_precioVenta,
-            foto: v_foto,
-            rutaFoto: v_rutaFoto,
-            codigoBarras: v_codigoBarras
+            nombre: "Pablo",
+            nombreGenerico: "Ibuprofeno Genérico",
+            formaFarmaceutica: "Tableta",
+            unidadMedida: "mg",
+            presentacion: "30 tabletas",
+            principalIndicacion: "Alivio del dolor",
+            contraindicaciones: "Evitar en caso de úlcera",
+            concentracion: "500mg",
+            unidadesEnvase: 30,
+            precioCompra: 2.5,
+            precioVenta: 5.99,
+            foto: "imagen_ibuprofeno.png",
+            rutaFoto: "/ruta/imagen_ibuprofeno.png",
+            codigoBarras: "1234567890",
+            estatus: 1
         };
 
-        const queryString = new URLSearchParams(producto).toString();
-        const requestOptions = {
+        console.log(producto);
+
+        fetch(url, {
             method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: queryString
-        };
-
-        fetch(url, requestOptions).then(
-            function (data) {
-                return data.json();
-            }
-        ).then(
-            function (json) {
-                console.log(json);
-            }
-        );
-
-        getProductosData();
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(producto),
+        }).then(response => response.json())
+            .then(data => {
+                // Manejar la respuesta del servidor si es necesario
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                // Manejar errores de la solicitud
+                console.error('Error en la solicitud:', error);
+            });
     });
 }
+
 
 // Llamada a la función
 getProductosData();
