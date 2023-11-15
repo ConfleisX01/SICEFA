@@ -34,8 +34,9 @@ public class RestProducto extends Application{
             Producto producto = gson.fromJson(p, Producto.class);
             cp.insertProducto(producto);
             out = """
-                  {"response" : "Objeto Insertado"}
+                  {"response" : "%s}
                   """;
+            out = String.format(out, p);
         } catch (Exception e) {
             e.printStackTrace();
             out = """
