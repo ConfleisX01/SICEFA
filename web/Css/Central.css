@@ -46,7 +46,7 @@
     cursor: pointer;
 }
 
-.option:hover{
+.option:hover {
     background-color: white;
     color: #5CCFC5;
     background-color: inherit;
@@ -58,4 +58,48 @@
 
 .text-justify {
     text-align: justify;
+}
+
+.nav-item {
+    color: #000000D9;
+}
+
+.text-cian {
+    color: #5CCFC5;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #5CCFC5;
+    background-color: var(--bs-nav-tabs-link-active-bg);
+    border-color: var(--bs-nav-tabs-link-active-border-color);
+}
+
+.text-bg-cian {
+    background-color: #5CCFC5;
+}
+
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+  isolation: isolate;
+  color: #5CCFC5;
+  border-color: var(--bs-nav-tabs-link-hover-border-color);
+  border-bottom: 1px solid white;
+}
+
+.r-100 {
+    border-radius: 100%;
+}
+
+.button-editar {
+    padding: 5px 20px;
+    color: #709fba;
+    border-radius: 1rem;
+    border: 1px solid #709fba;
+    background-color: inherit;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+.button-editar:hover {
+    background-color: #709fba;
+    color: #000000D9;
 }

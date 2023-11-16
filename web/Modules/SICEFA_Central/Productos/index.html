@@ -1,92 +1,44 @@
-<div class="container-fluid my-2 p-1">
-    <div class="row">
-        <div class="col-sm-6">
-            <div>
-                <label for="txtNombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" placeholder="Ingresa el nombre del medicamento" id="txtNombre" name="txtNombre">
-            </div>
-            <div>
-                <label for="txtNombreGenerico" class="form-label">Nombre Generico</label>
-                <input type="text" class="form-control" placeholder="Ingresa el nombre generico" id="txtNombreGenerico" name="txtNombreGenerico">
-            </div>
-            <div>
-                <label for="txtFormaFarmaceutica" class="form-label">Forma Farmaceutica</label>
-                <input type="text" class="form-control" placeholder="Ingresa la forma farmaceutica" id="txtFormaFarmaceutica" name="txtFormaFarmaceutica">
-            </div>
-            <div>
-                <label for="txtUnidadMedida" class="form-label">Unidad de Medida</label>
-                <input type="text" class="form-control" placeholder="Ingresa la unidad de medida" id="txtUnidadMedida" name="txtUnidadMedida">
-            </div>
-            <div>
-                <label for="txtPresentacion" class="form-label">Presentación</label>
-                <input type="text" class="form-control" placeholder="Ingresa la presentación" id="txtPresentacion" name="txtPresentacion">
-            </div>
-            <div>
-                <label for="txtPrincipalIndicacion" class="form-label">Principal Indicación</label>
-                <input type="text" class="form-control" placeholder="Ingresa la principal indicación" id="txtPrincipalIndicacion" name="txtPrincipalIndicacion">
-            </div>
-            <div>
-                <label for="txtContraindicaciones" class="form-label">Contraindicaciones</label>
-                <input type="text" class="form-control" placeholder="Ingresa las contraindicaciones" id="txtContraindicaciones" name="txtContraindicaciones">
-            </div>
-            <div>
-                <label for="txtConcentracion" class="form-label">Concentración</label>
-                <input type="text" class="form-control" placeholder="Ingresa la concentración" id="txtConcentracion" name="txtConcentracion">
-            </div>
+<div class="container-fluid py-2">
+    <h3>SICEFA Central / Productos <i class="bi bi-capsule fs-1"></i></h3>
+</div>
+
+<div class="container-fluid bg-white rounded py-2">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active text-cian" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"><i class="bi bi-table"></i>
+                Mostrar Productos</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link text-cian" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+                type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"><i
+                    class="bi bi-pen-fill"></i> Control Productos</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active table-responsive" id="home-tab-pane" role="tabpanel"
+            aria-labelledby="home-tab" tabindex="0">
+            <table class="table">
+                <thead class="bg-light">
+                    <tr class="text-center">
+                        <th colspan="1">ID</th>
+                        <th colspan="1">Nombre, Nombre Generico</th>
+                        <th colspan="1">Precio Compra, Precio Venta</th>
+                        <th colspan="1">Codigo de Barras</th>
+                        <th colspan="1">Existencias</th>
+                        <th colspan="1">ID Sucursal Afiliada</th>
+                        <th colspan="1">Estatus</th>
+                        <th colspan="1">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center" id="table-row"></tbody>
+            </table>
         </div>
-        <div class="col-sm-6">
-            <div>
-                <label for="txtUnidadesEnvase" class="form-label">Unidades por Envase</label>
-                <input type="text" class="form-control" placeholder="Ingresa las unidades por envase" id="txtUnidadesEnvase" name="txtUnidadesEnvase">
-            </div>
-            <div>
-                <label for="txtPrecioCompra" class="form-label">Precio de Compra</label>
-                <input type="text" class="form-control" placeholder="Ingresa el precio de compra" id="txtPrecioCompra" name="txtPrecioCompra">
-            </div>
-            <div>
-                <label for="txtPrecioVenta" class="form-label">Precio de Venta</label>
-                <input type="text" class="form-control" placeholder="Ingresa el precio de venta" id="txtPrecioVenta" name="txtPrecioVenta">
-            </div>
-            <div>
-                <label for="txtFoto" class="form-label">Foto</label>
-                <input type="text" class="form-control" placeholder="Ingresa la foto" id="txtFoto" name="txtFoto">
-            </div>
-            <div>
-                <label for="txtRutaFoto" class="form-label">Ruta de la foto</label>
-                <input type="text" class="form-control" placeholder="Ingresa la ruta de la foto" id="txtRutaFoto" name="txtRutaFoto">
-            </div>
-            <div>
-                <label for="txtCodigoBarras" class="form-label">Codigo de Barras</label>
-                <input type="text" class="form-control" placeholder="Ingresa el codigo de barras" id="txtCodigoBarras" name="txtCodigoBarras">
-            </div>
-            <div>
-                <label for="txtExistencias" class="form-label">Existencias</label>
-                <input type="text" class="form-control" placeholder="Ingresa las existencias" id="txtExistencias" name="txtExistencias">
-            </div>
-            <div>
-                <label for="txtIdSucursal" class="form-label">ID de la sucursal</label>
-                <input type="text" class="form-control" placeholder="Ingresa el ID de la sucursal" id="txtIdSucursal" name="txtIdSucursal">
-            </div>
+        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...
         </div>
+        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...
+        </div>
+        <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">
+            ...</div>
     </div>
-</div>
-<div class="container-fluid d-flex aling-items-center justify-content-center">
-    <input class="btn btn-success" type="button" value="Agregar" id="button-agregar">
-</div>
-<div class="container-fluid my-4 p-1">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Nombre Generico</th>
-                <th scope="col">Precio Compra</th>
-                <th scope="col">Precio Venta</th>
-                <th scope="col">Existencias</th>
-            </tr>
-        </thead>
-        <tbody id="table-row">
-            
-        </tbody>
-    </table>
 </div>

@@ -103,17 +103,27 @@ async function getProductosData() {
     let htmlString = '';
 
     response.forEach((producto) => {
-        let { idProducto, nombre, nombreGenerico, precioCompra, precioVenta, inventario: { existencias } } = producto;
-
+        let { idProducto, nombre, nombreGenerico, precioCompra, precioVenta, codigoBarras, estatus, inventario: { existencias, idSucursal } } = producto;
+        let estatusProducto = estatus == 1 ? 'Activo' : 'Inactivo'
         htmlString += `
-            <tr>
-                <th scope="row">${idProducto}</th>
-                <td>${nombre}</td>
-                <td>${nombreGenerico}</td>
-                <td>${precioCompra}</td>
-                <td>${precioVenta}</td>
-                <td>${existencias}</td>
-            </tr>`;
+        <tr>
+        <td>
+            <p class="fw-bold">#${idProducto}</p>
+        </td>
+        <td>
+            <p class="fw-normal mb-1">${nombre}</p>
+            <p class="text-muted mb-0">${nombreGenerico}</p>
+        </td>
+        <td>
+            <p class="fw-normal mb-1">$${precioCompra}</p>
+            <p class="text-muted mb-0">$${precioVenta}</p>
+        </td>
+        <td class = "fw-bold">#${codigoBarras}</td>
+        <td>${existencias}</td>
+        <td class = "fw-bold">#${idSucursal}</td>
+        <td><span class="badge badge-success rounded-pill d-inline text-bg-primary">${estatusProducto}</span></td>
+        <td><button class="button-editar">Editar</button></td>
+        </tr>`;
     });
 
     table.innerHTML = htmlString;
