@@ -46,6 +46,14 @@ function addProducto() {
         }
     );
 
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Producto agregado con exito",
+        showConfirmButton: false,
+        timer: 1500
+    });
+
     getProductosData();
 }
 
