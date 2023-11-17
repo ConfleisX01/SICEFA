@@ -1,5 +1,5 @@
 <div class="container-fluid py-2">
-    <h3>SICEFA Central / Productos <i class="bi bi-capsule fs-1"></i></h3>
+    <h3>SICEFA Central / Productos <i class="bi bi-capsule"></i></h3>
 </div>
 
 <div class="container-fluid bg-white rounded py-2">
@@ -48,61 +48,83 @@
                             id="txtNombreGenerico">
                     </div>
                     <div class="col-sm-4">
-                    <label for="txtFormaFarmaceutica" class="form-label">Forma farmaceutica</label>
-                    <input type="text" class="form-control" placeholder="Ingresa la forma farmaceutica"
+                        <label for="txtFormaFarmaceutica" class="form-label">Forma farmaceutica</label>
+                        <input type="text" class="form-control" placeholder="Ingresa la forma farmaceutica"
                             id="txtFormaFarmaceutica">
                     </div>
                     <div class="col-sm-2">
                         <label for="" class="form-label">Unidad de Medida</label>
-                        <input type="text" class="form-control" placeholder="Ingresa la unidad de medida">
+                        <input type="text" class="form-control" placeholder="Ingresa la unidad de medida" id="txtUnidadMedida">
                     </div>
                     <div class="col-sm-4">
                         <label for="" class="form-label">Presentacion</label>
-                        <input type="text" class="form-control" placeholder="Ingresa la presentacion">
+                        <input type="text" class="form-control" placeholder="Ingresa la presentacion" id="txtPresentacion">
                     </div>
                     <div class="col-sm-2">
                         <label for="" class="form-label">Principal Indicacion</label>
-                        <input type="text" class="form-control" placeholder="Ingresa la principal indicacion">
+                        <input type="text" class="form-control" placeholder="Ingresa la principal indicacion" id="txtPrincipalIndicacion">
                     </div>
                     <div class="col-sm-4">
                         <label for="" class="form-label">Contraindicaciones</label>
-                        <input type="text" class="form-control" placeholder="Ingresa las contraidicaciones">
+                        <input type="text" class="form-control" placeholder="Ingresa las contraidicaciones" id="txtContraindicaciones">
                     </div>
                     <div class="col-sm-2">
                         <label for="" class="form-label">Concentracion</label>
-                        <input type="text" class="form-control" placeholder="Ingresa la concentracion">
+                        <input type="text" class="form-control" placeholder="Ingresa la concentracion" id="txtConcentracion">
                     </div>
                     <div class="col-sm-4">
                         <label for="" class="form-label">Unidades por Envase</label>
-                        <input type="text" class="form-control" placeholder="Ingresa las unidades por envase">
+                        <input type="text" class="form-control" placeholder="Ingresa las unidades por envase" id="txtUnidadesEnvase">
                     </div>
                     <div class="col-sm-2">
                         <label for="" class="form-label">Precio de Compra</label>
-                        <input type="text" class="form-control" placeholder="Ingresa el precio de compra">
+                        <input type="number" class="form-control" placeholder="Ingresa el precio de compra" id="txtPrecioCompra">
                     </div>
                     <div class="col-sm-2">
                         <label for="" class="form-label">Precio de Venta</label>
-                        <input type="text" class="form-control" placeholder="Ingresa el precio de venta">
+                        <input type="number" class="form-control" placeholder="Ingresa el precio de venta" id="txtPrecioVenta">
                     </div>
                     <div class="col-sm-2">
                         <label for="" class="form-label">Foto del Producto</label>
-                        <input type="text" class="form-control" placeholder="Ingresa la foto del producto">
+                        <input type="file" class="form-control" placeholder="Ingresa la foto del producto" id="txtFoto">
                     </div>
                     <div class="col-sm-3">
                         <label for="" class="form-label">Ruta de la Foto</label>
-                        <input type="text" class="form-control" placeholder="Ingresa la ruta de la foto">
+                        <input type="text" class="form-control" placeholder="Ingresa la ruta de la foto" id="txtRutaFoto">
                     </div>
                     <div class="col-sm-3">
                         <label for="" class="form-label">Codigo de Barras</label>
-                        <input type="text" class="form-control" placeholder="Ingresa el codigo de barras">
+                        <input type="number" class="form-control" placeholder="Ingresa el codigo de barras" id="txtCodigoBarras">
                     </div>
                     <div class="col-sm-3">
                         <label for="" class="form-label">Existencias</label>
-                        <input type="text" class="form-control" placeholder="Ingresa las existencias">
+                        <input type="number" class="form-control" placeholder="Ingresa las existencias" id="txtExistencias">
                     </div>
                     <div class="col-sm-3">
                         <label for="" class="form-label">ID de la Sucursal Afilidada</label>
-                        <input type="text" class="form-control" placeholder="Ingresa el ID de la sucursal afiliada">
+                        <input type="text" class="form-control" placeholder="Ingresa el ID de la sucursal afiliada" id="txtIdSucursal">
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid my-4">
+                <div class="row gx-2 gy-2 text-center">
+                    <div class="col-6 col-md-4 text-white">
+                        <button class="button-add" id="button-agregar">
+                            <span class="button-text">Agregar</span>
+                            <span class="button-icon"><i class="bi bi-plus"></i></span>
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <button class="button-update">
+                            <span class="button-text">Actualizar</span>
+                            <span class="button-icon"><i class="bi bi-cloud-download-fill"></i></span>
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <button class="button-delete">
+                            <span class="button-text">Eliminar</span>
+                            <span class="button-icon"><i class="bi bi-x"></i></span>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -13,6 +13,23 @@ function loadButtons() {
     btnSucursal.addEventListener('click', () => {
         loadSucursales();
     });
+
+    let btnCliente = document.getElementById("button-clientes");
+    btnCliente.addEventListener('click', () => {
+        loadClientes();
+    });
+}
+
+function loadClientes() {
+    fetch("./Modules/SICEFA_Central/Clientes/index.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('container-central').innerHTML = data;
+        }).then(() => {
+            const scriptLogin = document.createElement('script');
+            scriptLogin.src = './Modules/SICEFA_Central/Clientes/Js/ControllerClientes.js';
+            document.body.appendChild(scriptLogin);
+        });
 }
 
 function loadSucursales() {
