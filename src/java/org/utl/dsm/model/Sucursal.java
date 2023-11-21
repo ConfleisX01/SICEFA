@@ -3,7 +3,7 @@ package org.utl.dsm.model;
 public class Sucursal {
 
     private int idSucursal;
-    private String nombre;
+    private String nombreSucursal;
     private String titular;
     private String rfc;
     private String domicilio;
@@ -46,12 +46,12 @@ public class Sucursal {
     public Sucursal() {
     }
 
-    public Sucursal(Empleado empleado, Usuario usuario, Persona persona, int idSucursal, String nombre, String titular, String rfc, String domicilio, String colonia, String codigoPostal, String ciudad, String estado, String telefono, String latitud, String longitud, int estatus) {
+    public Sucursal(Empleado empleado, Usuario usuario, Persona persona, int idSucursal, String nombreSucursal, String titular, String rfc, String domicilio, String colonia, String codigoPostal, String ciudad, String estado, String telefono, String latitud, String longitud, int estatus) {
         this.empleado = empleado;
         this.usuario = usuario;
         this.persona = persona;
         this.idSucursal = idSucursal;
-        this.nombre = nombre;
+        this.nombreSucursal = nombreSucursal;
         this.titular = titular;
         this.rfc = rfc;
         this.domicilio = domicilio;
@@ -73,12 +73,12 @@ public class Sucursal {
         this.idSucursal = idSucursal;
     }
 
-    public String getNombre() {
-        return this.nombre;
+    public String getNombreSucursal() {
+        return this.nombreSucursal;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreSucursal(String nombreSucursal) {
+        this.nombreSucursal = nombreSucursal;
     }
 
     public String getTitular() {

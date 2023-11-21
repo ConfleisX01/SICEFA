@@ -2,6 +2,7 @@ package org.utl.dsm.model;
 
 public class Producto {
     private Inventario inventario;
+    private Sucursal sucursal;
     private int idProducto;
     private String nombre;
     private String nombreGenerico;
@@ -22,8 +23,9 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(Inventario inventario, int idProducto, String nombre, String nombreGenerico, String formaFarmaceutica, String unidadMedida, String presentacion, String principalIndicacion, String contraindicaciones, String concentracion, int unidadesEnvase, float precioCompra, float precioVenta, String foto, String rutaFoto, String codigoBarras, int estatus) {
+    public Producto(Inventario inventario, Sucursal sucursal, int idProducto, String nombre, String nombreGenerico, String formaFarmaceutica, String unidadMedida, String presentacion, String principalIndicacion, String contraindicaciones, String concentracion, int unidadesEnvase, float precioCompra, float precioVenta, String foto, String rutaFoto, String codigoBarras, int estatus) {
         this.inventario = inventario;
+        this.sucursal = sucursal;
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.nombreGenerico = nombreGenerico;
@@ -48,6 +50,14 @@ public class Producto {
 
     public void setInventario(Inventario inventario) {
         this.inventario = inventario;
+    }
+
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
     }
 
     public int getIdProducto() {
