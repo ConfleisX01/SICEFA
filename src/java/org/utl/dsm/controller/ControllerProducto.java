@@ -11,23 +11,42 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import org.utl.dsm.model.Inventario;
+import org.utl.dsm.model.Sucursal;
 
 /**
  *
- * @author Confleis
- * Controlador para la logica de manejo de los productos o medicamentos
+ * @author Confleis Controlador para la logica de manejo de los productos o
+ * medicamentos
  */
 public class ControllerProducto {
-    
+
+    public Integer getNumberProductos() {
+        String query = "SELECT COUNT(*) AS producto FROM producto";
+        try {
+            ConexionMysql connMySQL = new ConexionMysql();
+            Connection conn = connMySQL.open();
+            CallableStatement cstmt = (CallableStatement) conn.prepareCall(query);
+            ResultSet rs = cstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("producto");
+            } else {
+                return 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     /// Metodo para agregar un producto dentro de la tabla correspondiente
     public Producto insertProducto(Producto p) {
         String query = "CALL agregarProducto(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        
+
         try {
             ConexionMysql connMySql = new ConexionMysql();
             Connection conn = connMySql.open();
             CallableStatement cstmt = (CallableStatement) conn.prepareCall(query);
-            
+
             cstmt.setString(1, p.getNombre());
             cstmt.setString(2, p.getNombreGenerico());
             cstmt.setString(3, p.getFormaFarmaceutica());
@@ -45,7 +64,7 @@ public class ControllerProducto {
             cstmt.setInt(15, p.getInventario().getExistencias());
             cstmt.setInt(16, p.getInventario().getIdSucursal());
             cstmt.execute();
-            
+
             cstmt.close();
             conn.close();
             connMySql.close();
@@ -55,7 +74,7 @@ public class ControllerProducto {
             return p;
         }
     }
-    
+
     /// Metodo para agregar todos los datos traidos desde la consulta a una estructura de datos para posteriormente retornar la lista
     public List<Producto> getAll() throws SQLException {
         String query = "SELECT * FROM vista_productos;";
@@ -64,7 +83,7 @@ public class ControllerProducto {
         PreparedStatement pstmt = conn.prepareStatement(query);
         ResultSet rs = pstmt.executeQuery();
         List<Producto> producto = new ArrayList<>();
-        while (rs.next()) {            
+        while (rs.next()) {
             producto.add(fill(rs));
         }
         rs.close();
@@ -72,7 +91,7 @@ public class ControllerProducto {
         connMySql.close();
         return producto;
     }
-    
+
     /// Metodo para crear un objeto con los datos correspondientes al modelo con los datos de un ResultSet
     public Producto fill(ResultSet rs) throws SQLException {
         Producto p = new Producto();
@@ -97,6 +116,10 @@ public class ControllerProducto {
         i.setIdSucursal(rs.getInt("idSucursal"));
         i.setExistencias(rs.getInt("existencias"));
         p.setInventario(i);
+        Sucursal s = new Sucursal();
+        s.setIdSucursal(rs.getInt("idSucursal"));
+        s.setNombreSucursal(rs.getString("nombreSucursal"));
+        p.setSucursal(s);
         return p;
     }
 }

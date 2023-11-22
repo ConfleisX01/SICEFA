@@ -65,4 +65,22 @@ public class RestProducto extends Application {
         }
         return Response.status(Response.Status.OK).entity(out).build();
     }
+    
+    @Path("getNumberProductos")
+    @Produces(MediaType.APPLICATION_JSON)
+    @GET
+    public Response getNumberProductos() {
+        String out = "";
+        int number;
+        ControllerProducto cp = new ControllerProducto();
+        try {
+            number = cp.getNumberProductos();
+            out = """
+                  {"response" : "%s"}
+                  """;
+            out  = String.format(out, number);
+        } catch (Exception e) {
+        }
+        return Response.status(Response.Status.OK).entity(out).build();
+    }
 }

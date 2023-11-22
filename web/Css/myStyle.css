@@ -74,6 +74,13 @@ a {
     place-items: center;
 }
 
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .body-bg {
     background-image: url("../Img/bg-3.webp");
     background-position: center center;
@@ -124,11 +131,6 @@ a {
 .button_2:hover {
     background-color: black;
     border: 1px solid white;
-    color: white;
-}
-
-.button_1:focus {
-    background-color: var(--blue-color);
     color: white;
 }
 

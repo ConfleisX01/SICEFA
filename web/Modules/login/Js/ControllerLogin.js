@@ -52,7 +52,7 @@ async function loginUser(rol) {
                 position: 'center',
                 allowOutsideClick: false,
                 allowEscapeKey: false,
-                allowEnterKey: false,
+                allowEnterKey: true,
                 stopKeydownPropagation: false,
                 customClass: {
                     title: 'titulo-swal',
@@ -62,7 +62,7 @@ async function loginUser(rol) {
                 if (result.isConfirmed) {
                     loadCentral();
                 }
-            })
+            });
         } else {
             Swal.fire({
                 title: 'Datos Erróneos',
@@ -71,7 +71,7 @@ async function loginUser(rol) {
                 position: 'center',
                 allowOutsideClick: false,
                 allowEscapeKey: false,
-                allowEnterKey: false,
+                allowEnterKey: true,
                 stopKeydownPropagation: false,
                 confirmButtonColor: '#A52019',
                 buttonsStyling: true,
@@ -92,7 +92,7 @@ async function loginUser(rol) {
             position: 'center',
             allowOutsideClick: false,
             allowEscapeKey: false,
-            allowEnterKey: false,
+            allowEnterKey: true,
             stopKeydownPropagation: false,
             confirmButtonColor: '#FF0000',
             buttonsStyling: true,
@@ -133,6 +133,5 @@ function login() {
 }
 
 /// Carga de funciones
-console.log("Hola desde JS login");
-loadIndex();
+// Funcion solamente para prueba
 login();

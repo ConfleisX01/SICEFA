@@ -22,7 +22,7 @@ public class ControllerSucursal {
             CallableStatement cstmt = (CallableStatement) conn.prepareCall(query);
 
             // Establecer los parámetros de entrada
-            cstmt.setString(1, s.getNombre());
+            cstmt.setString(1, s.getNombreSucursal());
             cstmt.setString(2, s.getTitular());
             cstmt.setString(3, s.getRfc());
             cstmt.setString(4, s.getDomicilio());
@@ -44,7 +44,7 @@ public class ControllerSucursal {
             cstmt.registerOutParameter(18, java.sql.Types.VARCHAR); // var_contrasenia
 
             System.out.println(
-                    "Nombre: " + s.getNombre()
+                    "Nombre: " + s.getNombreSucursal()
                     + ", Titular: " + s.getTitular()
                     + ", RFC: " + s.getRfc()
                     + ", Domicilio: " + s.getDomicilio()
@@ -75,7 +75,7 @@ public class ControllerSucursal {
 
     public Sucursal fill(String nombreSucursal, String nombreTitular, String rfcTitular, String domicilio, String colonia, String ciudad, String estado, String codigoPostal, String telefono, String longitud, String latitud, String estatus) {
         Sucursal s = new Sucursal();
-        s.setNombre(nombreSucursal);
+        s.setNombreSucursal(nombreSucursal);
         s.setTitular(nombreTitular);
         s.setRfc(rfcTitular);
         s.setDomicilio(domicilio);
@@ -119,7 +119,7 @@ public class ControllerSucursal {
 
     // Llena la sucursal con los datos del ResultSet
     sucursal.setIdSucursal(rs.getInt("idSucursal"));
-    sucursal.setNombre(rs.getString("nombre"));
+    sucursal.setNombreSucursal(rs.getString("nombre"));
     sucursal.setTitular(rs.getString("titular"));
     sucursal.setRfc(rs.getString("rfc"));
     sucursal.setDomicilio(rs.getString("domicilio"));

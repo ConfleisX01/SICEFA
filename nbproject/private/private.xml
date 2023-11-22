@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Black/OneDrive/Escritorio/SICEFA/src/java/org/utl/dsm/controller/ControllerProducto.java</file>
             <file>file:/C:/Users/Black/OneDrive/Escritorio/SICEFA/src/java/org/utl/dsm/rest/RestProducto.java</file>
+=======
+            <file>file:/C:/Users/Black/Desktop/SICEFA/SICEFA/src/java/org/utl/dsm/controller/ControllerProducto.java</file>
+            <file>file:/C:/Users/Black/Desktop/SICEFA/SICEFA/src/java/org/utl/dsm/rest/RestProducto.java</file>
+>>>>>>> 74b2012aeaeb1def9a9134b9b80cc55be4ed436d
         </group>
     </open-files>
 </project-private>

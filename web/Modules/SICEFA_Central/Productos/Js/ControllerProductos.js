@@ -1,7 +1,26 @@
 function loadButtons() {
     let btnAdd = document.getElementById('button-agregar');
     btnAdd.addEventListener('click', () => {
-        addProducto();
+        Swal.fire({
+            title: "Quieres agregar este producto?",
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: "Guardar",
+            denyButtonText: `No Guardar`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Producto agregado con exito",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                addProducto();
+            } else if (result.isDenied) {
+                Swal.fire("Operacion cancelada", "", "info");
+            }
+        });
     });
 }
 
@@ -39,14 +58,10 @@ function addProducto() {
     fetch(url, requestOptions).then(
         function (data) {
             return data.json();
-        }
-    ).then(
-        function (json) {
-            console.log(json);
-        }
-    );
-
-    getProductosData();
+        })
+        .then(function () {
+            getProductosData();
+        });
 }
 
 function getInputsData() {
@@ -98,22 +113,33 @@ async function getProductosData() {
 
     table.innerHTML = '';
 
-    console.log(response);
-
     let htmlString = '';
 
     response.forEach((producto) => {
-        let { idProducto, nombre, nombreGenerico, precioCompra, precioVenta, inventario: { existencias } } = producto;
-
+        let { idProducto, nombre, nombreGenerico, precioCompra, precioVenta, codigoBarras, estatus, inventario: { existencias, idSucursal }, sucursal: { nombreSucursal } } = producto;
+        let estatusProducto = estatus == 1 ? 'Activo' : 'Inactivo'
         htmlString += `
-            <tr>
-                <th scope="row">${idProducto}</th>
-                <td>${nombre}</td>
-                <td>${nombreGenerico}</td>
-                <td>${precioCompra}</td>
-                <td>${precioVenta}</td>
-                <td>${existencias}</td>
-            </tr>`;
+        <tr>
+        <td>
+            <p class="fw-bold">#${idProducto}</p>
+        </td>
+        <td>
+            <p class="fw-normal mb-1">${nombre}</p>
+            <p class="text-muted mb-0">${nombreGenerico}</p>
+        </td>
+        <td>
+            <p class="fw-normal mb-1">$${precioCompra}</p>
+            <p class="text-muted mb-0">$${precioVenta}</p>
+        </td>
+        <td class = "fw-bold">#${codigoBarras}</td>
+        <td>${existencias}</td>
+        <td class = "fw-bold">
+            <p class="fw-normal mb-1">#${idSucursal}</p>
+            <p class="text-muted mb-1">${nombreSucursal}</p>
+        </td>
+        <td><span class="badge badge-success rounded-pill d-inline text-bg-primary">${estatusProducto}</span></td>
+        <td><button class="button-editar">Editar</button></td>
+        </tr>`;
     });
 
     table.innerHTML = htmlString;
@@ -128,7 +154,6 @@ async function makePeticion(url) {
         throw error;
     }
 }
-
 getProductosData();
 
 loadButtons();
