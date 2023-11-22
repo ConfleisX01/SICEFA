@@ -31,10 +31,10 @@ public class RestProducto extends Application {
         ControllerProducto cp = new ControllerProducto();
         Gson gson = new Gson();
         try {
-            Producto producto = gson.fromJson(p, Producto.class);
+            Producto producto = gson.fromJson(p, Producto.class);   
             cp.insertProducto(producto);
             out = """
-                  {"response" : "%s}
+                  {"response": "%s"}
                   """;
             out = String.format(out, p);
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class RestProducto extends Application {
                   {"response" : "Error en la transacción"}
                   """;
         }
-        return Response.status(Response.Status.OK).entity(out).build();
+        return Response.status(Response.Status.CREATED).entity(out).build();
     }
 
     /// Metodo para obtener todos los registros de la tabla productos y convertirlos a Json
