@@ -121,6 +121,14 @@
     border-radius: 100%;
 }
 
+.hover-logo{
+    transition: 0.2s;
+}
+
+.hover-logo{
+    background-color: #5CCFC5;
+}
+
 .button-editar {
     padding: 5px 20px;
     color: #709fba;
