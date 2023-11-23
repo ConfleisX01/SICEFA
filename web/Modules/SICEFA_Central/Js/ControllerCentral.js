@@ -1,9 +1,4 @@
-function loadButtons() {
-    let btnInicio = document.getElementById("button-inicio");
-    btnInicio.addEventListener('click', () => {
-        loadInicio();
-    });
-    
+function loadButtons() {    
     let btnInicio = document.getElementById("button-inicio");
     btnInicio.addEventListener('click', () => {
         loadInicio();
@@ -47,25 +42,9 @@ function loadSucursales() {
             scriptLogin.src = './Modules/SICEFA_Central/Sucursales/Js/ControllerSucursales.js';
             document.body.appendChild(scriptLogin);
         });
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('container-central').innerHTML = data;
-        }).then(() => {
-            const scriptLogin = document.createElement('script');
-            scriptLogin.src = './Modules/SICEFA_Central/Sucursales/Js/ControllerSucursales.js';
-            document.body.appendChild(scriptLogin);
-        });
 }
 function loadProductos() {
     fetch("./Modules/SICEFA_Central/Productos/index.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('container-central').innerHTML = data;
-        }).then(() => {
-            const scriptLogin = document.createElement('script');
-            scriptLogin.src = './Modules/SICEFA_Central/Productos/Js/ControllerProductos.js';
-            document.body.appendChild(scriptLogin);
-        });
         .then(response => response.text())
         .then(data => {
             document.getElementById('container-central').innerHTML = data;
@@ -78,14 +57,6 @@ function loadProductos() {
 
 function loadInicio() {
     fetch("./Modules/SICEFA_Central/Inicio/index.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('container-central').innerHTML = data;
-        }).then(() => {
-            const scriptLogin = document.createElement('script');
-            scriptLogin.src = './Modules/SICEFA_Central/Inicio/Js/ControllerInicio.js';
-            document.body.appendChild(scriptLogin);
-        });
         .then(response => response.text())
         .then(data => {
             document.getElementById('container-central').innerHTML = data;
