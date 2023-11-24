@@ -73,22 +73,7 @@ public class ControllerSucursal {
         }
     }
 
-    public Sucursal fill(String nombreSucursal, String nombreTitular, String rfcTitular, String domicilio, String colonia, String ciudad, String estado, String codigoPostal, String telefono, String longitud, String latitud, String estatus) {
-        Sucursal s = new Sucursal();
-        s.setNombreSucursal(nombreSucursal);
-        s.setTitular(nombreTitular);
-        s.setRfc(rfcTitular);
-        s.setDomicilio(domicilio);
-        s.setColonia(colonia);
-        s.setCiudad(ciudad);
-        s.setEstado(estado);
-        s.setCodigoPostal(codigoPostal);
-        s.setTelefono(telefono);
-        s.setLongitud(longitud);
-        s.setLatitud(latitud);
-        s.setEstatus(1);
-        return s;
-    }
+
 
     public List<Sucursal> getAll() throws SQLException {
        String query = "SELECT idSucursal, nombre, titular, rfc, domicilio, colonia, codigoPostal, ciudad, estado, telefono, latitud, longitud, estatus FROM vista_sucursales;";

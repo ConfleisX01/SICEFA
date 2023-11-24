@@ -22,27 +22,26 @@ public class RestSucursal {
     @Path("insertarSucursal")
     @Produces(MediaType.APPLICATION_JSON)
     @POST
-    public Response insertSucursal(@FormParam("nombre") @DefaultValue("") String nombre,
-            @FormParam("titular") @DefaultValue("") String titular,
-            @FormParam("rfc") @DefaultValue("") String rfc,//
-            @FormParam("domicilio") @DefaultValue("") String domicilio,
-            @FormParam("colonia") @DefaultValue("") String colonia,
-            @FormParam("codigoPostal") @DefaultValue("") String codigoPostal,//
-            @FormParam("ciudad") @DefaultValue("") String ciudad,//
-            @FormParam("estado") @DefaultValue("") String estado,//
-            @FormParam("telefono") @DefaultValue("") String telefono,
-            @FormParam("latitud") @DefaultValue("") String latitud,//
-            @FormParam("longitud") @DefaultValue("") String longitud,
-            @FormParam("estatus") @DefaultValue("") String estatus
-
-    ) {
-        ControllerSucursal cs = new ControllerSucursal();
-        Sucursal s = cs.fill(nombre, titular, rfc, domicilio, colonia, codigoPostal, ciudad, estado, telefono, latitud, longitud,estatus);
-        Sucursal newSucursal = cs.insertSucursal(s);
+    public Response insertSucursal(@FormParam("sucursal") @DefaultValue("") String s) {
+        String out = "";
+        ControllerSucursal cp = new ControllerSucursal();
         Gson gson = new Gson();
-        String out = gson.toJson(newSucursal);
+        try {
+            Sucursal sucursal = gson.fromJson(s, Sucursal.class);   
+            cp.insertSucursal(sucursal);
+            out = """
+                  {"response": "%s"}
+                  """;
+            out = String.format(out, s);
+        } catch (Exception e) {
+            e.printStackTrace();
+            out = """
+                  {"response" : "Error en la transacción"}
+                  """;
+        }
         return Response.status(Response.Status.CREATED).entity(out).build();
     }
+
 
     @Path("getAll")
     @Produces(MediaType.APPLICATION_JSON)
