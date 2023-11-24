@@ -34,9 +34,8 @@ public class RestProducto extends Application {
             Producto producto = gson.fromJson(p, Producto.class);   
             cp.insertProducto(producto);
             out = """
-                  {"response": "%s"}
+                  {"response" : "OK"}
                   """;
-            out = String.format(out, p);
         } catch (Exception e) {
             e.printStackTrace();
             out = """
@@ -46,6 +45,48 @@ public class RestProducto extends Application {
         return Response.status(Response.Status.CREATED).entity(out).build();
     }
 
+    /// Metodo para actualizar un producto
+    @Path("updateProducto")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateProducto(@FormParam("producto") @DefaultValue("") String p) {
+        String out = "";
+        ControllerProducto cp = new ControllerProducto();
+        Gson gson = new Gson();
+        try {
+            Producto producto = null;
+            producto = gson.fromJson(p, Producto.class);
+            cp.updateProducto(producto);
+            out = gson.toJson(producto);
+        } catch (Exception e) {
+            out = """
+                  {"response" : "Error al actualizar el producto"}
+                  """;
+            e.printStackTrace();
+        }
+        return Response.status(Response.Status.OK).entity(out).build();
+    }
+    
+    /// Metodo para eliminar de manera logica un producto
+    @Path("deleteProducto")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteProducto(@FormParam("info") @DefaultValue("") String info) {
+        String out = "";
+        ControllerProducto cp = new ControllerProducto();
+        try {
+            out = """
+                  {"response" : "OK"}
+                  """;
+        } catch(Exception e) {
+            out = """
+                  {"response" : "Error"}
+                  """;
+            e.printStackTrace();
+        }
+         return Response.status(Response.Status.OK).entity(out).build();
+    }
+    
     /// Metodo para obtener todos los registros de la tabla productos y convertirlos a Json
     @Path("getAll")
     @Produces(MediaType.APPLICATION_JSON)

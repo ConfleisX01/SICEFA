@@ -7,10 +7,10 @@
         <li class="nav-item" role="presentation">
             <button class="nav-link active text-cian" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
                 type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"><i class="bi bi-table"></i>
-                Mostrar Productos</button>
+                Tabla Productos</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link text-cian" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+            <button class="nav-link text-cian position-relative" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
                 type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"><i
                     class="bi bi-pen-fill"></i> Control Productos</button>
         </li>
@@ -18,91 +18,97 @@
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active table-responsive" id="home-tab-pane" role="tabpanel"
             aria-labelledby="home-tab" tabindex="0">
-            <table class="table">
-                <thead class="bg-light">
-                    <tr class="text-center">
-                        <th colspan="1">ID</th>
-                        <th colspan="1">Nombre, Nombre Generico</th>
-                        <th colspan="1">Precio Compra, Precio Venta</th>
-                        <th colspan="1">Codigo de Barras</th>
-                        <th colspan="1">Existencias</th>
-                        <th colspan="1">ID Sucursal Afiliada, Nombre de la Sucursal</th>
-                        <th colspan="1">Estatus</th>
-                        <th colspan="1">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center" id="table-row"></tbody>
-            </table>
+            <div class="container-fluid table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">ID</th>
+                            <th scope="col">Foto del producto</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Codigo de Barras</th>
+                            <th scope="col">Estatus</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-row"></tbody>
+                </table>
+            </div>
         </div>
         <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
             <div class="container-fluid mt-4">
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label for="txtNombre" class="form-label">Nombre del producto</label>
                         <input type="text" class="form-control" placeholder="Ingresa el nombre del producto"
                             id="txtNombre">
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label for="txtNombreGenerico" class="form-label">Nombre generico</label>
                         <input type="text" class="form-control" placeholder="Ingresa el nombre generico del producto"
                             id="txtNombreGenerico">
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label for="txtFormaFarmaceutica" class="form-label">Forma farmaceutica</label>
                         <input type="text" class="form-control" placeholder="Ingresa la forma farmaceutica"
                             id="txtFormaFarmaceutica">
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <label for="" class="form-label">Unidad de Medida</label>
-                        <input type="text" class="form-control" placeholder="Ingresa la unidad de medida" id="txtUnidadMedida">
+                        <input type="text" class="form-control" placeholder="Ingresa la unidad de medida"
+                            id="txtUnidadMedida">
                     </div>
                     <div class="col-sm-4">
                         <label for="" class="form-label">Presentacion</label>
-                        <input type="text" class="form-control" placeholder="Ingresa la presentacion" id="txtPresentacion">
+                        <input type="text" class="form-control" placeholder="Ingresa la presentacion"
+                            id="txtPresentacion">
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                         <label for="" class="form-label">Principal Indicacion</label>
-                        <input type="text" class="form-control" placeholder="Ingresa la principal indicacion" id="txtPrincipalIndicacion">
+                        <input type="text" class="form-control" placeholder="Ingresa la principal indicacion"
+                            id="txtPrincipalIndicacion">
                     </div>
                     <div class="col-sm-4">
                         <label for="" class="form-label">Contraindicaciones</label>
-                        <input type="text" class="form-control" placeholder="Ingresa las contraidicaciones" id="txtContraindicaciones">
+                        <input type="text" class="form-control" placeholder="Ingresa las contraidicaciones"
+                            id="txtContraindicaciones">
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <label for="" class="form-label">Concentracion</label>
-                        <input type="text" class="form-control" placeholder="Ingresa la concentracion" id="txtConcentracion">
+                        <input type="text" class="form-control" placeholder="Ingresa la concentracion"
+                            id="txtConcentracion">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="" class="form-label">Unidades por Envase</label>
+                        <input type="text" class="form-control" placeholder="Ingresa las unidades por envase"
+                            id="txtUnidadesEnvase">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="" class="form-label">Precio de Compra</label>
+                        <input type="number" class="form-control" placeholder="Ingresa el precio de compra"
+                            id="txtPrecioCompra">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="" class="form-label">Precio de Venta</label>
+                        <input type="number" class="form-control" placeholder="Ingresa el precio de venta"
+                            id="txtPrecioVenta">
                     </div>
                     <div class="col-sm-4">
-                        <label for="" class="form-label">Unidades por Envase</label>
-                        <input type="text" class="form-control" placeholder="Ingresa las unidades por envase" id="txtUnidadesEnvase">
-                    </div>
-                    <div class="col-sm-2">
-                        <label for="" class="form-label">Precio de Compra</label>
-                        <input type="number" class="form-control" placeholder="Ingresa el precio de compra" id="txtPrecioCompra">
-                    </div>
-                    <div class="col-sm-2">
-                        <label for="" class="form-label">Precio de Venta</label>
-                        <input type="number" class="form-control" placeholder="Ingresa el precio de venta" id="txtPrecioVenta">
-                    </div>
-                    <div class="col-sm-2">
                         <label for="" class="form-label">Foto del Producto</label>
                         <input type="file" class="form-control" placeholder="Ingresa la foto del producto" id="txtFoto">
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <label for="" class="form-label">Ruta de la Foto</label>
-                        <input type="text" class="form-control" placeholder="Ingresa la ruta de la foto" id="txtRutaFoto">
+                        <input type="text" class="form-control" placeholder="Ingresa la ruta de la foto"
+                            id="txtRutaFoto">
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <label for="" class="form-label">Codigo de Barras</label>
-                        <input type="number" class="form-control" placeholder="Ingresa el codigo de barras" id="txtCodigoBarras">
+                        <input type="number" class="form-control" placeholder="Ingresa el codigo de barras"
+                            id="txtCodigoBarras">
                     </div>
-                    <div class="col-sm-3">
-                        <label for="" class="form-label">Existencias</label>
-                        <input type="number" class="form-control" placeholder="Ingresa las existencias" id="txtExistencias">
-                    </div>
-                    <div class="col-sm-3">
-                        <label for="" class="form-label">ID de la Sucursal Afilidada</label>
-                        <input type="text" class="form-control" placeholder="Ingresa el ID de la sucursal afiliada" id="txtIdSucursal">
+                    <div class="col-sm-2">
+                        <label for="" class="form-label">ID del Producto</label>
+                        <input type="number" class="form-control" id="txtIdProducto" readonly>
                     </div>
                 </div>
             </div>
@@ -115,13 +121,13 @@
                         </button>
                     </div>
                     <div class="col-sm-12 col-md-4">
-                        <button class="button-update">
+                        <button class="button-update" id="button-actualizar">
                             <span class="button-text">Actualizar</span>
                             <span class="button-icon"><i class="bi bi-cloud-upload-fill"></i></span>
                         </button>
                     </div>
                     <div class="col-sm-12 col-md-4">
-                        <button class="button-delete">
+                        <button class="button-delete" id="button-eliminar">
                             <span class="button-text">Eliminar</span>
                             <span class="button-icon"><i class="bi bi-x"></i></span>
                         </button>

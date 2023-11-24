@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import org.utl.dsm.model.Inventario;
-import org.utl.dsm.model.Sucursal;
 
 /**
  *
@@ -40,7 +38,7 @@ public class ControllerProducto {
 
     /// Metodo para agregar un producto dentro de la tabla correspondiente
     public Producto insertProducto(Producto p) {
-        String query = "CALL agregarProducto(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "CALL agregarProducto(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             ConexionMysql connMySql = new ConexionMysql();
@@ -61,8 +59,6 @@ public class ControllerProducto {
             cstmt.setString(12, p.getFoto());
             cstmt.setString(13, p.getRutaFoto());
             cstmt.setString(14, p.getCodigoBarras());
-            cstmt.setInt(15, p.getInventario().getExistencias());
-            cstmt.setInt(16, p.getInventario().getIdSucursal());
             cstmt.execute();
 
             cstmt.close();
@@ -75,9 +71,68 @@ public class ControllerProducto {
         }
     }
 
+    /// Metodo para actualizar un producto
+    public Producto updateProducto(Producto p) {
+        String query = "CALL actualizarProducto(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try {
+            ConexionMysql connMySql = new ConexionMysql();
+            Connection conn = connMySql.open();
+            CallableStatement cstmt = (CallableStatement) conn.prepareCall(query);
+
+            cstmt.setInt(1, p.getIdProducto());
+            cstmt.setString(2, p.getNombre());
+            cstmt.setString(3, p.getNombreGenerico());
+            cstmt.setString(4, p.getFormaFarmaceutica());
+            cstmt.setString(5, p.getUnidadMedida());
+            cstmt.setString(6, p.getPresentacion());
+            cstmt.setString(7, p.getPrincipalIndicacion());
+            cstmt.setString(8, p.getContraindicaciones());
+            cstmt.setString(9, p.getConcentracion());
+            cstmt.setInt(10, p.getUnidadesEnvase());
+            cstmt.setFloat(11, p.getPrecioCompra());
+            cstmt.setFloat(12, p.getPrecioVenta());
+            cstmt.setString(13, p.getFoto());
+            cstmt.setString(14, p.getRutaFoto());
+            cstmt.setString(15, p.getCodigoBarras());
+            cstmt.execute();
+
+            cstmt.close();
+            conn.close();
+            connMySql.close();
+            return p;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return p;
+        }
+    }
+
+    /// Metodo para eliminar un producto de manera logica
+    public Producto deleteProducto(Producto p) {
+        String query = "CALL eliminarProducto(?, ?)";
+
+        try {
+            ConexionMysql connMySql = new ConexionMysql();
+            Connection conn = connMySql.open();
+            CallableStatement cstmt = (CallableStatement) conn.prepareCall(query);
+            
+            cstmt.setInt(1, p.getIdProducto());
+            cstmt.setInt(2, p.getEstatus());
+            cstmt.execute();
+            
+            cstmt.close();
+            conn.close();
+            connMySql.close();
+            return p;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return p;
+        }
+    }
+
     /// Metodo para agregar todos los datos traidos desde la consulta a una estructura de datos para posteriormente retornar la lista
     public List<Producto> getAll() throws SQLException {
-        String query = "SELECT * FROM vista_productos;";
+        String query = "SELECT * FROM vista_producto;";
         ConexionMysql connMySql = new ConexionMysql();
         Connection conn = connMySql.open();
         PreparedStatement pstmt = conn.prepareStatement(query);
@@ -111,15 +166,6 @@ public class ControllerProducto {
         p.setRutaFoto(rs.getString("rutaFoto"));
         p.setCodigoBarras(rs.getString("codigoBarras"));
         p.setEstatus(rs.getInt("estatus"));
-        Inventario i = new Inventario();
-        i.setIdInventario(rs.getInt("idInventario"));
-        i.setIdSucursal(rs.getInt("idSucursal"));
-        i.setExistencias(rs.getInt("existencias"));
-        p.setInventario(i);
-        Sucursal s = new Sucursal();
-        s.setIdSucursal(rs.getInt("idSucursal"));
-        s.setNombreSucursal(rs.getString("nombreSucursal"));
-        p.setSucursal(s);
         return p;
     }
 }

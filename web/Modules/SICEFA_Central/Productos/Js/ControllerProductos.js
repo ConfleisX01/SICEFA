@@ -1,5 +1,7 @@
 function loadButtons() {
     let btnAdd = document.getElementById('button-agregar');
+    let btnUpdate = document.getElementById('button-actualizar');
+    let btnDelete = document.getElementById('button-eliminar');
     btnAdd.addEventListener('click', () => {
         Swal.fire({
             title: "Quieres agregar este producto?",
@@ -16,7 +18,56 @@ function loadButtons() {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                getProductosData();
                 addProducto();
+            } else if (result.isDenied) {
+                Swal.fire("Operacion cancelada", "", "info");
+            }
+        });
+    });
+
+    btnUpdate.addEventListener('click', () => {
+        Swal.fire({
+            title: "Quieres actualizar este producto?",
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: "Actualizar",
+            denyButtonText: `No Actualizar`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Producto actualizado con exito",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                getProductosData();
+                updateProducto();
+            } else if (result.isDenied) {
+                Swal.fire("Operacion cancelada", "", "info");
+            }
+        });
+    });
+
+    btnDelete.addEventListener('click', () => {
+        Swal.fire({
+            title: "Quieres eliminar este producto?",
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: "Eliminar",
+            denyButtonText: `No Eliminar`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Producto eliminado con exito",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                getProductosData();
+                delteProducto();
             } else if (result.isDenied) {
                 Swal.fire("Operacion cancelada", "", "info");
             }
@@ -29,10 +80,6 @@ function addProducto() {
     const url = "http://localhost:8080/DreamSoft_SICEFA/api/producto/insertProducto";
 
     let producto = {
-        "inventario": {
-            "idSucursal": data.idSucursal,
-            "existencias": data.existencias
-        },
         "nombre": data.nombre,
         "nombreGenerico": data.nombreGenerico,
         "formaFarmaceutica": data.formaFarmaceutica,
@@ -64,6 +111,70 @@ function addProducto() {
         });
 }
 
+function updateProducto() {
+    let data = getInputsData();
+    const url = "http://localhost:8080/DreamSoft_SICEFA/api/producto/updateProducto";
+
+    let producto = {
+        "idProducto" : data.idProducto,        
+        "nombre": data.nombre,
+        "nombreGenerico": data.nombreGenerico,
+        "formaFarmaceutica": data.formaFarmaceutica,
+        "unidadMedida": data.unidadMedida,
+        "presentacion": data.presentacion,
+        "principalIndicacion": data.principalIndicacion,
+        "contraindicaciones": data.contraindicaciones,
+        "concentracion": data.concentracion,
+        "unidadesEnvase": data.unidadesEnvase,
+        "precioCompra": data.precioCompra,
+        "precioVenta": data.precioVenta,
+        "foto": data.foto,
+        "rutaFoto": data.rutaFoto,
+        "codigoBarras": data.codigoBarras,
+        "estatus" : data.estatus
+    }
+
+    console.log(producto);
+
+    const requestOptions = {
+        method: "POST",
+        headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ producto: JSON.stringify(producto) })
+    };
+
+    fetch(url, requestOptions).then(
+        function (data) {
+            return data.json();
+        })
+        .then(function () {
+            getProductosData();
+        });
+}
+
+async function delteProducto() {
+    let data = getInputsData();
+    let id = data.idProducto;
+    let estatus = data.estatus == 1 ? 0 : 1;
+    console.log(id + " " + estatus);
+    const url = `http://localhost:8080/DreamSoft_SICEFA/api/producto/deleteProducto?idProducto=${id}&estatus=${estatus}`;
+
+    if(response.response == "OK") {
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Producto eliminado con exito",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "El producto no se elimino de forma correcta"
+          });
+    }
+}
+
 function getInputsData() {
     // Obtén todos los elementos de entrada por su nombre
     let nombre = document.getElementById("txtNombre").value;
@@ -81,10 +192,10 @@ function getInputsData() {
     let foto = document.getElementById("txtFoto").value;
     let rutaFoto = document.getElementById("txtRutaFoto").value;
     let codigoBarras = document.getElementById("txtCodigoBarras").value;
-    let existencias = document.getElementById("txtExistencias").value;
-    let idSucursal = document.getElementById("txtIdSucursal").value;
+    let idProducto = document.getElementById("txtIdProducto").value;
 
     let object = {
+        "idProducto" : idProducto,
         "nombre": nombre,
         "nombreGenerico": nombreGenerico,
         "formaFarmaceutica": formaFarmaceutica,
@@ -98,9 +209,7 @@ function getInputsData() {
         "precioVenta": precioVenta,
         "foto": foto,
         "rutaFoto": rutaFoto,
-        "codigoBarras": codigoBarras,
-        "existencias": existencias,
-        "idSucursal": idSucursal
+        "codigoBarras": codigoBarras
     };
 
     return object;
@@ -115,34 +224,63 @@ async function getProductosData() {
 
     let htmlString = '';
 
-    response.forEach((producto) => {
-        let { idProducto, nombre, nombreGenerico, precioCompra, precioVenta, codigoBarras, estatus, inventario: { existencias, idSucursal }, sucursal: { nombreSucursal } } = producto;
+    response.forEach((producto, index) => {
+        let { idProducto, nombre, nombreGenerico, precioCompra, precioVenta, codigoBarras, estatus} = producto;
         let estatusProducto = estatus == 1 ? 'Activo' : 'Inactivo'
         htmlString += `
-        <tr>
+        <tr scope = "row" class = "text-center fila" onclick="filaClickeada(${index})">
+        <th>${idProducto}</th>
+        <td><img class = "" src = "./Img/SinImagen.svg" style = "width: 64px"></td>
         <td>
-            <p class="fw-bold">#${idProducto}</p>
-        </td>
-        <td>
-            <p class="fw-normal mb-1">${nombre}</p>
-            <p class="text-muted mb-0">${nombreGenerico}</p>
+            <p>${nombre}</p>
         </td>
         <td>
-            <p class="fw-normal mb-1">$${precioCompra}</p>
-            <p class="text-muted mb-0">$${precioVenta}</p>
+            <p>${precioCompra}</p>
         </td>
-        <td class = "fw-bold">#${codigoBarras}</td>
-        <td>${existencias}</td>
-        <td class = "fw-bold">
-            <p class="fw-normal mb-1">#${idSucursal}</p>
-            <p class="text-muted mb-1">${nombreSucursal}</p>
-        </td>
-        <td><span class="badge badge-success rounded-pill d-inline text-bg-primary">${estatusProducto}</span></td>
-        <td><button class="button-editar">Editar</button></td>
-        </tr>`;
+        <td>${codigoBarras}</td>
+        <td>${estatusProducto}</td>
+      </tr>`;
     });
 
     table.innerHTML = htmlString;
+}
+
+async function filaClickeada(index) {
+    const url = 'http://localhost:8080/DreamSoft_SICEFA/api/producto/getAll';
+    let response = await makePeticion(url);
+
+    asignProductoData(response[index]);
+}
+
+function asignProductoData(response) {
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Producto listo para modificar',
+        showConfirmButton: false,
+        timer: 1500,
+        footer: 'Visita la sección de <span class = "fw-bold text-cian mx-1"><i class="bi bi-pen-fill"></i> Control Productos</span>',
+        showCloseButton: true,
+        customClass: {
+          popup: 'custom-popup-class',
+        },
+        timerProgressBar: true,
+      });
+
+    document.getElementById("txtNombre").value = response.nombre;
+    document.getElementById("txtNombreGenerico").value = response.nombreGenerico;
+    document.getElementById("txtFormaFarmaceutica").value = response.formaFarmaceutica;
+    document.getElementById("txtUnidadMedida").value = response.unidadMedida;
+    document.getElementById("txtPresentacion").value = response.presentacion;
+    document.getElementById("txtPrincipalIndicacion").value = response.principalIndicacion;
+    document.getElementById("txtContraindicaciones").value = response.contraindicaciones;
+    document.getElementById("txtConcentracion").value = response.concentracion;
+    document.getElementById("txtUnidadesEnvase").value = response.unidadesEnvase;
+    document.getElementById("txtPrecioCompra").value = response.precioCompra;
+    document.getElementById("txtPrecioVenta").value = response.precioVenta;
+    document.getElementById("txtRutaFoto").value = response.rutaFoto;
+    document.getElementById("txtCodigoBarras").value = response.codigoBarras;
+    document.getElementById("txtIdProducto").value = response.idProducto;
 }
 
 async function makePeticion(url) {
@@ -154,6 +292,6 @@ async function makePeticion(url) {
         throw error;
     }
 }
-getProductosData();
 
+getProductosData();
 loadButtons();
