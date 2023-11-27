@@ -3,15 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/aleja/OneDrive/Escritorio/clonarSicefa/SICEFA/web/index.html</file>
-            <file>file:/C:/Users/aleja/OneDrive/Escritorio/clonarSicefa/SICEFA/web/Modules/SICEFA_Central/Productos/index.html</file>
-            <file>file:/C:/Users/aleja/OneDrive/Escritorio/clonarSicefa/SICEFA/web/Modules/SICEFA_Central/Clientes/Js/ControllerClientes.js</file>
-            <file>file:/C:/Users/aleja/OneDrive/Escritorio/clonarSicefa/SICEFA/src/java/org/utl/dsm/controller/ControllerCliente.java</file>
-            <file>file:/C:/Users/aleja/OneDrive/Escritorio/clonarSicefa/SICEFA/web/Modules/SICEFA_Central/Clientes/index.html</file>
-            <file>file:/C:/Users/aleja/OneDrive/Escritorio/clonarSicefa/SICEFA/src/java/org/utl/dsm/rest/RestProducto.java</file>
-            <file>file:/C:/Users/aleja/OneDrive/Escritorio/clonarSicefa/SICEFA/src/java/org/utl/dsm/controller/ControllerProducto.java</file>
-            <file>file:/C:/Users/aleja/OneDrive/Escritorio/clonarSicefa/SICEFA/src/java/org/utl/dsm/rest/RestCliente.java</file>
-            <file>file:/C:/Users/aleja/OneDrive/Escritorio/clonarSicefa/SICEFA/web/Modules/SICEFA_Central/Productos/Js/ControllerProductos.js</file>
+            <file>file:/C:/Users/David/Desktop/Medicamos%20tu%20vida/SICEFA/web/Modules/SICEFA_Central/Empleados/Js/ControllerEmpleados.js</file>
+            <file>file:/C:/Users/David/Desktop/Medicamos%20tu%20vida/SICEFA/src/java/org/utl/dsm/rest/RestEmpleado.java</file>
+            <file>file:/C:/Users/David/Desktop/Medicamos%20tu%20vida/SICEFA/src/java/org/utl/dsm/model/Empleado.java</file>
+            <file>file:/C:/Users/David/Desktop/Medicamos%20tu%20vida/SICEFA/src/java/org/utl/dsm/controller/ControllerEmpleados.java</file>
+            <file>file:/C:/Users/David/Desktop/Medicamos%20tu%20vida/SICEFA/web/Modules/SICEFA_Central/Empleados/index.html</file>
         </group>
     </open-files>
 </project-private>

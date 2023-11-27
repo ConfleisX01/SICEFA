@@ -1,0 +1,171 @@
+<div class="container-fluid py-2">
+    <h3>SICEFA Central / Empleados <i class="bi bi-person-add fs-1"></i></h3>
+</div>
+
+<div class="container-fluid bg-white rounded py-2">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active text-cian" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                    type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"><i class="bi bi-table"></i>
+                Mostrar Empleados</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link text-cian" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+                    type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"><i
+                    class="bi bi-pen-fill"></i> Control Empleados</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active table-responsive" id="home-tab-pane" role="tabpanel"
+             aria-labelledby="home-tab" tabindex="0">
+            <table class="table table-hover">
+                <thead class="bg-light">
+                    <tr class="text-center">
+                        <th colspan="1">ID</th>
+                        <th colspan="1">Nombre</th>
+                        <th colspan="1">Apellido Paterno</th>
+                        <th colspan="1">Apellido Materno</th>
+                        <th colspan="1">Género</th>
+                        <th colspan="1">Fecha de Registro</th>
+                        <th colspan="1">Estatus</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center" id="table-row"></tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+            <div class="container-fluid mt-4">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="txtIdPersona" class="form-label" >ID</label>
+                        <input type="text" class="form-control" placeholder="Ingresa ID" id="txtIdPersona"
+                               name="txtIdPersona" disabled>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="txtNombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" placeholder="Ingresa el nombre del cliente" id="txtNombre"
+                               name="txtNombre">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="txtApellidoPaterno" class="form-label">Apellido Paterno</label>
+                        <input type="text" class="form-control" placeholder="Ingresa Apellido Paterno" id="txtApellidoPaterno">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="txtApellidoMaterno" class="form-label">Apellido Materno</label>
+                        <input type="text" class="form-control" placeholder="Ingresa Apellido Materno"  id="txtApellidoMaterno">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="txtGenero" class="form-label">Género</label>
+                        <select class="form-control"  id="txtGenero">
+                            <option value="M">Masculino</option>
+                            <option value="F" selected>Femenino</option>
+                            <option value="O">Otro</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="txtFechaNacimiento" class="form-label">Fecha Nacimiento</label>
+                        <input type="date" class="form-control" placeholder="Ingresa Fecha de Nacimiento" id="txtFechaNacimiento">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="txtRfc" class="form-label">RFC</label>
+                        <input type="text" class="form-control" placeholder="Ingresa RFC" id="txtRfc">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="txtCurp" class="form-label">CURP</label>
+                        <input type="text" class="form-control" placeholder="Ingresa CURP" id="txtCurp">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="txtDomicilio" class="form-label">Domicilio</label>
+                        <input type="text" class="form-control" placeholder="Ingresa Domicilio" id="txtDomicilio">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="txtCodPostal" class="form-label">Código Postal</label>
+                        <input type="text" class="form-control" placeholder="Ingresa Código Postal" id="txtCodPostal">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="txtCiudad" class="form-label">Ciudad</label>
+                        <input type="text" class="form-control" placeholder="Ingresa Ciudadl" id="txtCiudad">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="txtEstado" class="form-label">Estado</label>
+                        <select class="form-control" id="txtEstado">
+                            <option value="Aguascalientes">Aguascalientes</option>
+                            <option value="Baja California">Baja California</option>
+                            <option value="Baja California Sur">Baja California Sur</option>
+                            <option value="Campeche">Campeche</option>
+                            <option value="Chiapas">Chiapas</option>
+                            <option value="Chihuahua">Chihuahua</option>
+                            <option value="Coahuila">Coahuila</option>
+                            <option value="Colima">Colima</option>
+                            <option value="Durango">Durango</option>
+                            <option value="Estado de México">Estado de México</option>
+                            <option value="Guanajuato" selected>Guanajuato</option>
+                            <option value="Guerrero">Guerrero</option>
+                            <option value="Hidalgo">Hidalgo</option>
+                            <option value="Jalisco">Jalisco</option>
+                            <option value="Michoacán">Michoacán</option>
+                            <option value="Morelos">Morelos</option>
+                            <option value="Nayarit">Nayarit</option>
+                            <option value="Nuevo León">Nuevo León</option>
+                            <option value="Oaxaca">Oaxaca</option>
+                            <option value="Puebla">Puebla</option>
+                            <option value="Querétaro">Querétaro</option>
+                            <option value="Quintana Roo">Quintana Roo</option>
+                            <option value="San Luis Potosí">San Luis Potosí</option>
+                            <option value="Sinaloa">Sinaloa</option>
+                            <option value="Sonora">Sonora</option>
+                            <option value="Tabasco">Tabasco</option>
+                            <option value="Tamaulipas">Tamaulipas</option>
+                            <option value="Tlaxcala">Tlaxcala</option>
+                            <option value="Veracruz">Veracruz</option>
+                            <option value="Yucatán">Yucatán</option>
+                            <option value="Zacatecas">Zacatecas</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="txtTelefono" class="form-label">Telefono</label>
+                        <input type="text" class="form-control" placeholder="Ingresa Télefono" id="txtTelefono">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="txtFoto" class="form-label">Foto</label>
+                        <input type="file" class="form-control" placeholder="Ingresa Foto" id="txtFoto">
+                    </div>
+            <label for="txtSalarioBruto" class="form-label">Salario Bruto</label>
+            <input type="text" class="form-control" placeholder="Ingresa Salario Bruto" id="txtSalarioBruto">
+            </div>
+                     <!-- <div class="col-sm-3">
+                        <label for="txtStatus" class="form-label">Estatus</label>
+                        <input type="text" class="form-control" placeholder="Ingresa estatus" id="txtStatus">
+                    </div>  --> 
+
+                    <div class="container-fluid my-4">
+                        <div class="row gx-2 gy-2 text-center">
+                            <div class="col-6 col-md-4 text-white">
+                                <button class="button-add" id="button-agregar" > <!-- onclick="save();" -->
+                                    <span class="button-text">Agregar</span>
+                                    <span class="button-icon"><i class="bi bi-plus"></i></span>
+                                </button>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <button class="button-update" id="button-modificar">
+                                    <span class="button-text">Actualizar</span>
+                                    <span class="button-icon"><i class="bi bi-cloud-download-fill"></i></span>
+                                </button>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <button class="button-delete" id="button-delete"> 
+                                    <span class="button-text">Eliminar</span>
+                                    <span class="button-icon"><i class="bi bi-x"></i></span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>            
+            </div>
+            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...
+            </div>
+            <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">
+            </div>
+        </div>
+    </div>
