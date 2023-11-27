@@ -12,10 +12,13 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
 import org.utl.dsm.controller.ControllerCliente;
+import org.utl.dsm.controller.ControllerPersona;
 import org.utl.dsm.model.Cliente;
+import org.utl.dsm.model.Persona;
 
 @Path("cliente")
 public class RestCliente extends Application {
+
     @Path("insertarCliente")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -57,4 +60,74 @@ public class RestCliente extends Application {
         }
         return Response.status(Response.Status.OK).entity(out).build();
     }
+
+    @Path("updateCliente")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateCliente(@FormParam("datosCliente") @DefaultValue("{}") String datosCliente) {
+        String out = null;
+        ControllerCliente cc = null;
+        Gson gson = new Gson();
+        try {
+            Cliente c = null;
+            c = gson.fromJson(datosCliente, Cliente.class);
+            cc = new ControllerCliente();
+            cc.update(c);
+            out = gson.toJson(c);
+        } catch (Exception e) {
+            out = """
+                   {"error": "Error interno del servidor, Intente más tarde."}
+                  """;
+            e.printStackTrace();
+        }
+        return Response.status(Response.Status.OK).entity(out).build();
+    }
+    
+@Path("deleteCliente")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteCliente(@FormParam("datosCliente") @DefaultValue("") String datosCliente) {
+        String out = "";
+        ControllerCliente cc = new ControllerCliente();
+        Gson gson = new Gson();
+        try {
+            Cliente cliente = gson.fromJson(datosCliente, Cliente.class);
+            cc.deleteCliente(cliente);
+            out = """
+              {"result" : "OK"}
+              """;
+        } catch (Exception e) {
+            e.printStackTrace();
+            out = """
+              {"result" : "Error al eliminar el cliente"}
+              """;
+        }
+        return Response.status(Response.Status.OK).entity(out).build();
+    }
 }
+
+
+
+/*
+@Path("deleteCliente")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteCliente(@FormParam("datosCliente") @DefaultValue("") String datosCliente) {
+        String out = "";
+        ControllerCliente cc = new ControllerCliente();
+        Gson gson = new Gson();
+        try {
+            Cliente cliente = gson.fromJson(datosCliente, Cliente.class);
+            cc.deleteCliente(cliente);
+            out = """
+              {"result" : "OK"}
+              """;
+        } catch (Exception e) {
+            e.printStackTrace();
+            out = """
+              {"result" : "Error al eliminar el cliente"}
+              """;
+        }
+        return Response.status(Response.Status.OK).entity(out).build();
+    }
+*/
