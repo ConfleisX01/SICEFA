@@ -1,5 +1,7 @@
 package org.utl.dsm.model;
 
+import java.sql.Date;
+
 public class Empleado {
     private int idEmpleado;
     private String codigo;
@@ -106,6 +108,14 @@ public class Empleado {
 
     public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
+    }
+
+    public void setFechaIngreso(Date fechaIngreso) {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    public void setActivo(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     

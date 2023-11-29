@@ -187,3 +187,57 @@
 body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
     overflow: visible !important;
 }
+
+.menu-bar {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.content-menu {
+    width: auto;
+}
+
+.container-option {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: auto;
+}
+
+.option i {
+    width: 50px;
+    color: white;
+    transition: 0.2s;
+}
+
+.option i:hover {
+    color: #5CCFC5;
+}
+
+.icon-title {
+    overflow: hidden;
+    width: 0px;
+    color: white;
+    transition: width 0.5s ease-in-out;
+    text-align: left;
+}
+
+.option:hover > .icon-title {
+    width: 200px;
+}
+
+.h-10 {
+    height: 10%;
+}
+
+.h-30 {
+    height: 30%;
+}

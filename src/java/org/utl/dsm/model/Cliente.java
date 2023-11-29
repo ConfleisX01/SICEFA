@@ -2,6 +2,7 @@ package org.utl.dsm.model;
 //Crear modelo cliente que tiene dependencia del modelo persona  "idPersona".
 public class Cliente {
     private Persona persona;
+    private int idCliente;
     private String email;
     private String fechaRegistro;
     private int estatus;
@@ -9,8 +10,9 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(Persona persona, String email, String fechaRegistro, int estatus) {
+    public Cliente(Persona persona, int idCliente, String email, String fechaRegistro, int estatus) {
         this.persona = persona;
+        this.idCliente = idCliente;
         this.email = email;
         this.fechaRegistro = fechaRegistro;
         this.estatus = estatus;
@@ -22,6 +24,14 @@ public class Cliente {
 
     public void setPersona(Persona persona) {
         this.persona = persona;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getEmail() {
@@ -48,5 +58,5 @@ public class Cliente {
         this.estatus = estatus;
     }
 
-   
+    
 }

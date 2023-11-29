@@ -66,8 +66,8 @@ function loadButtons() {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                getProductosData();
                 delteProducto();
+                getProductosData();
             } else if (result.isDenied) {
                 Swal.fire("Operacion cancelada", "", "info");
             }
@@ -154,25 +154,30 @@ function updateProducto() {
 async function delteProducto() {
     let data = getInputsData();
     let id = data.idProducto;
+    console.log(data.estatus);
     let estatus = data.estatus == 1 ? 0 : 1;
-    console.log(id + " " + estatus);
-    const url = `http://localhost:8080/DreamSoft_SICEFA/api/producto/deleteProducto?idProducto=${id}&estatus=${estatus}`;
+    const url = "http://localhost:8080/DreamSoft_SICEFA/api/producto/deleteProducto";
 
-    if(response.response == "OK") {
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Producto eliminado con exito",
-            showConfirmButton: false,
-            timer: 1500
-        });
-    } else {
-        Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "El producto no se elimino de forma correcta"
-          });
+    let producto = {
+        "idProducto" : id,
+        "estatus" : estatus
     }
+
+    console.log(producto);
+
+    const requestOptions = {
+        method: "POST",
+        headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ producto: JSON.stringify(producto) })
+    };
+
+    fetch(url, requestOptions).then(
+        function (data) {
+            return data.json();
+        })
+        .then(function () {
+            getProductosData();
+        });
 }
 
 function getInputsData() {
@@ -193,6 +198,7 @@ function getInputsData() {
     let rutaFoto = document.getElementById("txtRutaFoto").value;
     let codigoBarras = document.getElementById("txtCodigoBarras").value;
     let idProducto = document.getElementById("txtIdProducto").value;
+    let estatus = document.getElementById("txtEstatus").value;
 
     let object = {
         "idProducto" : idProducto,
@@ -209,7 +215,8 @@ function getInputsData() {
         "precioVenta": precioVenta,
         "foto": foto,
         "rutaFoto": rutaFoto,
-        "codigoBarras": codigoBarras
+        "codigoBarras": codigoBarras,
+        "estatus" : estatus
     };
 
     return object;
@@ -281,6 +288,7 @@ function asignProductoData(response) {
     document.getElementById("txtRutaFoto").value = response.rutaFoto;
     document.getElementById("txtCodigoBarras").value = response.codigoBarras;
     document.getElementById("txtIdProducto").value = response.idProducto;
+    document.getElementById("txtEstatus").value = response.estatus;
 }
 
 async function makePeticion(url) {
