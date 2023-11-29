@@ -71,10 +71,14 @@ public class RestProducto extends Application {
     @Path("deleteProducto")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteProducto(@FormParam("info") @DefaultValue("") String info) {
+    public Response deleteProducto(@FormParam("producto") @DefaultValue("") String p) {
         String out = "";
         ControllerProducto cp = new ControllerProducto();
+        Gson gson = new Gson();
         try {
+            Producto producto = null;
+            producto = gson.fromJson(p, Producto.class);
+            cp.deleteProducto(producto);
             out = """
                   {"response" : "OK"}
                   """;
