@@ -116,7 +116,7 @@ function updateProducto() {
     const url = "http://localhost:8080/DreamSoft_SICEFA/api/producto/updateProducto";
 
     let producto = {
-        "idProducto" : data.idProducto,        
+        "idProducto": data.idProducto,
         "nombre": data.nombre,
         "nombreGenerico": data.nombreGenerico,
         "formaFarmaceutica": data.formaFarmaceutica,
@@ -131,7 +131,7 @@ function updateProducto() {
         "foto": data.foto,
         "rutaFoto": data.rutaFoto,
         "codigoBarras": data.codigoBarras,
-        "estatus" : data.estatus
+        "estatus": data.estatus
     }
 
     console.log(producto);
@@ -154,13 +154,13 @@ function updateProducto() {
 async function delteProducto() {
     let data = getInputsData();
     let id = data.idProducto;
-    console.log(data.estatus);
     let estatus = data.estatus == 1 ? 0 : 1;
+    let check = document.getElementById('cbEstatus');
     const url = "http://localhost:8080/DreamSoft_SICEFA/api/producto/deleteProducto";
 
     let producto = {
-        "idProducto" : id,
-        "estatus" : estatus
+        "idProducto": id,
+        "estatus": estatus
     }
 
     console.log(producto);
@@ -178,6 +178,12 @@ async function delteProducto() {
         .then(function () {
             getProductosData();
         });
+
+    if (check.checked) {
+        check.checked = false;
+    } else {
+        check.checked = true;
+    }
 }
 
 function getInputsData() {
@@ -198,10 +204,10 @@ function getInputsData() {
     let rutaFoto = document.getElementById("txtRutaFoto").value;
     let codigoBarras = document.getElementById("txtCodigoBarras").value;
     let idProducto = document.getElementById("txtIdProducto").value;
-    let estatus = document.getElementById("txtEstatus").value;
+    let estatus = document.getElementById("cbEstatus").checked == true ? 1 : 0;
 
     let object = {
-        "idProducto" : idProducto,
+        "idProducto": idProducto,
         "nombre": nombre,
         "nombreGenerico": nombreGenerico,
         "formaFarmaceutica": formaFarmaceutica,
@@ -216,7 +222,7 @@ function getInputsData() {
         "foto": foto,
         "rutaFoto": rutaFoto,
         "codigoBarras": codigoBarras,
-        "estatus" : estatus
+        "estatus": estatus
     };
 
     return object;
@@ -232,7 +238,7 @@ async function getProductosData() {
     let htmlString = '';
 
     response.forEach((producto, index) => {
-        let { idProducto, nombre, nombreGenerico, precioCompra, precioVenta, codigoBarras, estatus} = producto;
+        let { idProducto, nombre, nombreGenerico, precioCompra, precioVenta, codigoBarras, estatus } = producto;
         let estatusProducto = estatus == 1 ? 'Activo' : 'Inactivo'
         htmlString += `
         <tr scope = "row" class = "text-center fila" onclick="filaClickeada(${index})">
@@ -269,10 +275,10 @@ function asignProductoData(response) {
         footer: 'Visita la sección de <span class = "fw-bold text-cian mx-1"><i class="bi bi-pen-fill"></i> Control Productos</span>',
         showCloseButton: true,
         customClass: {
-          popup: 'custom-popup-class',
+            popup: 'custom-popup-class',
         },
         timerProgressBar: true,
-      });
+    });
 
     document.getElementById("txtNombre").value = response.nombre;
     document.getElementById("txtNombreGenerico").value = response.nombreGenerico;

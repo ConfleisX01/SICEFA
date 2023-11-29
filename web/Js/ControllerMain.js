@@ -25,5 +25,5 @@ function loadCentral() {
 
 
 /// Funcion especializada para el testeo de la seccion Central
-loadCentral(); // Eliminar funcion al terminar el testeo del modulo Central
-//loadIndex(); // Activar funcion despues del testeo
+//loadCentral(); // Eliminar funcion al terminar el testeo del modulo Central
+loadIndex(); // Activar funcion despues del testeo
