@@ -1,9 +1,9 @@
-function loadButtons() {    
+function loadButtons() {
     let btnInicio = document.getElementById("button-inicio");
     btnInicio.addEventListener('click', () => {
         loadInicio();
     });
-    
+
     let btnProducto = document.getElementById("button-productos");
     btnProducto.addEventListener('click', () => {
         loadProductos();
@@ -18,6 +18,8 @@ function loadButtons() {
     btnCliente.addEventListener('click', () => {
         loadClientes();
     });
+
+    optionsActive();
 }
 
 function loadClientes() {
@@ -32,6 +34,8 @@ function loadClientes() {
         });
 }
 
+// FUncion para cargar el modulo sucursales
+
 function loadSucursales() {
     fetch("./Modules/SICEFA_Central/Sucursales/index.html")
         .then(response => response.text())
@@ -43,6 +47,9 @@ function loadSucursales() {
             document.body.appendChild(scriptLogin);
         });
 }
+
+// Funcion para cargar el modulo productos
+
 function loadProductos() {
     fetch("./Modules/SICEFA_Central/Productos/index.html")
         .then(response => response.text())
@@ -55,6 +62,8 @@ function loadProductos() {
         });
 }
 
+// Funcion para cargar la pagina inicial
+
 function loadInicio() {
     fetch("./Modules/SICEFA_Central/Inicio/index.html")
         .then(response => response.text())
@@ -66,6 +75,24 @@ function loadInicio() {
             document.body.appendChild(scriptLogin);
         });
 }
+
+
+/// Funcion para agregar el estado activo en los botones de las opciones
+function optionsActive() {
+    let menuOptions = document.querySelectorAll(".option");
+
+    menuOptions.forEach(option => {
+        option.addEventListener('click', () => {
+
+            menuOptions.forEach(opt => {
+                opt.classList.remove("active");
+            });
+
+            option.classList.add("active");
+        });
+    });
+}
+
 
 loadInicio();
 loadButtons();

@@ -218,20 +218,27 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
     transition: 0.2s;
 }
 
-.option i:hover {
-    color: #5CCFC5;
+.option i::before {
+    padding: 10px 10px;
+    border-radius: 100%;
+    transition: 0.2s;
+}
+
+.option:hover i::before {
+    background-color: rgba(93, 208, 198, 1);
+    color: black;
+}
+
+.option.active i::before {
+    background-color: rgba(110, 158, 185, 0.5);
+    color: white;
 }
 
 .icon-title {
-    overflow: hidden;
     width: 0px;
     color: white;
     transition: width 0.5s ease-in-out;
     text-align: left;
-}
-
-.option:hover > .icon-title {
-    width: 200px;
 }
 
 .h-10 {
