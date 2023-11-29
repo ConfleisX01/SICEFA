@@ -288,7 +288,7 @@ function asignProductoData(response) {
     document.getElementById("txtRutaFoto").value = response.rutaFoto;
     document.getElementById("txtCodigoBarras").value = response.codigoBarras;
     document.getElementById("txtIdProducto").value = response.idProducto;
-    document.getElementById("txtEstatus").value = response.estatus;
+    document.getElementById("cbEstatus").checked = response.estatus == 1 ? true : false;
 }
 
 async function makePeticion(url) {
