@@ -2,8 +2,12 @@
     <div class="row">
         <div class="col-sm-6">
             <div>
+                <label for="txtIdSucursal" class="form-label">ID:</label>
+                <input type="text" class="form-control" disabled id="txtIdSucursal">
+            </div>
+            <div>
                 <label for="txtNombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" placeholder="Ingresa el nombre del medicamento" id="txtNombre">
+                <input type="text" class="form-control" placeholder="Ingresa el nombre" id="txtNombre">
             </div>
             <div>
                 <label for="txtTitular" class="form-label">Titular</label>
@@ -47,14 +51,21 @@
                 <label for="txtLongitud" class="form-label">Longitud</label>
                 <input type="text" class="form-control" placeholder="Ingresa la longitud" id="txtLongitud">
             </div>
+            <div>
+                <label for="txtEstatus" class="form-label">Estatus</label>
+                <input type="text" class="form-control" disabled id="txtEstatus">
+            </div>
         </div>
     </div>
 </div>
 <div class="container-fluid d-flex align-items-center justify-content-center">
-    <button class="btn btn-success" onclick="save()">Agregar</button>
+    <button class="btn btn-success m-3" onclick="save()">Agregar</button>
+    <button class="btn btn-info m-3" onclick="modify()">Modificar</button>
+    <button class="btn btn-danger m-3" onclick="eliminate()">Eliminar</button>
+    <button class="btn btn-warning m-3" onclick="clean()">Limpiar</button>
 </div>
 <div class="container-fluid my-4 p-1">
-    <table class="table">
+    <table class="table" id="tableSucursal" >
         <thead>
             <tr>
                 <th scope="col">ID</th>

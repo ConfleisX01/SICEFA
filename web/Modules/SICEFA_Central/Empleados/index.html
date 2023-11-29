@@ -39,8 +39,9 @@
                     <div class="col-sm-3">
                         <label for="txtIdPersona" class="form-label" >ID</label>
                         <input type="text" class="form-control" placeholder="Ingresa ID" id="txtIdPersona"
-                               name="txtIdPersona" disabled>
+                               name="txtIdPersona" >
                     </div>
+                    
                     <div class="col-sm-3">
                         <label for="txtNombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" placeholder="Ingresa el nombre del cliente" id="txtNombre"
@@ -133,6 +134,11 @@
             <label for="txtSalarioBruto" class="form-label">Salario Bruto</label>
             <input type="text" class="form-control" placeholder="Ingresa Salario Bruto" id="txtSalarioBruto">
             </div>
+                 <div class="col-sm-3">
+                        <label for="txtIdPersona" class="form-label" >ID Sucursal</label>
+                        <input type="text" class="form-control" placeholder="Ingresa ID" id="txtIdPersona"
+                               name="txtIdPersona" >
+                    </div>
                      <!-- <div class="col-sm-3">
                         <label for="txtStatus" class="form-label">Estatus</label>
                         <input type="text" class="form-control" placeholder="Ingresa estatus" id="txtStatus">
@@ -141,7 +147,7 @@
                     <div class="container-fluid my-4">
                         <div class="row gx-2 gy-2 text-center">
                             <div class="col-6 col-md-4 text-white">
-                                <button class="button-add" id="button-agregar" > <!-- onclick="save();" -->
+                                <button class="button-add" id="button-agregar" onclick="agregarEmpleado()"> <!-- onclick="save();" -->
                                     <span class="button-text">Agregar</span>
                                     <span class="button-icon"><i class="bi bi-plus"></i></span>
                                 </button>

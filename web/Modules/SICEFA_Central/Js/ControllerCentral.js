@@ -18,6 +18,11 @@ function loadButtons() {
     btnCliente.addEventListener('click', () => {
         loadClientes();
     });
+    
+    let btnEmpleado = document.getElementById("button-empleados");
+     btnEmpleado.addEventListener('click', () => {
+        loadEmpleados();
+    });
 
     optionsActive();
 }
@@ -76,6 +81,19 @@ function loadInicio() {
         });
 }
 
+
+// Funcion para cargar la pagina Empleados
+function loadEmpleados() {
+      fetch("./Modules/SICEFA_Central/Empleados/index.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('container-central').innerHTML = data;
+        }).then(() => {
+            const scriptLogin = document.createElement('script');
+            scriptLogin.src = './Modules/SICEFA_Central/Empleados/Js/ControllerEmpleados.js';
+            document.body.appendChild(scriptLogin);
+        });
+}
 
 /// Funcion para agregar el estado activo en los botones de las opciones
 function optionsActive() {
