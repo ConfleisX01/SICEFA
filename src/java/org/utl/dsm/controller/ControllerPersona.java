@@ -2,7 +2,9 @@ package org.utl.dsm.controller;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import org.utl.dsm.db.ConexionMysql;
+import org.utl.dsm.model.Cliente;
 import org.utl.dsm.model.Persona;
 
 public class ControllerPersona {
@@ -154,4 +156,31 @@ public class ControllerPersona {
         p.setFoto(foto);
         return p;
     }
+   /* public void update(Persona p) throws SQLException {
+        String query = "{CALL sp_update_persona(?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+        ConexionMysql connMysql = new ConexionMysql();
+        Connection conn = connMysql.open();
+        java.sql.CallableStatement cstm = conn.prepareCall(query);
+        cstm.setInt(1, p.getIdPersona());
+        cstm.setString(2, p.getNombre());
+        cstm.setString(3, p.getApellidoPaterno());
+        cstm.setString(4, p.getApellidoMaterno());
+        cstm.setString(5, p.getGenero());
+        cstm.setString(6, p.getFechaNacimiento());
+        cstm.setString(7, p.getRfc());
+        cstm.setString(8,p.getCurp());
+        cstm.setString(9,p.getDomicilio());
+        cstm.setString(10, p.getCodigoPostal());
+        cstm.setString(11,p.getCiudad());
+        cstm.setString(12, p.getEstado());
+        cstm.setString(13, p.getTelefono());
+        cstm.setString(14,p.getFoto());
+
+        //ejecutamos el PreparedStatement
+        cstm.execute();
+        //Cerramos todos nuestros objetos de conexión con el servidor.
+        cstm.close();
+        connMysql.close();
+        conn.close();
+    } */
 }

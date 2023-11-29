@@ -1,5 +1,5 @@
 <div class="container-fluid py-2">
-    <h3>SICEFA Central / Clientes <i class="bi bi-person-add fs-1"></i></h3>
+    <h3>SICEFA Central / Empleados <i class="bi bi-person-add fs-1"></i></h3>
 </div>
 
 <div class="container-fluid bg-white rounded py-2">
@@ -7,12 +7,12 @@
         <li class="nav-item" role="presentation">
             <button class="nav-link active text-cian" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
                     type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"><i class="bi bi-table"></i>
-                Mostrar Clientes</button>
+                Mostrar Empleados</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link text-cian" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
                     type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"><i
-                    class="bi bi-pen-fill"></i> Control Clientes</button>
+                    class="bi bi-pen-fill"></i> Control Empleados</button>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -130,11 +130,10 @@
                         <label for="txtFoto" class="form-label">Foto</label>
                         <input type="file" class="form-control" placeholder="Ingresa Foto" id="txtFoto">
                     </div>
-                    <div class="col-sm-4">
-                        <label for="txtEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" placeholder="Ingresa Email" id="txtEmail">
-                    </div>
-                    <!-- <div class="col-sm-3">
+            <label for="txtSalarioBruto" class="form-label">Salario Bruto</label>
+            <input type="text" class="form-control" placeholder="Ingresa Salario Bruto" id="txtSalarioBruto">
+            </div>
+                     <!-- <div class="col-sm-3">
                         <label for="txtStatus" class="form-label">Estatus</label>
                         <input type="text" class="form-control" placeholder="Ingresa estatus" id="txtStatus">
                     </div>  --> 
@@ -167,6 +166,6 @@
             <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...
             </div>
             <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">
-                ...</div>
+            </div>
         </div>
     </div>

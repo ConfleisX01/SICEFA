@@ -13,8 +13,8 @@ public class ConexionMysql {
 
     public Connection open() {
         String user = "root";
-        String password = "root";
-        String url = "jdbc:mysql://127.0.0.1:3306/sicefa";
+        String password = "cclab";
+        String url = "jdbc:mysql://127.0.0.1:3306/SICEFA";
         String parametros = "?useSSL=false&useUnicode=true&characterEncoding=utf-8";
 
         try {
