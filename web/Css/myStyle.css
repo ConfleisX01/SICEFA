@@ -1,21 +1,15 @@
 /* Fuentes principales */
-@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300&family=Lora&family=Montserrat:wght@800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400&family=Rubik:wght@300&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400&family=Noto+Sans:wght@100;200;300;400&family=Poppins:wght@100;200;300;400;500&display=swap');
 * {
-    font-family: 'Hind Madurai', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 h1 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 h2 {
-    font-family: 'Lora', serif;
-}
-
-h3 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Kanit', sans-serif;
 }
 
 header {

@@ -250,8 +250,8 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
 }
 
 .switch {
-    width: 100px;
-    height: 40px;
+    width: 65px;
+    height: 25px;
     background-color: #dfdfdf;
     border-radius: 100px;
     position: relative;
@@ -262,15 +262,12 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
 .switch::before {
     position: absolute;
     content: "";
-    width: 30px;
-    height: 30px;
+    width: 15px;
+    height: 15px;
     margin: 5px;
     border-radius: 100%;
     background-color: white;
     transition: 0.2s;
-    display: grid;
-    align-items: center;
-    text-align: center;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -279,7 +276,7 @@ input:checked + .switch {
 }
 
 input:checked + .switch::before {
-    transform: translateX(60px);
+    transform: translateX(40px);
 }
 
 .disabled {

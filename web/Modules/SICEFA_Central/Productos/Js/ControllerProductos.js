@@ -3,51 +3,70 @@ function loadButtons() {
     let btnUpdate = document.getElementById('button-actualizar');
     let btnDelete = document.getElementById('button-eliminar');
     btnAdd.addEventListener('click', () => {
-        Swal.fire({
-            title: "Quieres agregar este producto?",
-            showDenyButton: true,
-            showCancelButton: false,
-            confirmButtonText: "Guardar",
-            denyButtonText: `No Guardar`
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Producto agregado con exito",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                getProductosData();
-                addProducto();
-            } else if (result.isDenied) {
-                Swal.fire("Operacion cancelada", "", "info");
-            }
-        });
+        // Validamos que los inputs no tengan datos vacios
+        if (validateInputs()) {
+            Swal.fire({
+                title: "Quieres agregar este producto?",
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: "Guardar",
+                denyButtonText: `No Guardar`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Producto agregado con exito",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    getProductosData();
+                    addProducto();
+                } else if (result.isDenied) {
+                    Swal.fire("Operacion cancelada", "", "info");
+                }
+            });
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Por favor, complete todos los campos obligatorios.",
+                footer: '<b>Asegurate de ingresar todos los campos solicitados</b>'
+            });
+        }
     });
 
     btnUpdate.addEventListener('click', () => {
-        Swal.fire({
-            title: "Quieres actualizar este producto?",
-            showDenyButton: true,
-            showCancelButton: false,
-            confirmButtonText: "Actualizar",
-            denyButtonText: `No Actualizar`
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Producto actualizado con exito",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                getProductosData();
-                updateProducto();
-            } else if (result.isDenied) {
-                Swal.fire("Operacion cancelada", "", "info");
-            }
-        });
+        if (validateInputs()) {
+            Swal.fire({
+                title: "Quieres actualizar este producto?",
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: "Actualizar",
+                denyButtonText: `No Actualizar`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Producto actualizado con exito",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    getProductosData();
+                    updateProducto();
+                } else if (result.isDenied) {
+                    Swal.fire("Operacion cancelada", "", "info");
+                }
+            });
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Por favor, complete todos los campos obligatorios.",
+                footer: '<b>Asegurate de ingresar todos los campos solicitados</b>'
+            });
+        }
     });
 
     btnDelete.addEventListener('click', () => {
@@ -266,6 +285,7 @@ async function filaClickeada(index) {
 }
 
 function asignProductoData(response) {
+    /// Codigo creado por Juan Pablo Perez Fernandez DreamSoft DSM406 (Confleis)
     Swal.fire({
         position: 'top-end',
         icon: 'success',
@@ -295,6 +315,55 @@ function asignProductoData(response) {
     document.getElementById("txtCodigoBarras").value = response.codigoBarras;
     document.getElementById("txtIdProducto").value = response.idProducto;
     document.getElementById("cbEstatus").checked = response.estatus == 1 ? true : false;
+}
+
+/// Funcion para validar las entradas o datos que se ingresaron en los inputs, pasando por alto ruta de la foto, foto, id, estatus
+function validateInputs() {
+    if (document.getElementById("txtNombre").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtNombreGenerico").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtFormaFarmaceutica").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtUnidadMedida").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtPresentacion").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtPrincipalIndicacion").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtContraindicaciones").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtConcentracion").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtUnidadesEnvase").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtPrecioCompra").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtPrecioVenta").value == "") {
+        return false;
+    }
+
+    return true;
 }
 
 async function makePeticion(url) {
