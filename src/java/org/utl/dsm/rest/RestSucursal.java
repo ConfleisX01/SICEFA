@@ -1,6 +1,7 @@
 package org.utl.dsm.rest;
 
 import com.google.gson.Gson;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.GET;
@@ -24,13 +25,13 @@ public class RestSucursal {
     @POST
     public Response insertSucursal(@FormParam("sucursal") @DefaultValue("") String s) {
         String out = "";
-        ControllerSucursal cp = new ControllerSucursal();
+        ControllerSucursal cs = new ControllerSucursal();
         Gson gson = new Gson();
         try {
-            Sucursal sucursal = gson.fromJson(s, Sucursal.class);   
-            cp.insertSucursal(sucursal);
+            Sucursal sucursal = gson.fromJson(s, Sucursal.class);
+            cs.insertSucursal(sucursal);
             out = """
-                  {"response": "%s"}
+                  {"response" : %s}
                   """;
             out = String.format(out, s);
         } catch (Exception e) {
@@ -42,6 +43,54 @@ public class RestSucursal {
         return Response.status(Response.Status.CREATED).entity(out).build();
     }
 
+    @Path("modificarSucursal")
+    @Produces(MediaType.APPLICATION_JSON)
+    @POST
+    public Response modificarSucursal(@FormParam("sucursal") @DefaultValue("") String s) {
+        String out = "";
+        ControllerSucursal cs = new ControllerSucursal();
+        Gson gson = new Gson();
+
+        try {
+            Sucursal sucursal = null;
+            sucursal = gson.fromJson(s, Sucursal.class);
+            cs.modificarSucursal(sucursal);
+            out = """
+                  {"response" : %s}
+                  """;
+            out = String.format(out, s);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            out = """
+                  {"response" : "Error en la transacción"}
+                  """;
+        }
+        return Response.status(Response.Status.CREATED).entity(out).build();
+    }
+    
+    @Path("eliminarSucursal")
+    @Produces(MediaType.APPLICATION_JSON)
+    @POST
+     public Response eliminarSucursal(@FormParam("sucursal") @DefaultValue("") String s) {
+        String out = "";
+        ControllerSucursal cs = new ControllerSucursal();
+        Gson gson = new Gson();
+        try {
+            Sucursal sucursal = gson.fromJson(s, Sucursal.class);
+            cs.eliminarSucursal(sucursal);
+            out = """
+                  {"response" : %s}
+                  """;
+            out = String.format(out, s);
+        } catch (Exception e) {
+            e.printStackTrace();
+            out = """
+                  {"response" : "Error en la transacción"}
+                  """;
+        }
+        return Response.status(Response.Status.CREATED).entity(out).build();
+    }
 
     @Path("getAll")
     @Produces(MediaType.APPLICATION_JSON)
@@ -49,9 +98,9 @@ public class RestSucursal {
     public Response getAll() {
         String out = null;
         List<Sucursal> sucursales = null;
-        ControllerSucursal cp = new ControllerSucursal();
+        ControllerSucursal cs = new ControllerSucursal();
         try {
-            sucursales = cp.getAll();
+            sucursales = cs.getAll();
             out = new Gson().toJson(sucursales);
         } catch (Exception e) {
             e.printStackTrace();

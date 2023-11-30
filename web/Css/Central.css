@@ -248,3 +248,40 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
 .h-30 {
     height: 30%;
 }
+
+.switch {
+    width: 100px;
+    height: 40px;
+    background-color: #dfdfdf;
+    border-radius: 100px;
+    position: relative;
+    transition: 0.2s;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.switch::before {
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 100%;
+    background-color: white;
+    transition: 0.2s;
+    display: grid;
+    align-items: center;
+    text-align: center;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+input:checked + .switch {
+    background-color: #5CCFC5;
+}
+
+input:checked + .switch::before {
+    transform: translateX(60px);
+}
+
+.disabled {
+    display: none;
+}
