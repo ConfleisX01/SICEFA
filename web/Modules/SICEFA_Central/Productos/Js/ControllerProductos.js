@@ -2,98 +2,125 @@ function loadButtons() {
     let btnAdd = document.getElementById('button-agregar');
     let btnUpdate = document.getElementById('button-actualizar');
     let btnDelete = document.getElementById('button-eliminar');
-    btnAdd.addEventListener('click', () => {
-        // Validamos que los inputs no tengan datos vacios
+    let btnSearch = document.getElementById('button-buscar');
+
+    // Llamado de la funcion agregar
+    btnAdd.addEventListener('click', async () => {
         if (validateInputs()) {
-            Swal.fire({
-                title: "Quieres agregar este producto?",
+            const result = await Swal.fire({
+                title: "¿Quieres agregar este producto?",
                 showDenyButton: true,
                 showCancelButton: false,
                 confirmButtonText: "Guardar",
-                denyButtonText: `No Guardar`
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Producto agregado con exito",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    getProductosData();
-                    addProducto();
-                } else if (result.isDenied) {
-                    Swal.fire("Operacion cancelada", "", "info");
-                }
+                denyButtonText: "No Guardar"
             });
+
+            if (result.isConfirmed) {
+                await addProducto();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Producto agregado con éxito",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                getProductosData();
+            } else if (result.isDenied) {
+                Swal.fire("Operación cancelada", "", "info");
+            }
         } else {
             Swal.fire({
                 icon: "error",
                 title: "Error",
                 text: "Por favor, complete todos los campos obligatorios.",
-                footer: '<b>Asegurate de ingresar todos los campos solicitados</b>'
+                footer: '<b>Asegúrate de ingresar todos los campos solicitados</b>'
             });
         }
     });
 
-    btnUpdate.addEventListener('click', () => {
+    // Llamado de la funcion actualizar
+    btnUpdate.addEventListener('click', async () => {
         if (validateInputs()) {
-            Swal.fire({
-                title: "Quieres actualizar este producto?",
+            const result = await Swal.fire({
+                title: "¿Quieres actualizar este producto?",
                 showDenyButton: true,
                 showCancelButton: false,
                 confirmButtonText: "Actualizar",
-                denyButtonText: `No Actualizar`
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Producto actualizado con exito",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    getProductosData();
-                    updateProducto();
-                } else if (result.isDenied) {
-                    Swal.fire("Operacion cancelada", "", "info");
-                }
+                denyButtonText: "No Actualizar"
             });
+            if (result.isConfirmed) {
+                await updateProducto();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Producto actualizado con éxito",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                getProductosData();
+            } else if (result.isDenied) {
+                Swal.fire("Operación cancelada", "", "info");
+            }
         } else {
             Swal.fire({
                 icon: "error",
                 title: "Error",
                 text: "Por favor, complete todos los campos obligatorios.",
-                footer: '<b>Asegurate de ingresar todos los campos solicitados</b>'
+                footer: '<b>Asegúrate de ingresar todos los campos solicitados</b>'
             });
         }
     });
 
+    // Llamado de la funcion eliminar
     btnDelete.addEventListener('click', () => {
         Swal.fire({
-            title: "Quieres eliminar este producto?",
-            showDenyButton: true,
-            showCancelButton: false,
-            confirmButtonText: "Eliminar",
-            denyButtonText: `No Eliminar`
+            title: "Confirmar Operación",
+            text: "¿Estás seguro de que deseas realizar esta operación?",
+            footer: "<b> Puedes activar/desactivar el producto más tarde si es necesario.</b>",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            confirmButtonText: "Realizar",
+            cancelButtonText: "Cancelar",
+            reverseButtons: true,
+            focusCancel: true
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "Producto eliminado con exito",
+                    title: "Producto eliminado exitosamente",
                     showConfirmButton: false,
                     timer: 1500
                 });
                 delteProducto();
                 getProductosData();
-            } else if (result.isDenied) {
-                Swal.fire("Operacion cancelada", "", "info");
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire("Operación cancelada", "", "info");
             }
         });
     });
+
+    // Llamado de la funcion buscar productos
+    btnSearch.addEventListener('click', async () => {
+        const url = 'http://localhost:8080/DreamSoft_SICEFA/api/producto/getAll';
+        let response = await makePeticion(url);
+        let dataToSearch = document.getElementById('txtBusqueda').value;
+
+        if(searchProducto(response, dataToSearch).length != 0) {
+            insertRow(searchProducto(response, dataToSearch));
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Producto no encontrado",
+                text: "El nombre del producto que estás buscando no existe.",
+                footer: '<b>Asegúrate de ingresar el nombre correctamente</b>'
+            });
+        }
+    });
 }
 
+/// Funcion para agregar un nuevo producto
 function addProducto() {
     let data = getInputsData();
     const url = "http://localhost:8080/DreamSoft_SICEFA/api/producto/insertProducto";
@@ -130,6 +157,7 @@ function addProducto() {
         });
 }
 
+/// Funcion para actualizar los datos de los productos
 function updateProducto() {
     let data = getInputsData();
     const url = "http://localhost:8080/DreamSoft_SICEFA/api/producto/updateProducto";
@@ -170,6 +198,7 @@ function updateProducto() {
         });
 }
 
+/// Funcion para la elimicacion logica del producto
 async function delteProducto() {
     let data = getInputsData();
     let id = data.idProducto;
@@ -205,6 +234,7 @@ async function delteProducto() {
     }
 }
 
+/// Funcion para obtener los datos de los inputs
 function getInputsData() {
     // Obtén todos los elementos de entrada por su nombre
     let nombre = document.getElementById("txtNombre").value;
@@ -247,21 +277,28 @@ function getInputsData() {
     return object;
 }
 
+/// Funcion para obtener los datos de los productos directamente desde la API y llamar la funcion de insertar las filas
 async function getProductosData() {
     const url = 'http://localhost:8080/DreamSoft_SICEFA/api/producto/getAll';
     let response = await makePeticion(url);
+
+    insertRow(response);
+}
+
+/// Funcion para insertar los datos en la tabla
+function insertRow(data) {
     let table = document.getElementById('table-row');
 
     table.innerHTML = '';
 
     let htmlString = '';
 
-    response.forEach((producto, index) => {
-        let { idProducto, nombre, nombreGenerico, precioCompra, precioVenta, codigoBarras, estatus } = producto;
+    data.forEach((producto, index) => {
+        let { idProducto, nombre, precioCompra, codigoBarras, estatus } = producto;
         let estatusProducto = estatus == 1 ? 'Activo' : 'Inactivo'
         htmlString += `
         <tr scope = "row" class = "text-center fila" onclick="filaClickeada(${index})">
-        <th>${idProducto}</th>
+        <td class = "colId">${idProducto}</th>
         <td><img class = "" src = "./Img/SinImagen.svg" style = "width: 64px"></td>
         <td>
             <p>${nombre}</p>
@@ -277,13 +314,21 @@ async function getProductosData() {
     table.innerHTML = htmlString;
 }
 
+/// Funcion para filtrar los elementos dentro del array principal por nombre
+function searchProducto(array, nombreBuscado) {
+    return array.filter(producto => producto.nombre.includes(nombreBuscado));
+}
+
+/// Funcion para obtener el indice del producto seleccionado en la tabla
 async function filaClickeada(index) {
     const url = 'http://localhost:8080/DreamSoft_SICEFA/api/producto/getAll';
     let response = await makePeticion(url);
-
-    asignProductoData(response[index]);
+    let datos = document.querySelectorAll(".colId");
+    id = parseInt(datos[index].textContent);
+    asignProductoData(response[id-1]);
 }
 
+/// Funcion para asignar los datos de los productos a los inputs
 function asignProductoData(response) {
     /// Codigo creado por Juan Pablo Perez Fernandez DreamSoft DSM406 (Confleis)
     Swal.fire({
@@ -360,6 +405,10 @@ function validateInputs() {
     }
 
     if (document.getElementById("txtPrecioVenta").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtCodigoBarras").value == "") {
         return false;
     }
 

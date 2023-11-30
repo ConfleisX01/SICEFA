@@ -188,21 +188,30 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
     overflow: visible !important;
 }
 
+.menu-container {
+    width: auto;
+    transition: width 0.2s;
+}
+
 .menu-bar {
     width: auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    overflow: hidden;
+    transition: width 0.2s;
 }
 
 .content-menu {
     width: auto;
+    transition: width 0.2s;
 }
 
 .container-option {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    transition: width 0.2s;
 }
 
 .option {
@@ -210,18 +219,21 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
     align-items: center;
     justify-content: space-between;
     width: auto;
+    transition: width 0.2s;
 }
 
 .option i {
     width: 50px;
     color: white;
     transition: 0.2s;
+    transition: width 0.2s;
 }
 
 .option i::before {
     padding: 10px 10px;
     border-radius: 100%;
     transition: 0.2s;
+    transition: width 0.2s;
 }
 
 .option:hover i::before {

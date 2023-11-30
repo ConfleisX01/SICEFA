@@ -18,7 +18,32 @@
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active table-responsive" id="home-tab-pane" role="tabpanel"
             aria-labelledby="home-tab" tabindex="0">
-            <div class="container-fluid table-responsive">
+            <div class="container-fluid table-responsive p-0">
+                <div class="container-fluid p-2 bg-dark text-white">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3>Filtrar Productos</h3>
+                        </div>
+                        <div class="col-sm-6 d-flex my-2">
+                            <div class="flex-grow-1 px-2">
+                                <label for="txtBusqueda" class="form-label">Filtrar por nombre</label>
+                                <input type="text" class="form-control" id="txtBusqueda" placeholder="Ingresa el nombre del producto, E.j: Donepecilo">
+                            </div>
+                            <div class="d-flex align-items-end px-2">
+                                <button class="button_1" id="button-buscar">Buscar</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 my-2">
+                            <div class="px-2">
+                                <p class="text-start text-md-center">Productos Activos / Inactivos</p>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <input type="checkbox" name="Estatus" id="cbEstatusBusqueda" class="disabled">
+                                    <label for="cbEstatusBusqueda" class="switch"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <table class="table table-hover">
                     <thead>
                         <tr class="text-center">
@@ -108,7 +133,7 @@
                     </div>
                     <div class="col-sm-2">
                         <label for="" class="form-label">ID del Producto</label>
-                        <input type="number" class="form-control" id="txtIdProducto" readonly>
+                        <input type="number" class="form-control" id="txtIdProducto" disabled>
                     </div>
                     <div class="col-sm-2">
                         <div class="container-fluid">
