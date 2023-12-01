@@ -49,7 +49,7 @@ function loadButtons() {
                 denyButtonText: "No Actualizar"
             });
             if (result.isConfirmed) {
-                await update()();
+                await update();
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -93,8 +93,8 @@ function loadButtons() {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                deleteCliente()();
-                getClientesData()();
+                deleteCliente();
+                getClientesData();
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal.fire("Operación cancelada", "", "info");
             }
@@ -107,8 +107,8 @@ function loadButtons() {
         let response = await makePeticion(url);
         let dataToSearch = document.getElementById('txtBusqueda').value;
 
-        if (searchProducto(response, dataToSearch).length != 0) {
-            insertRow(searchProducto(response, dataToSearch));
+        if (searchCliente(response, dataToSearch).length != 0) {
+            insertRow(searchCliente(response, dataToSearch));
         } else {
             Swal.fire({
                 icon: "error",
@@ -324,7 +324,7 @@ async function insertRow(data) {
 }
 
 // Funcion para buscar a un cliente por su nombre
-function searchProducto(array, nombreBuscado) {
+function searchCliente(array, nombreBuscado) {
     return array.filter(cliente => cliente.persona.nombre.toLowerCase().includes(nombreBuscado.toLowerCase()));
 }
 
