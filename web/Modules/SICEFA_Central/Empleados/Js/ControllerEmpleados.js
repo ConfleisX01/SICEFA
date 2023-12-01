@@ -1,5 +1,4 @@
-
-    function agregarEmpleado() {
+function agregarEmpleado() {
         // Obtener valores del formulario
             const url = 'http://localhost:8080/DreamSoft_SICEFA/api/empleado/insertarEmpleado';
                 let v_nombre, v_apellidoPaterno, v_apellidoMaterno, v_genero, v_fechaNacimiento, v_rfc, v_curp, v_domicilio, v_codigoPostal, v_ciudad, v_estado, v_telefono, v_foto,v_idSucursal,v_rol,v_puesto,v_salarioBruto,v_nombreSucursal, v_estatus;
@@ -17,8 +16,8 @@
     v_telefono = document.getElementById("txtTelefono").value;
     v_foto = document.getElementById("txtFoto").value;
     v_idSucursal = document.getElementById("txtIdPersona").value;
-    v_rol = document.getElementById("txtrol").value;
-    v_puesto = document.getElementById("txtpuesto").value;
+    v_rol = document.getElementById("txtRol").value;
+    v_puesto = document.getElementById("txtPuesto").value;
     v_salarioBruto = document.getElementById("txtsalarioBruto").value;
 
       
@@ -85,5 +84,3 @@
     }
 
 console.log("hola");
-
-

@@ -1,4 +1,3 @@
-
 package org.utl.dsm.rest;
 
 import com.google.gson.Gson;
@@ -41,6 +40,57 @@ public class RestEmpleado {
         }
         return Response.status(Response.Status.CREATED).entity(out).build();
     }
+    
+     @Path("modificarEmpleado")
+    @Produces(MediaType.APPLICATION_JSON)
+    @POST
+    public Response modificarEmpleado(@FormParam("empleado") @DefaultValue("") String e) {
+        String out = "";
+        
+        ControllerEmpleado ce = new ControllerEmpleado();
+        Gson gson = new Gson();
+        try {
+            // se formatea el objeto en json
+            Empleado empleado = gson.fromJson(e, Empleado.class);
+            ce.modificarEmpleado(empleado);
+             out = """
+                  {"response" : "%s"}
+                  """;
+            out = String.format(out, e);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            out = """
+                  {"response" : "Error en la transacción"}
+                  """;
+        }
+        return Response.status(Response.Status.CREATED).entity(out).build();
+    }
+    
+     @Path("eliminarEmpleado")
+    @Produces(MediaType.APPLICATION_JSON)
+    @POST
+    public Response eliminarEmpleado(@FormParam("empleado") @DefaultValue("") String e) {
+        String out = "";
+        
+        ControllerEmpleado ce = new ControllerEmpleado();
+        Gson gson = new Gson();
+        try {
+            // se formatea el objeto en json
+            Empleado empleado = gson.fromJson(e, Empleado.class);
+            ce.eliminarEmpleado(empleado);
+             out = """
+                  {"response" : "%s"}
+                  """;
+            out = String.format(out, e);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            out = """
+                  {"response" : "Error en la transacción"}
+                  """;
+        }
+        return Response.status(Response.Status.CREATED).entity(out).build();
+    }
+    
     
     @Path("getAll")
       @Produces(MediaType.APPLICATION_JSON)
