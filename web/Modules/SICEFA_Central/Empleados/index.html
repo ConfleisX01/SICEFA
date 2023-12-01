@@ -1,5 +1,5 @@
-<div class="container-fluid py-2">
-    <h3>SICEFA Central / Empleados <i class="bi bi-person-add fs-1"></i></h3>
+<div class="container-fluid py-4">
+    <h3>SICEFA Central / Clientes <i class="bi bi-person-add fs-1"></i></h3>
 </div>
 
 <div class="container-fluid bg-white rounded py-2">
@@ -7,31 +7,58 @@
         <li class="nav-item" role="presentation">
             <button class="nav-link active text-cian" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
                     type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"><i class="bi bi-table"></i>
-                Mostrar Empleados</button>
+                Tabla Empleados</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link text-cian" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
-                    type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"><i
-                    class="bi bi-pen-fill"></i> Control Empleados</button>
+            <button class="nav-link text-cian position-relative" id="profile-tab" data-bs-toggle="tab"
+                    data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                    aria-selected="false"><i class="bi bi-pen-fill"></i> Control Empleados</button>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active table-responsive" id="home-tab-pane" role="tabpanel"
              aria-labelledby="home-tab" tabindex="0">
-            <table class="table table-hover">
-                <thead class="bg-light">
-                    <tr class="text-center">
-                        <th colspan="1">ID</th>
-                        <th colspan="1">Nombre</th>
-                        <th colspan="1">Apellido Paterno</th>
-                        <th colspan="1">Apellido Materno</th>
-                        <th colspan="1">Género</th>
-                        <th colspan="1">Fecha de Registro</th>
-                        <th colspan="1">Estatus</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center" id="table-row"></tbody>
-            </table>
+            <div class="container-fluid p-2 bg-dark text-white">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Filtrar Empleados</h3>
+                    </div>
+                    <div class="col-sm-6 d-flex my-2">
+                        <div class="flex-grow-1 px-2">
+                            <label for="txtBusqueda" class="form-label">Filtrar por nombre</label>
+                            <input type="text" class="form-control" id="txtBusqueda" placeholder="Ingresa el nombre del empleado, E.j: Juan Pablo">
+                        </div>
+                        <div class="d-flex align-items-end px-2">
+                            <button class="button_1" id="button-buscar">Buscar</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 my-2">
+                        <div class="px-2">
+                            <p class="text-start text-md-center">Empleados Activos / Inactivos</p>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <input type="checkbox" name="Estatus" id="cbEstatusBusqueda" class="disabled">
+                                <label for="cbEstatusBusqueda" class="switch"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid table-responsive p-0">
+                <table class="table table-hover">
+                    <thead class="bg-light">
+                        <tr class="text-center">
+                            <th colspan="1">ID</th>
+                            <th colspan="1">Nombre</th>
+                            <th colspan="1">Apellido Paterno</th>
+                            <th colspan="1">Apellido Materno</th>
+                            <th colspan="1">Género</th>
+                            <th colspan="1">Fecha de Registro</th>
+                            <th colspan="1">Estatus</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-row"></tbody>
+                </table>
+            </div>
         </div>
         <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
             <div class="container-fluid mt-4">
@@ -39,9 +66,8 @@
                     <div class="col-sm-3">
                         <label for="txtIdPersona" class="form-label" >ID</label>
                         <input type="text" class="form-control" placeholder="Ingresa ID" id="txtIdPersona"
-                               name="txtIdPersona" >
+                               name="txtIdPersona" disabled>
                     </div>
-                    
                     <div class="col-sm-3">
                         <label for="txtNombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" placeholder="Ingresa el nombre del cliente" id="txtNombre"
@@ -123,55 +149,51 @@
                             <option value="Zacatecas">Zacatecas</option>
                         </select>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label for="txtTelefono" class="form-label">Telefono</label>
                         <input type="text" class="form-control" placeholder="Ingresa Télefono" id="txtTelefono">
                     </div>
-                    <div class="col-sm-4">
-                        <label for="txtFoto" class="form-label">Foto</label>
-                        <input type="file" class="form-control" placeholder="Ingresa Foto" id="txtFoto">
+                    <div class="col-sm-3">
+                        <label for="txtPuesto" class="form-label">Puesto</label>
+                        <input type="text" class="form-control" placeholder="Ingresa Puesto" id="txtPuesto">
                     </div>
-            <label for="txtSalarioBruto" class="form-label">Salario Bruto</label>
-            <input type="text" class="form-control" placeholder="Ingresa Salario Bruto" id="txtSalarioBruto">
-            </div>
-                 <div class="col-sm-3">
-                        <label for="txtIdPersona" class="form-label" >ID Sucursal</label>
-                        <input type="text" class="form-control" placeholder="Ingresa ID" id="txtIdPersona"
-                               name="txtIdPersona" >
+                     <div class="col-sm-3">
+                        <label for="txtSalarioBruto" class="form-label">Salario Bruto</label>
+                        <input type="email" class="form-control" placeholder="Ingresa Salario" id="txtSalarioBruto">
                     </div>
-                     <!-- <div class="col-sm-3">
-                        <label for="txtStatus" class="form-label">Estatus</label>
-                        <input type="text" class="form-control" placeholder="Ingresa estatus" id="txtStatus">
-                    </div>  --> 
-
-                    <div class="container-fluid my-4">
-                        <div class="row gx-2 gy-2 text-center">
-                            <div class="col-6 col-md-4 text-white">
-                                <button class="button-add" id="button-agregar" onclick="agregarEmpleado()"> <!-- onclick="save();" -->
-                                    <span class="button-text">Agregar</span>
-                                    <span class="button-icon"><i class="bi bi-plus"></i></span>
-                                </button>
-                            </div>
-                            <div class="col-6 col-md-4">
-                                <button class="button-update" id="button-modificar">
-                                    <span class="button-text">Actualizar</span>
-                                    <span class="button-icon"><i class="bi bi-cloud-download-fill"></i></span>
-                                </button>
-                            </div>
-                            <div class="col-12 col-md-4">
-                                <button class="button-delete" id="button-delete"> 
-                                    <span class="button-text">Eliminar</span>
-                                    <span class="button-icon"><i class="bi bi-x"></i></span>
-                                </button>
-                            </div>
+                    <div class="col-sm-3">
+                        <div class="container-fluid">
+                            <p>Estatus del Empleado</p>
                         </div>
-
+                        <div class="container-fluid">
+                            <input type="checkbox" name="Estatus" id="cbEstatus" class="disabled" disabled>
+                            <label for="cbEstatus" class="switch" disabled></label>
+                        </div>
                     </div>
-                </div>            
+                </div>
             </div>
-            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...
-            </div>
-            <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">
+            <div class="container-fluid my-4">
+                <div class="row gx-2 gy-2 text-center">
+                    <div class="col-sm-12 col-md-4 text-white">
+                        <button class="button-add" id="button-agregar">
+                            <span class="button-text">Agregar</span>
+                            <span class="button-icon"><i class="bi bi-plus"></i></span>
+                        </button>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <button class="button-update" id="button-actualizar">
+                            <span class="button-text">Actualizar</span>
+                            <span class="button-icon"><i class="bi bi-cloud-upload-fill"></i></span>
+                        </button>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <button class="button-delete" id="button-eliminar">
+                            <span class="button-text">Eliminar</span>
+                            <span class="button-icon"><i class="bi bi-x"></i></span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>

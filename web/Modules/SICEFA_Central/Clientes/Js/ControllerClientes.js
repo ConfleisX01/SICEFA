@@ -356,6 +356,40 @@ function clear() {
     document.getElementById("txtEmail").value = "";
     //document.getElementById("txtStatus").value = "";
 }
+//Seleccionar inputs
+function selectInputs(response) {
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Cliente listo para modificar',
+        showConfirmButton: false,
+        timer: 1500,
+        footer: 'Visita la sección de <span class = "fw-bold text-cian mx-1"><i class="bi bi-pen-fill"></i> Control Clientes</span>',
+        showCloseButton: true,
+        customClass: {
+            popup: 'custom-popup-class',
+        },
+        timerProgressBar: true,
+    });
+    document.getElementById("txtIdPersona").value = response.idCliente;
+    document.getElementById("txtNombre").value = response.persona.nombre;
+    document.getElementById("txtApellidoPaterno").value = response.persona.apellidoPaterno;
+    document.getElementById("txtApellidoMaterno").value = response.persona.apellidoMaterno;
+    document.getElementById("txtGenero").value = response.persona.genero;
+    document.getElementById("txtFechaNacimiento").value = response.persona.fechaNacimiento;
+    document.getElementById("txtRfc").value = response.persona.rfc;
+    document.getElementById("txtCurp").value = response.persona.curp;
+    document.getElementById("txtDomicilio").value = response.persona.domicilio;
+    document.getElementById("txtCodPostal").value = response.persona.codigoPostal;
+    document.getElementById("txtCiudad").value = response.persona.ciudad;
+    document.getElementById("txtEstado").value = response.persona.estado;
+    document.getElementById("txtTelefono").value = response.persona.telefono;
+    document.getElementById("txtFoto").value = "";
+    document.getElementById("txtEmail").value = response.email;
+    document.getElementById("cbEstatus").checked = response.estatus == 1 ? true : false;
+    // document.getElementById("txtStatus").value = response.estatus;
+}
+
 
 //Función para validar 
 function validateInputs() {
