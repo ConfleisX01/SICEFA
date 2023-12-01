@@ -1,18 +1,22 @@
-let response;
-
 function loadButtons() {
     let btnAdd = document.getElementById('button-agregar');
-    let btnUpdate = document.getElementById('button-modificar');
-    let btnDelete = document.getElementById("button-delete");
-    btnAdd.addEventListener('click', () => {
-        Swal.fire({
-            title: "¿Deseas agregar este Cliente?",
-            showDenyButton: true,
-            showCancelButton: false,
-            confirmButtonText: "Guardar",
-            denyButtonText: `No Guardar`
-        }).then((result) => {
+    let btnUpdate = document.getElementById('button-actualizar');
+    let btnDelete = document.getElementById("button-eliminar");
+    let btnSearch = document.getElementById("button-buscar");
+
+    //Lllamar a la función de Agregar
+    btnAdd.addEventListener('click', async () => {
+        if (validateInputs()) {
+            const result = await Swal.fire({
+                title: "¿Deseas agregar este cliente?",
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: "Guardar",
+                denyButtonText: "No Guardar"
+            });
+
             if (result.isConfirmed) {
+                await save();
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -20,23 +24,32 @@ function loadButtons() {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                save();
                 getClientesData();
             } else if (result.isDenied) {
-                Swal.fire("Operacion cancelada", "", "info");
+                Swal.fire("Operación cancelada", "", "info");
             }
-        });
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Por favor, complete todos los campos obligatorios.",
+                footer: '<b>Asegúrate de ingresar todos los campos solicitados</b>'
+            });
+        }
     });
 
-    btnUpdate.addEventListener('click', () => {
-        Swal.fire({
-            title: "¿Deseas actualizar este Cliente?",
-            showDenyButton: true,
-            showCancelButton: false,
-            confirmButtonText: "Guardar",
-            denyButtonText: `No Guardar`
-        }).then((result) => {
+    // Llamar a la funcion actualizar
+    btnUpdate.addEventListener('click', async () => {
+        if (validateInputs()) {
+            const result = await Swal.fire({
+                title: "¿Quieres actualizar este cliente?",
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: "Actualizar",
+                denyButtonText: "No Actualizar"
+            });
             if (result.isConfirmed) {
+                await update()();
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -44,39 +57,70 @@ function loadButtons() {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                update();
                 getClientesData();
             } else if (result.isDenied) {
                 Swal.fire("Operación cancelada", "", "info");
             }
-        });
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Por favor, complete todos los campos obligatorios.",
+                footer: '<b>Asegúrate de ingresar todos los campos solicitados</b>'
+            });
+        }
     });
 
-
+    // Llamar a la funcion eliminar
     btnDelete.addEventListener('click', () => {
         Swal.fire({
-            title: "¿Deseas eliminar este Cliente?",
-            showDenyButton: true,
-            showCancelButton: false,
-            confirmButtonText: "Eliminar",
-            denyButtonText: `No Eliminar`
+            title: "Confirmar Operación",
+            text: "¿Estás seguro de que deseas realizar esta operación?",
+            footer: "<b> Puedes activar/desactivar el cliente más tarde si es necesario.</b>",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            confirmButtonText: "Realizar",
+            cancelButtonText: "Cancelar",
+            reverseButtons: true,
+            focusCancel: true
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "Cliente eliminado con éxito",
+                    title: "Cliente eliminado exitosamente",
                     showConfirmButton: false,
                     timer: 1500
                 });
-                deleteCliente();
-                getClientesData();
-            } else if (result.isDenied) {
-                Swal.fire("Operacion cancelada", "", "info");
+                deleteCliente()();
+                getClientesData()();
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire("Operación cancelada", "", "info");
             }
         });
     });
+
+// Llamar a la funcion busqueda de clientes
+    btnSearch.addEventListener('click', async () => {
+        const url = 'http://localhost:8080/DreamSoft_SICEFA/api/cliente/getAll';
+        let response = await makePeticion(url);
+        let dataToSearch = document.getElementById('txtBusqueda').value;
+
+        if (searchProducto(response, dataToSearch).length != 0) {
+            insertRow(searchProducto(response, dataToSearch));
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Cliente no encontrado",
+                text: "El nombre del cliente que estás buscando no existe.",
+                footer: '<b>Asegúrate de ingresar el nombre correctamente</b>'
+            });
+        }
+    });
 }
+
+//Función para agregar a un cliente
 function save() {
     let url = "http://localhost:8080/DreamSoft_SICEFA/api/cliente/insertarCliente";
     let v_idPersona, v_nombre, v_apellidoPaterno, v_apellidoMaterno, v_genero, v_fechaNacimiento, v_rfc, v_curp,
@@ -136,102 +180,7 @@ function save() {
     clear();
 }
 
-async function getClientesData() {
-    const url = 'http://localhost:8080/DreamSoft_SICEFA/api/cliente/getAll';
-    response = await makePeticion(url);
-    let table = document.getElementById('table-row');
-
-    table.innerHTML = '';
-
-    console.log(response);
-
-    let htmlString = '';
-
-    response.forEach((cliente, index) => {
-        let {idCliente, fechaRegistro, estatus, persona: {nombre, apellidoPaterno, apellidoMaterno, genero}} = cliente;
-        let estatusCliente = estatus == 1 ? 'Activo' : 'Inactivo'
-        htmlString += `
-        <tr onclick="selectInputs(${index})">
-        <td>
-            <p class="fw-bold">#${idCliente}</p>
-        </td>
-        <td>
-            <p class="fw-normal mb-1">${nombre}</p>
-        </td>
-        <td>
-            <p class="fw-normal mb-1">${apellidoPaterno}</p>
-        </td>
-        <td class = "fw-normal mb-1">${apellidoMaterno}</td>
-        <td>${genero}</td>
-        <td class = "fw-bold">${fechaRegistro}</td>
-        <td><span class="badge badge-success rounded-pill d-inline text-bg-primary">${estatusCliente}</span></td>
-        </tr>`;
-    });
-
-    table.innerHTML = htmlString;
-}
-async function makePeticion(url) {
-    try {
-        response = await fetch(url);
-        let json = await response.json();
-        return json;
-    } catch (error) {
-        throw error;
-    }
-}
-
-function clear() {
-    document.getElementById("txtIdPersona").value = "";
-    document.getElementById("txtNombre").value = "";
-    document.getElementById("txtApellidoPaterno").value = "";
-    document.getElementById("txtApellidoMaterno").value = "";
-    document.getElementById("txtGenero").value = "";
-    document.getElementById("txtFechaNacimiento").value = "";
-    document.getElementById("txtRfc").value = "";
-    document.getElementById("txtCurp").value = "";
-    document.getElementById("txtDomicilio").value = "";
-    document.getElementById("txtCodPostal").value = "";
-    document.getElementById("txtCiudad").value = "";
-    document.getElementById("txtEstado").value = "";
-    document.getElementById("txtTelefono").value = "";
-    document.getElementById("txtFoto").value = "";
-    document.getElementById("txtEmail").value = "";
-    //document.getElementById("txtStatus").value = "";
-}
-
-function selectInputs(index) {
-    let selectedClient = response[index];
-    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Cliente listo para modificar',
-        showConfirmButton: false,
-        timer: 1500,
-        footer: 'Visita la sección de <span class = "fw-bold text-cian mx-1"><i class="bi bi-pen-fill"></i> Control Clientes</span>',
-        showCloseButton: true,
-        customClass: {
-            popup: 'custom-popup-class',
-        },
-        timerProgressBar: true,
-    });
-    document.getElementById("txtIdPersona").value = selectedClient.idCliente;
-    document.getElementById("txtNombre").value = selectedClient.persona.nombre;
-    document.getElementById("txtApellidoPaterno").value = selectedClient.persona.apellidoPaterno;
-    document.getElementById("txtApellidoMaterno").value = selectedClient.persona.apellidoMaterno;
-    document.getElementById("txtGenero").value = selectedClient.persona.genero;
-    document.getElementById("txtFechaNacimiento").value = selectedClient.persona.fechaNacimiento;
-    document.getElementById("txtRfc").value = selectedClient.persona.rfc;
-    document.getElementById("txtCurp").value = selectedClient.persona.curp;
-    document.getElementById("txtDomicilio").value = selectedClient.persona.domicilio;
-    document.getElementById("txtCodPostal").value = selectedClient.persona.codigoPostal;
-    document.getElementById("txtCiudad").value = selectedClient.persona.ciudad;
-    document.getElementById("txtEstado").value = selectedClient.persona.estado;
-    document.getElementById("txtTelefono").value = selectedClient.persona.telefono;
-    document.getElementById("txtFoto").value = "";
-    document.getElementById("txtEmail").value = selectedClient.email;
-    //document.getElementById("txtStatus").value = selectedClient.estatus;
-}
-
+//Función que sirve para modificar/ actualizar un cliente
 function update() {
     let url = "http://localhost:8080/DreamSoft_SICEFA/api/cliente/updateCliente";
     let v_idCliente, v_nombre, v_apellidoPaterno, v_apellidoMaterno, v_genero, v_fechaNacimiento, v_rfc, v_curp,
@@ -253,12 +202,12 @@ function update() {
     v_foto = document.getElementById("txtFoto").value;
     //cliente
     v_email = document.getElementById("txtEmail").value;
-     //v_estatus = document.getElementById("txtStatus").value;
+    //v_estatus = document.getElementById("txtStatus").value;
 
     let datosCliente = {
         "idCliente": v_idCliente,
         "email": v_email,
-        "estatus":1,
+        "estatus": 1,
         "persona": {
             "nombre": v_nombre,
             "apellidoPaterno": v_apellidoPaterno,
@@ -294,8 +243,11 @@ function update() {
     );
     clear();
 }
+
+//Función para eliminar un cliente
 function deleteCliente() {
     let url = "http://localhost:8080/DreamSoft_SICEFA/api/cliente/deleteCliente";
+    let check = document.getElementById('cbEstatus');
 
     let v_idCliente, v_estatus;
     //Persona
@@ -307,8 +259,8 @@ function deleteCliente() {
         //"estatus":0,
         "idCliente": v_idCliente
     };
-    
-    
+
+
     const requestOptions = {
         method: "POST",
         headers: {'Content-type': 'application/x-www-form-urlencoded'},
@@ -324,47 +276,154 @@ function deleteCliente() {
                 console.log(datosCliente);
                 getClientesData();
             });
-            
-      clear();
+    if (check.checked) {
+        check.checked = false;
+    } else {
+        check.checked = true;
+    }
+
+
+    clear();
 }
 
+async function getClientesData() {
+    const url = 'http://localhost:8080/DreamSoft_SICEFA/api/cliente/getAll';
+    let response = await makePeticion(url);
+
+    insertRow(response);
+}
+// Datos que se obtienen desde la API
+async function insertRow(data) {
+    let table = document.getElementById('table-row');
+
+    table.innerHTML = '';
+
+
+    let htmlString = '';
+
+    data.forEach((cliente, index) => {
+        let {idCliente, fechaRegistro, estatus, persona: {nombre, apellidoPaterno, apellidoMaterno, genero}} = cliente;
+        let estatusCliente = estatus == 1 ? 'Activo' : 'Inactivo'
+        htmlString += `
+        <tr scope = "row" class = "text-center fila" onclick="filaClickeada(${index})">
+        <td class = "colId">${idCliente}</th>
+        <td>
+            <p>${nombre}</p>
+        </td>
+        <td>
+            <p>${apellidoPaterno}</p>
+        </td>
+        <td>${apellidoMaterno}</td>
+        <td>${genero}</td>
+        <td>${fechaRegistro}</td>
+        <td>${estatusCliente}</td>
+      </tr>`;
+    });
+
+    table.innerHTML = htmlString;
+}
+
+// Funcion para buscar a un cliente por su nombre
+function searchProducto(array, nombreBuscado) {
+    return array.filter(cliente => cliente.persona.nombre.toLowerCase().includes(nombreBuscado.toLowerCase()));
+}
+
+async function filaClickeada(index) {
+    const url = 'http://localhost:8080/DreamSoft_SICEFA/api/cliente/getAll';
+    let response = await makePeticion(url);
+    let datos = document.querySelectorAll(".colId");
+    id = parseInt(datos[index].textContent);
+    selectInputs(response[index]);
+}
+
+
+// Función para limpiar los campos del modulo de clientes
+function clear() {
+    document.getElementById("txtIdPersona").value = "";
+    document.getElementById("txtNombre").value = "";
+    document.getElementById("txtApellidoPaterno").value = "";
+    document.getElementById("txtApellidoMaterno").value = "";
+    document.getElementById("txtGenero").value = "";
+    document.getElementById("txtFechaNacimiento").value = "";
+    document.getElementById("txtRfc").value = "";
+    document.getElementById("txtCurp").value = "";
+    document.getElementById("txtDomicilio").value = "";
+    document.getElementById("txtCodPostal").value = "";
+    document.getElementById("txtCiudad").value = "";
+    document.getElementById("txtEstado").value = "";
+    document.getElementById("txtTelefono").value = "";
+    document.getElementById("txtFoto").value = "";
+    document.getElementById("txtEmail").value = "";
+    //document.getElementById("txtStatus").value = "";
+}
+
+//Función para validar 
+function validateInputs() {
+    if (document.getElementById("txtNombre").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtApellidoPaterno").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtApellidoMaterno").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtGenero").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtFechaNacimiento").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtRfc").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtCurp").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtDomicilio").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtCodPostal").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtCiudad").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtEstado").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtTelefono").value == "") {
+        return false;
+    }
+
+    if (document.getElementById("txtEmail").value == "") {
+        return false;
+    }
+
+    return true;
+}
+
+async function makePeticion(url) {
+    try {
+        let response = await fetch(url);
+        let json = await response.json();
+        return json;
+    } catch (error) {
+        throw error;
+    }
+}
 
 getClientesData();
 
 loadButtons();
-
-/*
- * function deleteCliente() {
-    let url = "http://localhost:8080/DreamSoft_SICEFA/api/cliente/deleteCliente";
-
-    let v_idCliente, v_estatus;
-    //Persona
-    v_idCliente = document.getElementById("txtIdPersona").value;
-    v_estatus = document.getElementById("txtStatus").value;
-
-    let datosCliente = {
-        idCliente: v_idCliente,
-        estatus: v_estatus
-    };
-
-    const requestOptions = {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `idCliente=${v_idCliente}&estatus=${v_estatus}`
-    };
-    fetch(url, requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                if (data.result === "OK") {
-                    console.log("Cliente eliminado con éxito");
-                } else {
-                    console.error("Error al eliminar el cliente");
-                }
-            })
-            .catch(error => {
-                console.error("Error en la solicitud:", error);
-            });
-}
- */
