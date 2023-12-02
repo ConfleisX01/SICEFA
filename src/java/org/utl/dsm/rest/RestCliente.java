@@ -82,8 +82,8 @@ public class RestCliente extends Application {
         }
         return Response.status(Response.Status.OK).entity(out).build();
     }
-    
-@Path("deleteCliente")
+
+    @Path("deleteCliente")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteCliente(@FormParam("datosCliente") @DefaultValue("") String datosCliente) {

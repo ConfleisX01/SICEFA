@@ -302,7 +302,7 @@ async function insertRow(data) {
     let htmlString = '';
 
     data.forEach((cliente, index) => {
-        let {idCliente, fechaRegistro, estatus, persona: {nombre, apellidoPaterno, apellidoMaterno, genero}} = cliente;
+        let {idCliente, fechaRegistro, estatus, persona: {nombre, apellidoPaterno, apellidoMaterno, rfc, telefono}} = cliente;
         let estatusCliente = estatus == 1 ? 'Activo' : 'Inactivo'
         htmlString += `
         <tr scope = "row" class = "text-center fila" onclick="filaClickeada(${index})">
@@ -311,10 +311,10 @@ async function insertRow(data) {
             <p>${nombre}</p>
         </td>
         <td>
-            <p>${apellidoPaterno}</p>
+            <p>${apellidoPaterno} ${apellidoMaterno}</p>
         </td>
-        <td>${apellidoMaterno}</td>
-        <td>${genero}</td>
+        <td>${rfc}</td>
+        <td>${telefono}</td>
         <td>${fechaRegistro}</td>
         <td>${estatusCliente}</td>
       </tr>`;
