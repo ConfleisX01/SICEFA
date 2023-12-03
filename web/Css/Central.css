@@ -136,7 +136,8 @@
 
 .button-add,
 .button-update,
-.button-delete {
+.button-delete,
+.button-clean{
     display: inline-flex;
     height: 50px;
     padding: 0;
@@ -151,6 +152,10 @@
 
 .button-add {
     background-color: #009578;
+}
+
+.button-clean {
+    background-color: #e29400;
 }
 
 .button-update {
