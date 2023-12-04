@@ -207,7 +207,7 @@ function update() {
     let datosCliente = {
         "idCliente": v_idCliente,
         "email": v_email,
-        "estatus": 1,
+        "estatus":1,
         "persona": {
             "nombre": v_nombre,
             "apellidoPaterno": v_apellidoPaterno,
