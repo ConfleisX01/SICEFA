@@ -74,6 +74,9 @@ public class RestCliente extends Application {
             cc = new ControllerCliente();
             cc.update(c);
             out = gson.toJson(c);
+              out = """
+                  {"result":"Objeto actualizado"}
+                  """;
         } catch (Exception e) {
             out = """
                    {"error": "Error interno del servidor, Intente más tarde."}
