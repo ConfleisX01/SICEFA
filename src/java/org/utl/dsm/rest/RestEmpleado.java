@@ -29,7 +29,7 @@ public class RestEmpleado {
             Empleado empleado = gson.fromJson(e, Empleado.class);
             ce.insertEmpleado(empleado);
              out = """
-                  {"response" : "%s"}
+                  {"response" : %s}
                   """;
             out = String.format(out, e);
         } catch (Exception ex) {
@@ -54,7 +54,7 @@ public class RestEmpleado {
             Empleado empleado = gson.fromJson(e, Empleado.class);
             ce.modificarEmpleado(empleado);
              out = """
-                  {"response" : "%s"}
+                  {"response" : %s}
                   """;
             out = String.format(out, e);
         } catch (Exception ex) {
@@ -79,7 +79,7 @@ public class RestEmpleado {
             Empleado empleado = gson.fromJson(e, Empleado.class);
             ce.eliminarEmpleado(empleado);
              out = """
-                  {"response" : "%s"}
+                  {"response" : %s}
                   """;
             out = String.format(out, e);
         } catch (Exception ex) {
@@ -92,15 +92,15 @@ public class RestEmpleado {
     }
     
     
-    @Path("getAll")
-      @Produces(MediaType.APPLICATION_JSON)
+      @Path("getAll")
+    @Produces(MediaType.APPLICATION_JSON)
     @GET
     public Response getAll() {
         String out = null;
         List<Empleado> empleados = null;
-        ControllerEmpleado ce = new ControllerEmpleado();
+        ControllerEmpleado cs = new ControllerEmpleado();
         try {
-            empleados = ce.getAll();
+            empleados = cs.getAll();
             out = new Gson().toJson(empleados);
         } catch (Exception e) {
             e.printStackTrace();

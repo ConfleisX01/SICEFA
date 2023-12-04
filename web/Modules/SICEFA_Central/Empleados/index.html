@@ -64,9 +64,9 @@
             <div class="container-fluid mt-4">
                 <div class="row">
                     <div class="col-sm-3">
-                        <label for="txtIdPersona" class="form-label" >ID</label>
-                        <input type="text" class="form-control" placeholder="Ingresa ID" id="txtIdPersona"
-                               name="txtIdPersona" disabled>
+                        <label for="txtIdEmpleado" class="form-label" >ID</label>
+                        <input type="text" class="form-control" placeholder="Ingresa ID" id="txtIdEmpleado"
+                               name="txtIdEmpleado" disabled>
                     </div>
                     <div class="col-sm-3">
                         <label for="txtNombre" class="form-label">Nombre</label>
@@ -153,40 +153,60 @@
                         <label for="txtTelefono" class="form-label">Telefono</label>
                         <input type="text" class="form-control" placeholder="Ingresa Télefono" id="txtTelefono">
                     </div>
+                      <div class="col-sm-3">
+                        <label for="txtFoto" class="form-label">Foto</label>
+                        <input type="file" class="form-control" placeholder="Ingresa Foto" id="txtFoto">
+                    </div>
+                      <div class="col-sm-3">
+            <label for="txtSalarioBruto" class="form-label">Salario Bruto</label>
+            <input type="text" class="form-control" placeholder="Ingresa Salario Bruto" id="txtSalarioBruto">
+            </div>
+                     <div class="col-sm-3">
+            <label for="txtRol" class="form-label">Rol</label>
+            <input type="text" class="form-control" placeholder="Ingresa El Rol" id="txtRol">
+            </div>
+                 <div class="col-sm-3">
+                        <label for="txtIdSucursal" class="form-label" >ID Sucursal</label>
+                        <input type="number" class="form-control" placeholder="Ingresa ID" id="txtIdSucursal"
+                               name="txtIdSucursal" >
+                    </div>
                     <div class="col-sm-3">
                         <label for="txtPuesto" class="form-label">Puesto</label>
                         <input type="text" class="form-control" placeholder="Ingresa Puesto" id="txtPuesto">
                     </div>
-                     <div class="col-sm-3">
-                        <label for="txtSalarioBruto" class="form-label">Salario Bruto</label>
-                        <input type="email" class="form-control" placeholder="Ingresa Salario" id="txtSalarioBruto">
-                    </div>
+                    
                     <div class="col-sm-3">
                         <div class="container-fluid">
                             <p>Estatus del Empleado</p>
                         </div>
                         <div class="container-fluid">
                             <input type="checkbox" name="Estatus" id="cbEstatus" class="disabled" disabled>
-                            <label for="cbEstatus" class="switch" disabled></label>
+                            <label for="cbEstatus" class="switch" ></label>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="container-fluid my-4">
                 <div class="row gx-2 gy-2 text-center">
-                    <div class="col-sm-12 col-md-4 text-white">
+                    <div class="col-sm-12 col-md-3 text-white">
                         <button class="button-add" id="button-agregar">
                             <span class="button-text">Agregar</span>
                             <span class="button-icon"><i class="bi bi-plus"></i></span>
                         </button>
                     </div>
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-sm-12 col-md-3">
                         <button class="button-update" id="button-actualizar">
                             <span class="button-text">Actualizar</span>
                             <span class="button-icon"><i class="bi bi-cloud-upload-fill"></i></span>
                         </button>
                     </div>
-                    <div class="col-sm-12 col-md-4">
+                      <div class="col-sm-12 col-md-3">
+                        <button class="button-clean" id="button-limpiar">
+                            <span class="button-text">Limpiar Campos</span>
+                            <span class="button-icon"><i class="bi bi-trash-fill"></i></span>
+                        </button>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
                         <button class="button-delete" id="button-eliminar">
                             <span class="button-text">Eliminar</span>
                             <span class="button-icon"><i class="bi bi-x"></i></span>

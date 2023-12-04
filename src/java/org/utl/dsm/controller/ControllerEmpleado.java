@@ -142,7 +142,7 @@ public class ControllerEmpleado {
     }
 
     public List<Empleado> getAll() throws SQLException {
-        String sql = "SELECT * FROM VistaEmpleadoSucursal";
+        String sql = "SELECT * FROM VistaEmpleado;";
         // nos vamos a conectar a la Base de Datos:
         ConexionMysql connMySQL = new ConexionMysql();
         // Abrimos la conexion con la Base de Datos:
@@ -162,24 +162,69 @@ public class ControllerEmpleado {
         return empleados;
     }
 
-    private Empleado fill(ResultSet rs) throws SQLException {
-        Empleado empleado = new Empleado();
-        Persona p = new Persona();
-        Sucursal s = new Sucursal();
+   private Empleado fill(ResultSet rs) throws SQLException {
+    Empleado empleado = new Empleado();
+    Persona persona = new Persona();
+    Usuario usuario = new Usuario();
+    Sucursal sucursal = new Sucursal();
 
-        // datos de persona
-        p.setNombre(rs.getString("nombrePersona"));
-        p.setTelefono(rs.getString("telefono"));
-        // datos de sucursal
-        s.setNombreSucursal(rs.getString("nombreSucursal"));
-        // datos de empleado
-        empleado.setEstatus(rs.getInt("estatus"));
-        empleado.setPuesto(rs.getString("puesto"));
+    // Datos de la persona
+    persona.setIdPersona(rs.getInt("idPersona"));
+    persona.setNombre(rs.getString("nombrePersona"));
+    persona.setApellidoPaterno(rs.getString("apellidoPaterno"));
+    persona.setApellidoMaterno(rs.getString("apellidoMaterno"));
+    persona.setGenero(rs.getString("genero"));
+    persona.setFechaNacimiento(rs.getString("fechaNacimientoPersona"));
+    persona.setRfc(rs.getString("rfcPersona"));
+    persona.setCurp(rs.getString("curpPersona"));
+    persona.setDomicilio(rs.getString("domicilioPersona"));
+    persona.setCodigoPostal(rs.getString("codigoPostalPersona"));
+    persona.setCiudad(rs.getString("ciudadPersona"));
+    persona.setEstado(rs.getString("estadoPersona"));
+    persona.setTelefono(rs.getString("telefonoPersona"));
+    persona.setFoto(rs.getString("fotoPersona"));
 
-        empleado.setPersona(p);
-        empleado.setSucursal(s);
+    // Datos del usuario
+    usuario.setIdUsuario(rs.getInt("idUsuario"));
+    usuario.setNombreUsuario(rs.getString("nombreUsuario"));
+    usuario.setContrasenia(rs.getString("contrasenia"));
+    usuario.setRol(rs.getString("rol"));
 
-        return empleado;
-    }
+    // Datos de la sucursal
+    sucursal.setIdSucursal(rs.getInt("idSucursal"));
+    sucursal.setNombreSucursal(rs.getString("nombreSucursal"));
+    sucursal.setTitular(rs.getString("titularSucursal"));
+    sucursal.setRfc(rs.getString("rfcSucursal"));
+    sucursal.setDomicilio(rs.getString("domicilioSucursal"));
+    sucursal.setColonia(rs.getString("colonia"));
+    sucursal.setCodigoPostal(rs.getString("codigoPostalSucursal"));
+    sucursal.setCiudad(rs.getString("ciudadSucursal"));
+    sucursal.setEstado(rs.getString("estadoSucursal"));
+    sucursal.setTelefono(rs.getString("telefonoSucursal"));
+    sucursal.setLatitud(rs.getString("latitud"));
+    sucursal.setLongitud(rs.getString("longitud"));
+    sucursal.setEstatus(rs.getInt("estatusSucursal"));
+
+    // Datos del empleado
+    empleado.setIdEmpleado(rs.getInt("idEmpleado"));
+    empleado.setCodigo(rs.getString("codigo"));
+    empleado.setFechaIngreso(rs.getString("fechaIngreso"));
+    empleado.setPuesto(rs.getString("puesto"));
+    empleado.setSalarioBruto(rs.getFloat("salarioBruto"));
+    empleado.setActivo(rs.getInt("activo"));
+
+    // Asignar objetos a empleado
+    empleado.setPersona(persona);
+    empleado.setUsuario(usuario);
+    empleado.setSucursal(sucursal);
+    
+       System.out.println("nombre:" + rs.getString("nombrePersona"));
+     System.out.println("ID Empleado: " + rs.getInt("idEmpleado"));
+    System.out.println("Código: " + rs.getString("codigo"));
+
+    return empleado;
+}
+
+
 
 }

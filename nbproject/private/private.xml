@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/4Cuatrimestre/proyectoIntegradora/SICEFA/web/Css/Central.css</file>
+            <file>file:/D:/4Cuatrimestre/proyectoIntegradora/SICEFA/web/Modules/SICEFA_Central/Empleados/Js/ControllerEmpleados.js</file>
             <file>file:/D:/4Cuatrimestre/proyectoIntegradora/SICEFA/web/Modules/SICEFA_Central/Sucursales/Js/ControllerSucursales.js</file>
+            <file>file:/D:/4Cuatrimestre/proyectoIntegradora/SICEFA/src/java/org/utl/dsm/rest/RestEmpleado.java</file>
             <file>file:/D:/4Cuatrimestre/proyectoIntegradora/SICEFA/src/java/org/utl/dsm/rest/RestSucursal.java</file>
-            <file>file:/D:/4Cuatrimestre/proyectoIntegradora/SICEFA/web/index.html</file>
+            <file>file:/D:/4Cuatrimestre/proyectoIntegradora/SICEFA/src/java/org/utl/dsm/controller/ControllerEmpleado.java</file>
+            <file>file:/D:/4Cuatrimestre/proyectoIntegradora/SICEFA/src/java/org/utl/dsm/model/Empleado.java</file>
+            <file>file:/D:/4Cuatrimestre/proyectoIntegradora/SICEFA/web/Modules/SICEFA_Central/Empleados/index.html</file>
+            <file>file:/D:/4Cuatrimestre/proyectoIntegradora/SICEFA/src/java/org/utl/dsm/controller/ControllerCliente.java</file>
             <file>file:/D:/4Cuatrimestre/proyectoIntegradora/SICEFA/src/java/org/utl/dsm/controller/ControllerSucursal.java</file>
             <file>file:/D:/4Cuatrimestre/proyectoIntegradora/SICEFA/web/Modules/SICEFA_Central/Sucursales/index.html</file>
         </group>
