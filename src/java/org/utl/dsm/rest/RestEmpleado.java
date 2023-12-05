@@ -29,7 +29,7 @@ public class RestEmpleado {
             Empleado empleado = gson.fromJson(e, Empleado.class);
             ce.insertEmpleado(empleado);
              out = """
-                  {"response" : %s}
+                  {"response" : "operacion exitosa"}
                   """;
             out = String.format(out, e);
         } catch (Exception ex) {
@@ -54,7 +54,7 @@ public class RestEmpleado {
             Empleado empleado = gson.fromJson(e, Empleado.class);
             ce.modificarEmpleado(empleado);
              out = """
-                  {"response" : %s}
+                  {"response" : "operacion exitosa"}
                   """;
             out = String.format(out, e);
         } catch (Exception ex) {
@@ -79,7 +79,7 @@ public class RestEmpleado {
             Empleado empleado = gson.fromJson(e, Empleado.class);
             ce.eliminarEmpleado(empleado);
              out = """
-                  {"response" : %s}
+                  {"response" : "operacion exitosa"}
                   """;
             out = String.format(out, e);
         } catch (Exception ex) {

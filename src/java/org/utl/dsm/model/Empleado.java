@@ -1,6 +1,5 @@
 package org.utl.dsm.model;
 
-import java.sql.Date;
 
 public class Empleado {
     private int idEmpleado;
