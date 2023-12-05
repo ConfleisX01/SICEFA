@@ -3,6 +3,8 @@ function loadButtons() {
     let btnUpdate = document.getElementById('button-actualizar');
     let btnDelete = document.getElementById('button-eliminar');
     let btnSearch = document.getElementById('button-buscar');
+    let btnclean = document.getElementById("button-limpiar");
+    let checkBox = document.getElementById("cbEstatusBusqueda");
 
     // Llamado de la funcion agregar
     btnAdd.addEventListener('click', async () => {
@@ -107,7 +109,7 @@ function loadButtons() {
         let response = await makePeticion(url);
         let dataToSearch = document.getElementById('txtBusqueda').value;
 
-        if(searchProducto(response, dataToSearch).length != 0) {
+        if (searchProducto(response, dataToSearch).length != 0) {
             insertRow(searchProducto(response, dataToSearch));
         } else {
             Swal.fire({
@@ -117,6 +119,12 @@ function loadButtons() {
                 footer: '<b>Asegúrate de ingresar el nombre correctamente</b>'
             });
         }
+    });
+
+    //Llamado de la función limpiar
+    btnclean.addEventListener('click', async () => {
+        await clean();
+        getProductosData();
     });
 }
 
@@ -144,17 +152,17 @@ function addProducto() {
 
     const requestOptions = {
         method: "POST",
-        headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ producto: JSON.stringify(producto) })
+        headers: {'Content-type': 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams({producto: JSON.stringify(producto)})
     };
 
     fetch(url, requestOptions).then(
-        function (data) {
-            return data.json();
-        })
-        .then(function () {
-            getProductosData();
-        });
+            function (data) {
+                return data.json();
+            })
+            .then(function () {
+                getProductosData();
+            });
 }
 
 /// Funcion para actualizar los datos de los productos
@@ -185,17 +193,17 @@ function updateProducto() {
 
     const requestOptions = {
         method: "POST",
-        headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ producto: JSON.stringify(producto) })
+        headers: {'Content-type': 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams({producto: JSON.stringify(producto)})
     };
 
     fetch(url, requestOptions).then(
-        function (data) {
-            return data.json();
-        })
-        .then(function () {
-            getProductosData();
-        });
+            function (data) {
+                return data.json();
+            })
+            .then(function () {
+                getProductosData();
+            });
 }
 
 /// Funcion para la elimicacion logica del producto
@@ -215,17 +223,17 @@ async function delteProducto() {
 
     const requestOptions = {
         method: "POST",
-        headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ producto: JSON.stringify(producto) })
+        headers: {'Content-type': 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams({producto: JSON.stringify(producto)})
     };
 
     fetch(url, requestOptions).then(
-        function (data) {
-            return data.json();
-        })
-        .then(function () {
-            getProductosData();
-        });
+            function (data) {
+                return data.json();
+            })
+            .then(function () {
+                getProductosData();
+            });
 
     if (check.checked) {
         check.checked = false;
@@ -294,7 +302,7 @@ function insertRow(data) {
     let htmlString = '';
 
     data.forEach((producto, index) => {
-        let { idProducto, nombre, precioCompra, codigoBarras, estatus } = producto;
+        let {idProducto, nombre, precioCompra, codigoBarras, estatus} = producto;
         let estatusProducto = estatus == 1 ? 'Activo' : 'Inactivo'
         htmlString += `
         <tr scope = "row" class = "text-center fila" onclick="filaClickeada(${index})">
@@ -325,7 +333,7 @@ async function filaClickeada(index) {
     let response = await makePeticion(url);
     let datos = document.querySelectorAll(".colId");
     id = parseInt(datos[index].textContent);
-    asignProductoData(response[id-1]);
+    asignProductoData(response[id - 1]);
 }
 
 /// Funcion para asignar los datos de los productos a los inputs
@@ -362,6 +370,25 @@ function asignProductoData(response) {
     document.getElementById("cbEstatus").checked = response.estatus == 1 ? true : false;
 }
 
+function clean() {
+    document.getElementById("txtNombre").value = "";
+    document.getElementById("txtNombreGenerico").value = "";
+    document.getElementById("txtFormaFarmaceutica").value = "";
+    document.getElementById("txtUnidadMedida").value = "";
+    document.getElementById("txtPresentacion").value = "";
+    document.getElementById("txtPrincipalIndicacion").value = "";
+    document.getElementById("txtContraindicaciones").value = "";
+    document.getElementById("txtConcentracion").value = "";
+    document.getElementById("txtUnidadesEnvase").value = "";
+    document.getElementById("txtPrecioCompra").value = "";
+    document.getElementById("txtPrecioVenta").value = "";
+    document.getElementById("txtRutaFoto").value = "";
+    document.getElementById("txtCodigoBarras").value = "";
+    document.getElementById("txtIdProducto").value = "";
+    let checkbox = document.getElementById("cbEstatus");
+    checkbox.checked = false;
+    checkbox.disabled = true;
+}
 /// Funcion para validar las entradas o datos que se ingresaron en los inputs, pasando por alto ruta de la foto, foto, id, estatus
 function validateInputs() {
     if (document.getElementById("txtNombre").value == "") {

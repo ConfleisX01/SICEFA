@@ -3,6 +3,8 @@ function loadButtons() {
     let btnUpdate = document.getElementById('button-actualizar');
     let btnDelete = document.getElementById("button-eliminar");
     let btnSearch = document.getElementById("button-buscar");
+    let btnclean = document.getElementById("button-limpiar");
+    let checkBox = document.getElementById("cbEstatusBusqueda");
 
     //Lllamar a la función de Agregar
     btnAdd.addEventListener('click', async () => {
@@ -99,6 +101,15 @@ function loadButtons() {
                 Swal.fire("Operación cancelada", "", "info");
             }
         });
+    });
+
+    btnclean.addEventListener('click', async () => {
+        await clear()();
+        getClientesData();
+    });
+
+    checkBox.addEventListener('change', async function () {
+        await searchestatusSucursales();
     });
 
 // Llamar a la funcion busqueda de clientes
@@ -207,7 +218,7 @@ function update() {
     let datosCliente = {
         "idCliente": v_idCliente,
         "email": v_email,
-        "estatus":1,
+        "estatus": 1,
         "persona": {
             "nombre": v_nombre,
             "apellidoPaterno": v_apellidoPaterno,
@@ -323,7 +334,7 @@ async function insertRow(data) {
     table.innerHTML = htmlString;
 }
 
-// Funcion para buscar a un cliente por su nombre
+//Funcion para buscar a un cliente por su nombre
 function searchCliente(array, nombreBuscado) {
     return array.filter(cliente => cliente.persona.nombre.toLowerCase().includes(nombreBuscado.toLowerCase()));
 }
@@ -355,7 +366,12 @@ function clear() {
     document.getElementById("txtFoto").value = "";
     document.getElementById("txtEmail").value = "";
     //document.getElementById("txtStatus").value = "";
+    let checkbox = document.getElementById("cbEstatus");
+    checkbox.checked = false;
+    checkbox.disabled = true;
 }
+
+
 //Seleccionar inputs
 function selectInputs(response) {
     Swal.fire({
@@ -457,6 +473,7 @@ async function makePeticion(url) {
         throw error;
     }
 }
+
 
 getClientesData();
 

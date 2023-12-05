@@ -116,7 +116,18 @@ function loadButtons() {
         });
     });
 
-  
+    function searchSucursal(array, dataToSearch) {
+        const searchResults = array.filter(sucursal => {
+            for (let key in sucursal) {
+                if (sucursal[key] && sucursal[key].toString().toLowerCase().includes(dataToSearch.toLowerCase())) {
+                    return true;
+                }
+            }
+            return false;
+        });
+
+        return searchResults;
+    }
 
     btnSearch.addEventListener('click', async () => {
         const url = 'http://localhost:8080/DreamSoft_SICEFA/api/sucursal/getAll';
@@ -139,18 +150,6 @@ function loadButtons() {
     });
 }
 
-  function searchSucursal(array, dataToSearch) {
-        const searchResults = array.filter(sucursal => {
-            for (let key in sucursal) {
-                if (sucursal[key] && sucursal[key].toString().toLowerCase().includes(dataToSearch.toLowerCase())) {
-                    return true;
-                }
-            }
-            return false;
-        });
-
-        return searchResults;
-    }
 // no supe que hice pero funciona, no le muevan
 function insertRow(data) {
     let table = document.getElementById('table-row');

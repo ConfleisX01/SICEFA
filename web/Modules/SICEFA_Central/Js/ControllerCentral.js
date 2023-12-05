@@ -14,31 +14,50 @@ function loadButtons() {
         loadSucursales();
     });
 
-    let btnCliente = document.getElementById("button-clientes");
-    btnCliente.addEventListener('click', () => {
-        loadClientes();
-    });
-    
-    let btnEmpleado = document.getElementById("button-empleados");
-     btnEmpleado.addEventListener('click', () => {
-        loadEmpleados();
-    });
-
     optionsActive();
 }
-
-function loadClientes() {
-    fetch("./Modules/SICEFA_Central/Clientes/index.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('container-central').innerHTML = data;
-        }).then(() => {
-            const scriptLogin = document.createElement('script');
-            scriptLogin.src = './Modules/SICEFA_Central/Clientes/Js/ControllerClientes.js';
-            document.body.appendChild(scriptLogin);
+let btnSalida = document.getElementById("button-salir");
+    btnSalida.addEventListener('click', () =>{
+        Swal.fire({
+            title: "Confirmar Operación",
+            text: "¿Estás seguro de que deseas salir de SICEFA Central?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            confirmButtonText: "Salir",
+            cancelButtonText: "Cancelar",
+            reverseButtons: true,
+            focusCancel: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                 Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "Saliendoo....",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                loadLogin();
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire("Operación cancelada", "", "info");
+            }
         });
+         //loadLogin();
+    });
+    
+    //Funcion para salir de SICEFA Central
+    function loadLogin() {
+    fetch("./Modules/login/login.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-container').innerHTML = data;
+            }).then(() => {
+        const scriptLogin = document.createElement('script');
+        scriptLogin.src = './Modules/login/Js/ControllerLogin.js';
+        document.body.appendChild(scriptLogin);
+    });
 }
-
+    
 // FUncion para cargar el modulo sucursales
 
 function loadSucursales() {
@@ -77,20 +96,6 @@ function loadInicio() {
         }).then(() => {
             const scriptLogin = document.createElement('script');
             scriptLogin.src = './Modules/SICEFA_Central/Inicio/Js/ControllerInicio.js';
-            document.body.appendChild(scriptLogin);
-        });
-}
-
-
-// Funcion para cargar la pagina Empleados
-function loadEmpleados() {
-      fetch("./Modules/SICEFA_Central/Empleados/index.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('container-central').innerHTML = data;
-        }).then(() => {
-            const scriptLogin = document.createElement('script');
-            scriptLogin.src = './Modules/SICEFA_Central/Empleados/Js/ControllerEmpleados.js';
             document.body.appendChild(scriptLogin);
         });
 }
