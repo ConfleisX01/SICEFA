@@ -36,6 +36,5 @@ function loadSucursal() {
 }
 
 /// Funcion especializada para el testeo de la seccion Central
-loadCentral();
 //loadSucursal(); // Eliminar funcion al terminar el testeo del modulo Central
-//loadIndex(); // Activar funcion despues del testeo
+loadIndex(); // Activar funcion despues del testeo

@@ -14,9 +14,7 @@ function loadButtons() {
         loadSucursales();
     });
 
-    optionsActive();
-}
-let btnSalida = document.getElementById("button-salir");
+    let btnSalida = document.getElementById("button-salir");
     btnSalida.addEventListener('click', () =>{
         Swal.fire({
             title: "Confirmar Operación",
@@ -44,20 +42,22 @@ let btnSalida = document.getElementById("button-salir");
         });
          //loadLogin();
     });
-    
-    //Funcion para salir de SICEFA Central
-    function loadLogin() {
-    fetch("./Modules/login/login.html")
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('main-container').innerHTML = data;
-            }).then(() => {
-        const scriptLogin = document.createElement('script');
-        scriptLogin.src = './Modules/login/Js/ControllerLogin.js';
-        document.body.appendChild(scriptLogin);
-    });
+
+    optionsActive();
 }
-    
+//Funcion para salir de SICEFA Central
+function loadLogin() {
+    fetch("./Modules/login/login.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('main-container').innerHTML = data;
+        }).then(() => {
+            const scriptLogin = document.createElement('script');
+            scriptLogin.src = './Modules/login/Js/ControllerLogin.js';
+            document.body.appendChild(scriptLogin);
+        });
+}
+
 // FUncion para cargar el modulo sucursales
 
 function loadSucursales() {
