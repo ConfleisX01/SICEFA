@@ -20,10 +20,9 @@ function loadButtons() {
             text: "¿Estás seguro de que deseas salir de SICEFA Sucursal?",
             icon: "warning",
             showCancelButton: true,
+            confirmButtonColor: "#d33",
             confirmButtonText: "Salir",
-            confirmButtonColor: '#009929',
             cancelButtonText: "Cancelar",
-            cancelButtonText:"#A52019",
             reverseButtons: true,
             focusCancel: true
         }).then((result) => {
